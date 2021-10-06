@@ -44,6 +44,24 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 DATABASES = {
     "default": env.db("DATABASE_URL", default="postgres:///next"),
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'next',
+#         'USER': 'macbot',
+#         'PASSWORD': 'M08034169322i',
+#         'HOST': 'localhost',
+#         'POST': '5432',
+#     },
+#     'oldnext': {
+#         'NAME': 'oldnext',
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'USER': 'macbot',
+#         'PASSWORD': 'M08034169322i',
+#         'HOST': 'localhost',
+#         'POST': '5432',
+#     }
+# }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # URLS
