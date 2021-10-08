@@ -11,6 +11,7 @@ User = get_user_model()
 class UserAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'contact_number')
     list_display_links = ('first_name', 'last_name', 'contact_number')
+    readonly_fields = ('password',)
 
 
 @admin.register(UserActivity)

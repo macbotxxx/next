@@ -44,8 +44,12 @@ class Category(MPTTModel):
         return self.category
     class MPTTMeta:
         order_insertion_by = ['category']
-        verbose_name = _('Add & Delete Category')
-        verbose_name_plural = _('Add & Delete Category')
+        
+
+    class Meta:
+        verbose_name = _('Add or Delete Category')
+        verbose_name_plural = _('Add or Delete Category')
+
 
 
     # def get_absolute_url(self):
