@@ -4,16 +4,19 @@ from config.utils import unique_slug_generator_category
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 
 
 class Category(MPTTModel):
+    
     category = models.CharField(
         verbose_name = _('Category Name'),
         max_length=80, unique=True,
         null=True, 
         help_text = _('Specify the category name.')
         )
+
     parent = TreeForeignKey(
         'self',
         verbose_name = _('Category Parent'),
@@ -38,10 +41,14 @@ class Category(MPTTModel):
         )
     # mobile_icons = models.ImageField(upload_to = "categories_image/", null=True, blank = True)
     # desktop_icons = models.ImageField(upload_to = "categories_image/", null=True, blank = True)
-
+    
+    def get_absolute_url(self):
+        return reverse('category-detail', args=[str(self.slug)])
 
     def __str__(self):
         return self.category
+
+        
     class MPTTMeta:
         order_insertion_by = ['category']
         
@@ -50,12 +57,6 @@ class Category(MPTTModel):
         verbose_name = _('Add or Delete Category')
         verbose_name_plural = _('Add or Delete Category')
 
-
-
-    # def get_absolute_url(self):
-    #     return reverse("core:products", kwargs={
-    #         'slug': self.slug
-    #     })
 
     def __str__(self):
         full_path = [self.category]

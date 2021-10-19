@@ -80,7 +80,7 @@ DJANGO_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "django.contrib.humanize", # Handy template tags
+    "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
     "mptt",
@@ -100,6 +100,8 @@ LOCAL_APPS = [
     "next.users.apps.UsersConfig",
     # Your stuff: custom apps go here
     "categories.apps.CategoriesConfig",
+    "store.apps.StoreConfig",
+    "carts",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -208,6 +210,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "next.utils.context_processors.settings_context",
+                "categories.context_processors.menu_links",
             ],
         },
     }

@@ -8,7 +8,7 @@ from django.http import HttpRequest
 from django.test import RequestFactory
 from django.urls import reverse
 
-from next.users.forms import UserChangeForm
+from next.users.forms import CustomSignupForm
 from next.users.models import User
 from next.users.tests.factories import UserFactory
 from next.users.views import (

@@ -1,10 +1,12 @@
 from django.db import models
+from django.urls.base import reverse
+from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
-from config.utils import unique_slug_generator_category
+from config.utils import unique_slug_generator_category, unique_slug_generator
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
-from next.categories.models import Category
+from categories.models import Category
 from helpers.common.basemodel import BaseModel
 
 
@@ -15,7 +17,6 @@ class Product(BaseModel):
     product_name = models.CharField(
         verbose_name=_('Product Name'),
         max_length=500,
-        unique=True,
         null=True,
         help_text=_('Product name should be added which identify each product')
     )
@@ -68,12 +69,27 @@ class Product(BaseModel):
     )
 
     
+    class Meta:
+        ordering = ('-created_date',)
+        verbose_name = _("Add Product")
+        verbose_name_plural = _("Add Products")
+
+    def __str__(self):
+        return str(self.product_name)
+
+    def get_absolute_url(self):
+        return reverse('product-details', args=[str(self.slug)])
+
+    # def save(self, *args, **kwargs):
+    #     value = self.product_name
+    #     if not self.slug:
+    #         self.slug = slugify(value, allow_unicode=True)
+    #     super().save(*args, **kwargs)
 
 
-
-def slug_generator_category(sender, instance, *args, **kwargs):
+def slug_generator(sender, instance, *args, **kwargs):
     if not instance.slug:
-        instance.slug = unique_slug_generator_category(instance)
+        instance.slug = unique_slug_generator(instance)
 
 
-pre_save.connect(slug_generator_category, sender=Product)
+pre_save.connect(slug_generator, sender=Product)

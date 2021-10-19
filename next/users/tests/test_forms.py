@@ -4,7 +4,7 @@ Module for all Form Tests.
 import pytest
 from django.utils.translation import gettext_lazy as _
 
-from next.users.forms import UserCreationForm
+from next.users.forms import CustomSignupForm
 from next.users.models import User
 
 pytestmark = pytest.mark.django_db
@@ -25,15 +25,15 @@ class TestUserCreationForm:
 
         # The user already exists,
         # hence cannot be created.
-        form = UserCreationForm(
+        form = CustomSignupForm(
             {
-                "username": user.username,
-                "password1": user.password,
-                "password2": user.password,
+                "email": user.email,
+                "password": user.password,
+                # "password2": user.password,
             }
         )
 
         assert not form.is_valid()
         assert len(form.errors) == 1
-        assert "username" in form.errors
-        assert form.errors["username"][0] == _("This username has already been taken.")
+        assert "email" in form.errors
+        assert form.errors["email"][0] == _("This email has already been taken.")
