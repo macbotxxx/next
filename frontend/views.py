@@ -1,5 +1,10 @@
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import View, ListView
+from django.core.paginator import Paginator
+
+from carts.views import _cart_id
+from carts.models import Cart, CartItem
+
 
 from store.models import Product
 from categories.models import Category
@@ -45,7 +50,9 @@ class ProductCategory (View):
         products = Product.objects.filter(category__parent=category)
     
         """product pagination"""
-        # product pagination will be placed here
+        paginator = Paginator(products, 20) # Show 20 contacts per page.
+        page_number = request.GET.get('page')
+        products = paginator.get_page(page_number)
 
         context = {
             'category':category,
@@ -60,11 +67,15 @@ class ProductCategory (View):
 
 
 class ProductDetails (View):
+    paginate_by = 2
+
     def get (self, request, *args, **kwargs):
-        product = Product.objects.filter(slug = kwargs['slug'])
+        product = Product.objects.get(slug = kwargs['slug'])
+        in_cart = CartItem.objects.filter(cart__cart_id =_cart_id(request), product = product).exists()
         
         context = {
             'product': product,
+            'in_cart':in_cart,
         }
         return render(self.request, 'pages/product_details.html', context)
 

@@ -210,7 +210,10 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "next.utils.context_processors.settings_context",
+                # custome context processors
                 "categories.context_processors.menu_links",
+                "carts.context_processors.counter",
+                "carts.context_processors.all_cart_items",
             ],
         },
     }

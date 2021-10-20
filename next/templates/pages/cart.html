@@ -45,9 +45,9 @@
                                         {% for p in cart_items %}
                                         <div class="shopping-cart-row">
                                             <div class="cart-product">
-                                                <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="{{p.product.image.url}}" alt="alt" /></a>
+                                                <div class="ps-product--mini-cart"><a href="{{p.product.get_absolute_url}}"><img class="ps-product__thumbnail" src="{{p.product.image.url}}" alt="alt" /></a>
                                                     <div class="ps-product__content">
-                                                        <h5><a class="ps-product__name" href="#">{{p.product.product_name | title }}</a></h5>
+                                                        <h5><a class="ps-product__name" href="{{p.product.get_absolute_url}}">{{p.product.product_name | title }}</a></h5>
                                                         <p class="ps-product__unit">color : blue</p>
                                                         <p class="ps-product__unit">size : L</p>
                                                         <p class="ps-product__soldby">Sold by <span>NEXT</span></p>

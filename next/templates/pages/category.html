@@ -96,11 +96,11 @@
                                         </div>
                                         <div class="block__input">
                                             <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                <div class="input-group-prepend"><span class="input-group-text">₦</span></div>
                                                 <input class="form-control" type="text" id="input-with-keypress-0">
                                             </div>
                                             <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                <div class="input-group-prepend"><span class="input-group-text">₦</span></div>
                                                 <input class="form-control" type="text" id="input-with-keypress-1">
                                             </div>
                                             <button>Go</button>
@@ -320,7 +320,7 @@
                                 <div class="row m-0">
                                     {%for p in products %}
                                     <div class="col-6 col-md-4 col-lg-3 p-0">
-                                        <div class="ps-product--standard"><a href="{{p.get_absolute_url}}"><img class="ps-product__thumbnail" src="{{p.image.url}}" alt="alt" /></a><a class="ps-product__expand" href="javascript:void(0);" data-toggle="modal" data-target="#popupQuickview"><i class="icon-expand"></i></a><span class="ps-badge ps-product__offbadge">32% Off </span>
+                                        <div class="ps-product--standard"><a href="{{p.get_absolute_url}}"><img class="ps-product__thumbnail" src="{{p.image.url}}" alt="alt" /></a><a class="ps-product__expand" href="javascript:void(0);" data-toggle="modal" data-target="#popupQuickview"><i class="icon-expand"></i></a> {%if p.stock <= 0 %} <span class="ps-badge ps-product__stock">Out Of Stock</span> {%endif%}
                                             <div class="ps-product__content">
                                                 <p class="ps-product__type"><i class="icon-store"></i>NEXT</p>
                                                 <h5><a class="ps-product__name" href="{{p.get_absolute_url}}">{{p.product_name | title}}</a></h5>
@@ -334,29 +334,42 @@
                                                         <option value="5" selected="selected">5</option>
                                                     </select><span>(14)</span>
                                                 </div>
-                                                <p class="ps-product-price-block"><span class="ps-product__sale">${{p.price | intcomma}}</span><span class="ps-product__price">$12.00</span>
+                                                <p class="ps-product-price-block"><span class="ps-product__sale">₦{{p.price | intcomma}}</span><span class="ps-product__price">₦12.00</span>
                                                 </p>
                                             </div>
                                             <div class="ps-product__footer">
                                                
                                        
-                                                <button class="ps-product__addcart" data-toggle="modal" data-target="#popupAddToCart"><i class="icon-cart"></i>Add to cart</button>
-                                                <div class="ps-product__box"><a class="ps-product__wishlist" href="wishlist.html">Wishlist</a><a class="ps-product__compare" href="wishlist.html">Compare</a></div>
+                                                <div class="ps-product__box"><a class="btn btn-warning" href="{{p.get_absolute_url}}"><span style="color:rgb(0, 0, 0); font-size:14px; font-weight:bold;">Wishlist</span></a><a class="btn btn-primary" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a></div>
                                             </div>
                                         </div>
                                     </div>
                                     {%endfor%}
                                 </div>
                             </div>
+
                             <div class="ps-pagination blog--pagination">
                                 <ul class="pagination">
-                                    <li class="chevron"><a href="#"><i class="icon-chevron-left"></i></a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li class="chevron"><a href="#"><i class="icon-chevron-right"></i></a></li>
+                                    {% if products.has_previous %}
+                                    <li class="chevron"><a href="?page={{ products.previous_page_number }}"><i class="icon-chevron-left"></i></a></li>
+                                    {% endif %}
+                                    {%for num in products.paginator.page_range %}
+                                    {%if products.number == num %}
+                                    <li class="active"><a href="?page={{num}}">{{num}}</a></li>
+                                    {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                                    <li class=""><a href="?page={{num}}">{{num}}</a></li>
+                                    {%endif%}
+                                    {%endfor%}
+                                    {% if products.has_next %}
+                                    <li class="chevron"><a href="?page={{products.next_page_number }}"><i class="icon-chevron-right"></i></a></li>
+                                    {% endif %}
+
+
                                 </ul>
                             </div>
+                            
+                           
+
                         </div>
                     </div>
                 </div>
@@ -408,7 +421,7 @@
                                             </div>
                                         </div>
                                         <div class="product__content">
-                                            <div class="product__price"><span class="sale">$5.49</span><span class="price">$6.90</span><span class="off">25% Off</span></div>
+                                            <div class="product__price"><span class="sale">₦5.49</span><span class="price">₦6.90</span><span class="off">25% Off</span></div>
                                             <p class="product__unit">300g</p>
                                             <div class="alert__success">Availability: <span>34 in stock</span></div>
                                             <ul>
@@ -468,7 +481,7 @@
                                                         <option value="5">5</option>
                                                     </select><span>(4)</span>
                                                 </div>
-                                                <p class="ps-product-price-block"><span class="ps-product__sale">$8.90</span><span class="ps-product__price">$9.90</span><span class="ps-product__off">15% Off</span>
+                                                <p class="ps-product-price-block"><span class="ps-product__sale">₦8.90</span><span class="ps-product__price">₦9.90</span><span class="ps-product__off">15% Off</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -489,7 +502,7 @@
                                                         <option value="5" selected="selected">5</option>
                                                     </select><span>(14)</span>
                                                 </div>
-                                                <p class="ps-product-price-block"><span class="ps-product__price-default">$1.99</span>
+                                                <p class="ps-product-price-block"><span class="ps-product__price-default">₦1.99</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -510,7 +523,7 @@
                                                         <option value="5">5</option>
                                                     </select><span>(0)</span>
                                                 </div>
-                                                <p class="ps-product-price-block"><span class="ps-product__price-default">$4.49</span>
+                                                <p class="ps-product-price-block"><span class="ps-product__price-default">₦4.49</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -531,7 +544,7 @@
                                                         <option value="5">5</option>
                                                     </select><span>(6)</span>
                                                 </div>
-                                                <p class="ps-product-price-block"><span class="ps-product__sale">$6.99</span><span class="ps-product__price">$9.90</span><span class="ps-product__off">25% Off</span>
+                                                <p class="ps-product-price-block"><span class="ps-product__sale">₦6.99</span><span class="ps-product__price">₦9.90</span><span class="ps-product__off">25% Off</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -552,7 +565,7 @@
                                                         <option value="5">5</option>
                                                     </select><span>(6)</span>
                                                 </div>
-                                                <p class="ps-product-price-block"><span class="ps-product__sale">$4.90</span><span class="ps-product__price">$3.99</span><span class="ps-product__off">15% Off</span>
+                                                <p class="ps-product-price-block"><span class="ps-product__sale">₦4.90</span><span class="ps-product__price">₦3.99</span><span class="ps-product__off">15% Off</span>
                                                 </p>
                                             </div>
                                         </div>

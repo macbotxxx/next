@@ -3,13 +3,12 @@
 {% block title %}product details{% endblock %}
 
     {% block content %}
-    {%for p in product %}
     <main class="no-main">
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="ps-breadcrumb__list">
                     <li class="active"><a href="index.html">Home</a></li>
-                    <li class="active"><a href="shop.html">Kitchen &amp; Dining</a></li>
+                    <li class="active"><a href="shoproduct.html">Kitchen &amp; Dining</a></li>
                     <li class="active"><a href="shop.html">Food &amp; Drink Storage</a></li>
                     <li><a href="javascript:void(0);">Miko The Panda Water Bottle</a></li>
                 </ul>
@@ -42,11 +41,11 @@
                                     <div class="col-12 col-lg-6">
                                         <div class="ps-product__variants">
                                             <div class="ps-product__gallery">
-                                                <div class="ps-gallery__item active"><img src="{{p.image.url}}" alt="alt" /></div>
+                                                <div class="ps-gallery__item active"><img src="{{product.image.url}}" alt="alt" /></div>
                                                 <div class="ps-gallery__item"><img src="{% static 'nextonline/img/products/09-KitchenDining/09_8b.jpg' %}" alt="alt" /></div>
                                             </div>
                                             <div class="ps-product__thumbnail">
-                                                <div class="ps-product__zoom"><img id="ps-product-zoom" src="{{p.image.url}}" alt="alt" />
+                                                <div class="ps-product__zoom"><img id="ps-product-zoom" src="{{product.image.url}}" alt="alt" />
                                                     <ul class="ps-gallery--poster" id="ps-lightgallery-videos" data-video-url="#">
                                                         <li data-html="#video-play"><span></span><i class="fa fa-play-circle"></i></li>
                                                     </ul>
@@ -60,7 +59,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6">
-                                        <div class="ps-product__sale"><span class="price-sale">${{p.price | intcomma }}</span><span class="price">$17.90</span><span class="ps-product__off">34% Off</span>
+                                        <div class="ps-product__sale"><span class="price-sale">${{product.price | intcomma }}</span><span class="price">$17.90</span><span class="ps-product__off">34% Off</span>
                                         </div>
                                         <div class="ps-product__variable"><span>Color:</span>
                                             <select class="form-control">
@@ -68,7 +67,7 @@
                                                 <option>Orange</option>
                                             </select><span class="ps-product__clear">Clear</span>
                                         </div>
-                                        {%if p.stock <= 0 %}
+                                        {%if product.stock <= 0 %}
                                         <div class="ps-product__avai alert__error">Availability: <span>Out Of Stock</span>
                                         </div>
                                         {%else%}
@@ -83,14 +82,16 @@
                                                 <li> <span><i class="icon-square"></i></span>Hand wash only</li>
                                             </ul>
                                         </div>
-                                        {%if p.stock > 0 %}
+                                        {%if product.stock > 0 %}
 
                                         <div class="ps-product__shopping">
                                           
-                                            
-                                            <a class="ps-product__addcart ps-button" href="{%url 'add_to_cart' p.id %}" ><i class="icon-cart"></i>Add to cart</a><a class="ps-product__icon" href="wishlist.html"><i class="icon-heart"></i></a><a class="ps-product__icon"><i class="icon-repeat"></i></a>
+                                            {%if in_cart %}
+                                            <a class="ps-product__addcart ps-button" style="background-color: rgb(7, 82, 100);" href="{%url 'cart'  %}" ><i class="icon-check"></i>Already In The Cart</a><a class="ps-product__icon" href="{%url 'cart' %}"><i class="icon-cart"></i></a>
+                                            {%else %}
+                                            <a class="ps-product__addcart ps-button" href="{%url 'add_to_cart' product.id %}" ><i class="icon-cart"></i>Add to cart</a><a class="ps-product__icon" href="wishlist.html"><i class="icon-heart"></i></a><a class="ps-product__icon"><i class="icon-repeat"></i></a>
+                                            {%endif%}
                                         </div>
-                                        {%endif%}
                                         <div class="ps-product__category">
                                             <ul>
                                                 <li>Brand: <a href='shop-all-brands.html' class='text-success'>FarmMatket</a></li>
@@ -99,7 +100,9 @@
                                                 <li>Tags: <a href='shop-all-brands.html' class='text-primary'>meat organic food</a>, <a href='shop-all-brands.html' class='text-success'>beet</a>, <a href='shop-all-brands.html' class='text-success'>healthy</a>, <a href='shop-all-brands.html' class='text-success'>foody</a></li>
                                             </ul>
                                         </div>
-                                        <div class="ps-product__footer"><a class="ps-product__shop" href="shop-view-grid.html"><i class="icon-store"></i><span>Store</span></a><a class="ps-product__addcart ps-button" data-toggle="modal" data-target="#popupAddToCart"><i class="icon-cart"></i>Add to cart</a></div>
+                                        <div class="ps-product__footer"><a class="ps-product__shop" href="shop-view-grid.html"><i class="icon-store"></i><span>Store</span></a><a class="ps-product__addcart ps-button" href="{%url 'add_to_cart' product.id %}"><i class="icon-cart"></i>Add to cart</a></div>
+                                        {%endif%}
+
                                     </div>
                                 </div>
                             </div>
@@ -774,6 +777,5 @@
             </div>
         </section>
     </main>
-    {%endfor%}
     {% endblock %}
    
