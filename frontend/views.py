@@ -20,6 +20,9 @@ class HomePage(View):
     def get (self, request, *args, **kwargs):
         products = Product.objects.all().filter(is_available = True)
         categories = Category.objects.all()
+        for c in categories:
+            print(c.parent)
+           
 
         context = {
             'products': products,
