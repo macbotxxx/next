@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import View, ListView
 from django.core.paginator import Paginator
+from django.http import JsonResponse
 
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
@@ -81,6 +82,37 @@ class ProductDetails (View):
 
     def post (self, request, *args, **kwargs):
         pass
+
+
+def search_result(request):
+    """
+    Product search function using ajax
+    """
+
+    if request.is_ajax():
+        res = None
+        product = request.POST.get('product')
+        print(product)
+        qs = Product.objects.filter(product_name__icontains=product)
+        if len(qs) > 0 and len(product) > 0:
+            data = []
+            for pos in qs:
+                item = {
+                    'slug': pos.slug,
+                    'product_name':pos.product_name,
+                    'price': pos.price,
+                    'image': str(pos.image.url),
+
+                }
+                data.append(item)
+            res = data
+        else:
+            res = 'No Product found.......'
+        return JsonResponse({'data': res})
+
+    return JsonResponse({})
+
+
 
 
 

@@ -200,127 +200,19 @@
                           </li>
                       </ul>
                   </div>
-                  <div class="header-inner__center">
-                      <div class="input-group">
-                          <div class="input-group-prepend">
-                              <div class="header-search-select"><span class="current">All<i class="icon-chevron-down"></i></span>
-                                  <ul class="list">
-                                      <li class="category-option active" data-value="option"><a href="javascript:void(0);">All</a></li>
-                                      <li class="category-option"><a>Fresh</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                                          <ul>
-                                              <li><a href="#">Meat & Poultry</a></li>
-                                              <li><a href="#">Fruit</a></li>
-                                              <li><a href="#">Vegetables</a></li>
-                                              <li><a href="#">Milks, Butter & Eggs</a></li>
-                                              <li><a href="#">Fish</a></li>
-                                              <li><a href="#">Frozen</a></li>
-                                              <li><a href="#">Cheese</a></li>
-                                              <li><a href="#">Pasta & Sauce</a></li>
-                                          </ul>
-                                      </li>
-                                      <li class="category-option"><a>Food Cupboard</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                                          <ul>
-                                              <li><a href="#">Crisps, Snacks & Nuts</a></li>
-                                              <li><a href="#">Breakfast Cereals</a></li>
-                                              <li><a href="#">Tins & Cans</a></li>
-                                              <li><a href="#">Chocolate & Sweets</a></li>
-                                          </ul>
-                                      </li>
-                                      <li class="category-option" data-value="Bakery"><a href="javascript:void(0);">Bakery</a></li>
-                                      <li class="category-option" data-value="Drinks, Tea &amp; Coffee"><a href="javascript:void(0);">Drinks, Tea &amp; Coffee</a></li>
-                                      <li class="category-option" data-value="Frozen Foods"><a href="javascript:void(0);">Frozen Foods</a></li>
-                                      <li class="category-option"><a>Ready Meals</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                                          <ul>
-                                              <li><a href="#">Traditional British</a></li>
-                                              <li><a href="#">Indian</a></li>
-                                              <li><a href="#">Italian</a></li>
-                                              <li><a href="#">Chinese</a></li>
-                                          </ul>
-                                      </li>
-                                      <li class="category-option" data-value="Beer, Wine &amp; Spirits"><a href="javascript:void(0);">Beer, Wine &amp; Spirits</a></li>
-                                      <li class="category-option" data-value="Baby &amp; Child"><a href="javascript:void(0);">Baby &amp; Child</a></li>
-                                      <li class="category-option" data-value="Kitchen &amp; Dining"><a href="javascript:void(0);">Kitchen &amp; Dining</a></li>
-                                  </ul>
-                              </div><i class="icon-magnifier search"></i>
-                          </div>
-                          <input class="form-control input-search" placeholder="I'm searchching for...">
-                          <div class="input-group-append">
-                              <button class="btn">Search</button>
-                          </div>
+                  <div class="header-inner__center ">
+                      
+                        <form action="" id="search-form" method="get">
+                            {% csrf_token %}
+                          <input class="form-control input-search" id="search-input" style="height:45px;" placeholder="I'm searchching for...">
+                        </form>
+                    
+                      <div class="result-search not-visible" id="results-box">
+                         
                       </div>
-                      <div class="trending-search">
-                          <ul class="list-trending">
-                              <li class="title"><a>Trending search: </a></li>
-                              <li class="trending-item"><a href="#">meat</a></li>
-                              <li class="trending-item"><a href="#">fruit</a></li>
-                              <li class="trending-item"><a href="#">vegetables</a></li>
-                              <li class="trending-item"><a href="#">salad</a></li>
-                              <li class="trending-item"><a href="#">yoghurts</a></li>
-                              <li class="trending-item"><a href="#">apple</a></li>
-                          </ul>
-                      </div>
-                      <div class="result-search">
-                          <ul class="list-result">
-                              <li class="cart-item">
-                                  <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_18a.jpg' %}" alt="alt" /></a>
-                                      <div class="ps-product__content"><a class="ps-product__name" href="product-default.html"><u>Organic</u> Large Green Bell Pepper</a>
-                                          <p class="ps-product__rating">
-                                              <select class="rating-stars">
-                                                  <option value="1">1</option>
-                                                  <option value="2">2</option>
-                                                  <option value="3" selected="selected">3</option>
-                                                  <option value="4">4</option>
-                                                  <option value="5">5</option>
-                                              </select><span>(5)</span>
-                                          </p>
-                                          <p class="ps-product__meta"> <span class="ps-product__price">₦6.90</span>
-                                          </p>
-                                      </div>
-                                  </div>
-                              </li>
-                              <li class="cart-item">
-                                  <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_16a.jpg' %}" alt="alt" /></a>
-                                      <div class="ps-product__content"><a class="ps-product__name" href="product-default.html">Avocado <u>Organic</u> Hass Large</a>
-                                          <p class="ps-product__meta"> <span class="ps-product__price">₦12.90</span>
-                                          </p>
-                                      </div>
-                                  </div>
-                              </li>
-                              <li class="cart-item">
-                                  <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_32a.jpg' %}" alt="alt" /></a>
-                                      <div class="ps-product__content"><a class="ps-product__name" href="product-default.html">Tailgater Ham <u>Organic</u> Sandwich</a>
-                                          <p class="ps-product__meta"> <span class="ps-product__price">₦33.49</span>
-                                          </p>
-                                      </div>
-                                  </div>
-                              </li>
-                              <li class="cart-item">
-                                  <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_6a.jpg' %}" alt="alt" /></a>
-                                      <div class="ps-product__content"><a class="ps-product__name" href="product-default.html">Extreme <u>Organic</u> Light Can</a>
-                                          <p class="ps-product__rating">
-                                              <select class="rating-stars">
-                                                  <option value="1">1</option>
-                                                  <option value="2">2</option>
-                                                  <option value="3">3</option>
-                                                  <option value="4" selected="selected">4</option>
-                                                  <option value="5">5</option>
-                                              </select><span>(16)</span>
-                                          </p>
-                                          <p class="ps-product__meta"> <span class="ps-product__price-sale">₦4.99</span><span class="ps-product__is-sale">₦8.99</span>
-                                          </p>
-                                      </div>
-                                  </div>
-                              </li>
-                              <li class="cart-item">
-                                  <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_22a.jpg' %}" alt="alt" /></a>
-                                      <div class="ps-product__content"><a class="ps-product__name" href="product-default.html">Extreme <u>Organic</u> Light Can</a>
-                                          <p class="ps-product__meta"> <span class="ps-product__price">₦12.99</span>
-                                          </p>
-                                      </div>
-                                  </div>
-                              </li>
-                          </ul>
-                      </div>
+
+
+
                   </div>
                   <div class="header-inner__right">
                       <button class="button-icon icon-md"><i class="icon-repeat"></i></button><a class="button-icon icon-md" href="wishlist.html"><i class="icon-heart"></i><span class="badge bg-warning">2</span></a>
