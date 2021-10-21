@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.urls.base import reverse
 from django.utils.text import slugify
@@ -5,6 +6,8 @@ from django.utils.translation import gettext_lazy as _
 from config.utils import unique_slug_generator_category, unique_slug_generator
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+from django.utils import timezone
+
 
 from categories.models import Category
 from helpers.common.basemodel import BaseModel
@@ -93,3 +96,70 @@ def slug_generator(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(slug_generator, sender=Product)
+
+
+
+# product variation manager interface
+class ProductVariationManager(models.Manager):
+    # variation function for the color of the product
+    def colors (self):
+        return super(ProductVariationManager, self).filter(variations_category="Color", is_active = True)
+
+    # variation fucntion for thr product size
+    def sizes (self):
+        return super(ProductVariationManager, self).filter(variations_category="Size", is_active = True)
+
+
+# product variation category list
+VARIATION_CATEGORIES_LIST = (
+    ('Color', 'Color'),
+    ('Size', 'Size'),
+)
+
+
+class ProductVariation(BaseModel):
+    """
+    Product variations models for the current product function.
+    """
+    # registering custom manager interface
+    objects = ProductVariationManager()
+
+   
+
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE,
+        null=True,
+        verbose_name = _('Product Name'),
+        help_text = _('Product name refering to the product already uplaoded and to be added some variatons.')
+    )
+
+    variations_category = models.CharField(
+        verbose_name = _('Variations'),
+        max_length = 255,
+        null=True,
+        choices=VARIATION_CATEGORIES_LIST,
+        help_text = _("Select which variation category to the current product")
+    )
+
+    variation_value = models.CharField(
+        verbose_name = _('Variation Value'),
+        null =True,
+        max_length = 250,
+        help_text=_("the value to select for the variation product")
+    )
+
+    is_active = models.BooleanField(
+        verbose_name=_("Variation Status"),
+        default = True,
+        null =True,
+        help_text=_("Status to dectect if the product variation is active or not")
+    )
+    
+
+    class Meta:
+        ordering = ('-created_date',)
+        verbose_name = _("Product Variation ")
+        verbose_name_plural = _("Product Variation")
+
+    def __str__(self):
+        return str(self.product)

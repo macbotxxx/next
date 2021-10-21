@@ -4,6 +4,7 @@ from .models import Cart, CartItem
 
 # Create your views here.
 
+from django.http import HttpResponse
 
 
 
@@ -15,6 +16,13 @@ def _cart_id (request):
 
 
 def add_to_cart (request, id):
+    if request.method == 'POST':
+
+        color = request.POST['color']
+        # size = request.GET['size']
+
+        return HttpResponse( color)
+        exit()
     product = Product.objects.get(id=id) #get the product
 
     try: 

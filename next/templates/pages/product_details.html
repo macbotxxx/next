@@ -36,6 +36,10 @@
                 <div class="product__detail">
                     <div class="row">
                         <div class="col-12 col-lg-9">
+
+                            <form action="{%url 'add_to_cart' product.id %}" method="POST">
+                                {%csrf_token%}
+
                             <div class="ps-product--detail">
                                 <div class="row">
                                     <div class="col-12 col-lg-6">
@@ -61,12 +65,29 @@
                                     <div class="col-12 col-lg-6">
                                         <div class="ps-product__sale"><span class="price-sale">${{product.price | intcomma }}</span><span class="price">$17.90</span><span class="ps-product__off">34% Off</span>
                                         </div>
+
                                         <div class="ps-product__variable"><span>Color:</span>
-                                            <select class="form-control">
-                                                <option>Blue</option>
-                                                <option>Orange</option>
-                                            </select><span class="ps-product__clear">Clear</span>
+                                            <select name="color" class="form-control">
+                                                <option value="" disabled selected>Select Color</option>
+
+                                                {%for i in product.productvariation_set.colors %}
+                                                <option value="{{i.variation_value}}">{{i.variation_value}}</option>
+                                               {%endfor%}
+                                            </select>
                                         </div>
+
+                                        {%if product.productvariation_set.sizes %}
+                                        <div class="ps-product__variable"><span>Size:</span>
+                                            <select name="size" class="form-control">
+                                                <option value="" disabled selected>Select Size</option>
+
+                                                {%for i in product.productvariation_set.sizes %}
+                                                <option value="{{i.variation_value}}">{{i.variation_value}}</option>
+                                               {%endfor%}
+                                            </select>
+                                        </div>
+                                        {%endif%}
+                                       
                                         {%if product.stock <= 0 %}
                                         <div class="ps-product__avai alert__error">Availability: <span>Out Of Stock</span>
                                         </div>
@@ -89,7 +110,7 @@
                                             {%if in_cart %}
                                             <a class="ps-product__addcart ps-button" style="background-color: rgb(7, 82, 100);" href="{%url 'cart'  %}" ><i class="icon-check"></i>Already In The Cart</a><a class="ps-product__icon" href="{%url 'cart' %}"><i class="icon-cart"></i></a>
                                             {%else %}
-                                            <a class="ps-product__addcart ps-button" href="{%url 'add_to_cart' product.id %}" ><i class="icon-cart"></i>Add to cart</a><a class="ps-product__icon" href="wishlist.html"><i class="icon-heart"></i></a><a class="ps-product__icon"><i class="icon-repeat"></i></a>
+                                            <button type="submit" class="ps-product__addcart ps-button"  ><i class="icon-cart"></i>Add to cart</button><a class="ps-product__icon" href="wishlist.html"><i class="icon-heart"></i></a><a class="ps-product__icon"><i class="icon-repeat"></i></a>
                                             {%endif%}
                                         </div>
                                         <div class="ps-product__category">
@@ -100,11 +121,14 @@
                                                 <li>Tags: <a href='shop-all-brands.html' class='text-primary'>meat organic food</a>, <a href='shop-all-brands.html' class='text-success'>beet</a>, <a href='shop-all-brands.html' class='text-success'>healthy</a>, <a href='shop-all-brands.html' class='text-success'>foody</a></li>
                                             </ul>
                                         </div>
-                                        <div class="ps-product__footer"><a class="ps-product__shop" href="shop-view-grid.html"><i class="icon-store"></i><span>Store</span></a><a class="ps-product__addcart ps-button" href="{%url 'add_to_cart' product.id %}"><i class="icon-cart"></i>Add to cart</a></div>
+                                        <div class="ps-product__footer"><a class="ps-product__shop" href="shop-view-grid.html"><i class="icon-store"></i><span>Store</span></a><button type="submit" class="ps-product__addcart ps-button" ><i class="icon-cart"></i>Add to cart</button></div>
                                         {%endif%}
 
                                     </div>
                                 </div>
+                            </form>
+
+
                             </div>
                         </div>
                         <div class="col-12 col-lg-3">
