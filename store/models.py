@@ -124,8 +124,6 @@ class ProductVariation(BaseModel):
     # registering custom manager interface
     objects = ProductVariationManager()
 
-   
-
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE,
         null=True,
@@ -162,4 +160,4 @@ class ProductVariation(BaseModel):
         verbose_name_plural = _("Product Variation")
 
     def __str__(self):
-        return str(self.product)
+        return str(self.variation_value)

@@ -48,9 +48,14 @@
                                                 <div class="ps-product--mini-cart"><a href="{{p.product.get_absolute_url}}"><img class="ps-product__thumbnail" src="{{p.product.image.url}}" alt="alt" /></a>
                                                     <div class="ps-product__content">
                                                         <h5><a class="ps-product__name" href="{{p.product.get_absolute_url}}">{{p.product.product_name | title }}</a></h5>
-                                                        <p class="ps-product__unit">color : blue</p>
-                                                        <p class="ps-product__unit">size : L</p>
-                                                        <p class="ps-product__soldby">Sold by <span>NEXT</span></p>
+                                                        {% if p.product_variation.all %}
+                                                            {%for variations in p.product_variation.all %}
+                                                               <p class="ps-product__unit"> <b> {{variations.variations_category | title}} : {{variations.variation_value | title}}</b></p>
+                                                            {%endfor%}
+                                                        {%endif%}
+
+                                                        
+                                                        <p class="ps-product__soldby">Sold by <span>NEXTONLINE</span></p>
                                                         <p class="ps-product__meta">Price: <span class="ps-product__price">₦{{p.product.price}}</span></p>
                                                         <div class="def-number-input number-input safari_only">
                                                             <a href="{%url 'remove_from_cart' p.product.id %}" class="minus" ><i class="icon-minus"></i></a>

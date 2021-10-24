@@ -92,7 +92,6 @@ def search_result(request):
     if request.is_ajax():
         res = None
         product = request.POST.get('product')
-        print(product)
         qs = Product.objects.filter(product_name__icontains=product)
         if len(qs) > 0 and len(product) > 0:
             data = []

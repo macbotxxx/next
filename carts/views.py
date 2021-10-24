@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from store.models import Product
+from store.models import Product, ProductVariation
 from .models import Cart, CartItem
 
 # Create your views here.
@@ -16,14 +16,17 @@ def _cart_id (request):
 
 
 def add_to_cart (request, id):
-    if request.method == 'POST':
-
-        color = request.POST['color']
-        # size = request.GET['size']
-
-        return HttpResponse( color)
-        exit()
     product = Product.objects.get(id=id) #get the product
+    variations = [] 
+    if request.method == 'POST':
+        for item in request.POST:
+            key = item
+            value = request.POST[key]
+            try:
+                variation = ProductVariation.objects.get(product = product , variation_value__iexact=value,  variations_category__iexact=key)
+                variations.append(variation)
+            except:
+                pass
 
     try: 
         cart = Cart.objects.get(cart_id = _cart_id(request))  #get the cart_id present in the session
@@ -31,17 +34,48 @@ def add_to_cart (request, id):
         cart = Cart.objects.create(cart_id = _cart_id(request))
     cart.save()
 
-    try:
-        cart_item = CartItem.objects.get(product=product, cart=cart)
-        cart_item.quantity += 1  #increase the cart quantity + 1
-        cart_item.save() 
+    is_cart_item_exist = CartItem.objects.filter(product=product, cart= cart).exists() #checking if the product and variation exists
+    if is_cart_item_exist:
+        cart_item = CartItem.objects.filter(product=product, cart=cart) 
 
-    except CartItem.DoesNotExist:
+        ex_var_list = []
+        id = []
+
+        for item in cart_item:
+            existing_variation = item.product_variation.all()
+            ex_var_list.append(list(existing_variation))
+            id.append(item.id)
+
+        print(item)
+        print(existing_variation)
+        print(ex_var_list)
+        print(variations)
+
+        if variations in ex_var_list:
+            # increase the cart quantity by one 
+            index = ex_var_list.index(variations)
+            item_id = id[index]
+            item = CartItem.objects.get( product=product, id=item_id)
+            item.quantity += 1
+            item.save() 
+            
+        else:
+            item = CartItem.objects.create(product=product, quantity=1, cart = cart)
+            if len(variations) > 0:
+                item.product_variation.clear()
+                item.product_variation.add(*variations)
+            item.save()
+            
+    else:
+       
         cart_item = CartItem.objects.create(
             product=product, 
             quantity=1, 
             cart = cart
         )
+        if len(variations) > 0 : #adding product to cart
+            cart_item.product_variation.clear() # clearing the previous product variation
+            cart_item.product_variation.add(*variations)
         cart_item.save() 
     return redirect('cart')
 
@@ -49,7 +83,7 @@ def add_to_cart (request, id):
 def remove_from_cart (request, id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=id)
-    cart_item = CartItem.objects.get(product=product, cart=cart)
+    cart_item = CartItem.objects.filter(product=product, cart=cart)
     if cart_item.quantity > 1:
         cart_item.quantity -= 1
         cart_item.save()
@@ -62,7 +96,7 @@ def remove_from_cart (request, id):
 def delete_cart(request, id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=id)
-    cart_item = CartItem.objects.get(product=product, cart=cart)
+    cart_item = CartItem.objects.filter(product=product, cart=cart)
     cart_item.delete()
     return redirect('cart')
 
