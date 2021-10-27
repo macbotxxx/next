@@ -71,6 +71,17 @@ class Product(BaseModel):
 
     )
 
+    best_selling = models.BooleanField (
+        verbose_name = _("Best Selling"),
+        default = False, null =True,
+        help_text = _("to identify which product is among the best selling for the month.")
+    )
+
+    flash_sale  = models.BooleanField (
+        verbose_name = _("Flash Sale"),
+        default = False, null =True,
+        help_text = _("to identify which product is among the flash sale for the month.")
+    )
     
     class Meta:
         ordering = ('-created_date',)
@@ -89,12 +100,10 @@ class Product(BaseModel):
     #         self.slug = slugify(value, allow_unicode=True)
     #     super().save(*args, **kwargs)
 
-
+# product slug 
 def slug_generator(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
-
-
 pre_save.connect(slug_generator, sender=Product)
 
 

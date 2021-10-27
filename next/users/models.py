@@ -8,8 +8,9 @@ from django.db import models
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.urls import reverse
+from django.conf import settings
 
-from phonenumber_field.modelfields import PhoneNumberField
+from phonenumber_field.modelfields import PhoneNumberField #Bug to be fix -- target=  trying to have a phone number field 
 
 import uuid
 
@@ -117,6 +118,13 @@ class User(AbstractUser):
         help_text=_("The default currency of the investor. Currency will be sent against Customer country of residence.")
     )
 
+    registered_ip_address = models.GenericIPAddressField(
+        verbose_name = _("User Default IP Address"),
+        max_length =60, 
+        null=True,
+        help_text = _("user default IP address hold the original ip address after registration, which a notification email will be sent to the user when a new ip address is been login to the account, and this is done for security reasons.")
+    )
+
     class Meta:
         verbose_name = _("All Registered Customer")
         verbose_name_plural = _("All Registered Customer")
@@ -134,11 +142,51 @@ class User(AbstractUser):
         return reverse("users:detail", kwargs={"username": self.pk})
 
 
+@receiver(post_save, sender = settings.AUTH_USER_MODEL)
+def create_user_registed_ip(sender, instance, created, **kwargs):
+    if created:
+        UserRegisteredIp.objects.create(user=instance,registered_ip_address = instance.registered_ip_address, is_active = True)
+        print('profile is created')
+
+class UserRegisteredIp (BaseModel):
+    """
+    registering user ip address 
+    """
+    user = models.ForeignKey(
+        'User',
+        verbose_name=_("User Profile"),
+        on_delete=models.PROTECT, null=True,
+        help_text=_("The user for whom account belongs to")
+    )
+
+    registered_ip_address = models.GenericIPAddressField(
+        verbose_name = _("User Default IP Address"),
+        max_length =60, 
+        null=True,
+        help_text = _("user default IP address hold the original ip address after registration, which a notification email will be sent to the user when a new ip address is been login to the account, and this is done for security reasons.")
+    )
+
+    is_active = models.BooleanField(
+        verbose_name = _("IP Address Status"),
+        default = False,
+        null=True,
+        help_text = _("The user ip address status which is to be set for accepting user ip address ")
+    )
+
+    class Meta:
+        ordering = ('-created_date',)
+        verbose_name = _("users Registered IP Address")
+        verbose_name_plural = _("users Registered IP Address")
+
+    def __str__(self):
+        return str(self.user)
+
+
 
 
 class UserActivity (BaseModel):
     """ 
-    An Activity Log (also known as an Activity Diary ) is a written record of how a user spend time. 
+    An Activity Log (also known as an Activity Diary is a written record of how a user spend time. 
     you can then change the way that you work to eliminate them.
     """
 

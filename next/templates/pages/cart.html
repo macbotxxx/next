@@ -60,7 +60,13 @@
                                                         <div class="def-number-input number-input safari_only">
                                                             <a href="{%url 'remove_from_cart' p.product.id %}" class="minus" ><i class="icon-minus"></i></a>
                                                             <input class="quantity" min="0" name="quantity" value="{{p.quantity}}" readonly type="number" />
-                                                            <a href="{%url 'add_to_cart' p.product.id %}" class="plus" ><i class="icon-plus"></i></a>
+                                                            <form action="{%url 'add_to_cart' p.product.id %}" method="POST">
+                                                                {% csrf_token %}
+                                                                {% for item in p.product_variation.all %}
+                                                                <input  name="{{item.variations_category }}" value="{{item.variation_value }}" >
+                                                                {%endfor%}
+                                                            <button type="submit" class="plus" ><i class="icon-plus"></i></button>
+                                                            </form>
                                                         </div><span class="ps-product__total">Total: <span>₦{{p.total}} </span></span>
                                                     </div>
                                                     <div class="ps-product__remove">  <a href="{%url 'delete_cart' p.product.id %}" class="minus" > <i class="icon-trash2"></i></a> </div>

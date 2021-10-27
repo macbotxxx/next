@@ -99,6 +99,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "next.users.apps.UsersConfig",
     # Your stuff: custom apps go here
+    "accounts.apps.AccountsConfig",
     "categories.apps.CategoriesConfig",
     "store.apps.StoreConfig",
     "carts",
@@ -121,7 +122,7 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "users.User"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "users:redirect"
+LOGIN_REDIRECT_URL = "user_dashboard"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
 LOGIN_URL = "account_login"
 

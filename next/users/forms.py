@@ -3,6 +3,13 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
 from django import forms
+import requests
+import socket 
+
+# getting the user registered_ip_address
+host_name = socket.gethostname()    
+IPAddress = socket.gethostbyname(host_name)    
+ 
 
 User = get_user_model()
 
@@ -42,7 +49,7 @@ class CustomSignupForm(forms.Form):
         user.last_name = self.cleaned_data['last_name']
         user.name = self.cleaned_data['first_name'] + " " + self.cleaned_data['last_name']
         user.contact_number = self.cleaned_data['contact_number']
-        # user.registered_ip_address = client_ip
+        user.registered_ip_address = IPAddress
         user.groups.add(group)
         # user.agreed_to_data_usage = True
         # user.accept_terms = True
