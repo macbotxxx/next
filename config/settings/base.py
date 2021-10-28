@@ -102,7 +102,7 @@ LOCAL_APPS = [
     "accounts.apps.AccountsConfig",
     "categories.apps.CategoriesConfig",
     "store.apps.StoreConfig",
-    "carts",
+    "carts.apps.CartsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -302,7 +302,7 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_MAX_EMAIL_ADDRESSES = 1
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGOUT_ON_GET = True
-ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_SESSION_REMEMBER = False
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False

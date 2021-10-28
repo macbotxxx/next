@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic import View, ListView
 from django.core.paginator import Paginator
 from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
@@ -127,6 +128,33 @@ class FlashSale (View):
             'product': product,
         }
         return render(self.request, 'pages/flash_sale.html', context)
+
+    def post (self, request, *args, **kwargs):
+        pass
+
+
+class Checkout (LoginRequiredMixin, View):
+
+    def get (self, request, total=0, quantity=0,shipping_rate_per_quantity = 0,grandtotal = 0,  cart_items=None):
+        try:
+            cart = Cart.objects.get(cart_id = _cart_id(request))
+            cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+            for cart_item in cart_items:
+                total += (cart_item.product.price * cart_item.quantity)
+                quantity += cart_item.quantity
+            shipping_rate_per_quantity = ( 800 * quantity )
+            grandtotal = total + shipping_rate_per_quantity
+        except:
+            pass
+        
+        context = {
+        'total': total,
+        'quantity':quantity,
+        'cart_items': cart_items,
+        'shipping_rate_per_quantity':shipping_rate_per_quantity,
+        'grandtotal': grandtotal,
+        }
+        return render(self.request, 'pages/checkout.html', context)
 
     def post (self, request, *args, **kwargs):
         pass

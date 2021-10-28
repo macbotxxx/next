@@ -5,13 +5,17 @@ from .models import Cart, CartItem
 # Create your views here.
 
 from django.http import HttpResponse
+import random
+import string
 
+def cart_number():
+    return ''.join(random.choices(string.ascii_lowercase + string.digits, k=45))
 
 
 def _cart_id (request):
-    cart = request.session.session_key
+    cart = request.session.get('cart_x')
     if not cart:
-        cart = request.session.create()
+        cart = request.session['cart_x'] = cart_number()
     return cart
 
 
@@ -45,11 +49,6 @@ def add_to_cart (request, id):
             existing_variation = item.product_variation.all()
             ex_var_list.append(list(existing_variation))
             id.append(item.id)
-
-        print(item)
-        print(existing_variation)
-        print(ex_var_list)
-        print(variations)
 
         if variations in ex_var_list:
             # increase the cart quantity by one 
@@ -128,3 +127,5 @@ def cart (request, total=0, quantity=0, cart_items=None):
 
 
     return render(request, 'pages/cart.html', context)
+
+

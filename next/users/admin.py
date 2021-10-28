@@ -6,6 +6,14 @@ from .models import UserActivity, UserRegisteredIp
 
 User = get_user_model()
 
+from django.contrib.sessions.models import Session
+
+@admin.register(Session)
+class SessionAdmin(admin.ModelAdmin):
+    def _session_data(self, obj):
+        return obj.get_decoded()
+    list_display = ['session_key', '_session_data', 'expire_date']
+
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):

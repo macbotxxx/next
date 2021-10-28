@@ -1,6 +1,9 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from store.models import Product, ProductVariation
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
 
 # Create your models here.
 
@@ -14,6 +17,12 @@ class Cart (models.Model):
 
 
 class CartItem (models.Model):
+    user = models.ForeignKey(
+        User,
+        verbose_name=_("User Profile"),
+        on_delete=models.PROTECT, null=True,
+        help_text=_("The user for whom account belongs to")
+    )
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     product_variation = models.ManyToManyField(ProductVariation,  blank=True)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)

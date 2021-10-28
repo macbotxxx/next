@@ -40,18 +40,19 @@ def checking_user_defualt_ip(sender, request, **kwargs):
 
     if registered_ip is not logged_in_user_ip:
         # email template and context containing ipaddress and hostname
-        subject = 'Securiy Warning - Next Cash and Carry Online Store'
-        html_message = render_to_string(
-            'emails/text.html',
-            {
-             'ipaddress': ip_address,
-             'host': hostname,
-            } 
-        )
-        plain_message = strip_tags(html_message)
-        from_email = 'From <admin@next.com>'
-        to = request.user.email
-        mail.send_mail(subject, plain_message, from_email, [to], html_message = html_message)
+        # subject = 'Securiy Warning - Next Cash and Carry Online Store'
+        # html_message = render_to_string(
+        #     'emails/text.html',
+        #     {
+        #      'ipaddress': ip_address,
+        #      'host': hostname,
+        #     } 
+        # )
+        # plain_message = strip_tags(html_message)
+        # from_email = 'From <admin@next.com>'
+        # to = request.user.email
+        # mail.send_mail(subject, plain_message, from_email, [to], html_message = html_message)
+        pass
     else:
         pass 
 
