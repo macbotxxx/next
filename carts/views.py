@@ -80,23 +80,26 @@ def add_to_cart (request, id):
     return redirect('cart')
 
 
-def remove_from_cart (request, id):
+def remove_from_cart (request, id, c_id):
+    print(c_id)
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=id)
-    cart_item = CartItem.objects.filter(product=product, cart=cart)
-    if cart_item.quantity > 1:
-        cart_item.quantity -= 1
-        cart_item.save()
-
-    else:
-        cart_item.delete()
+    try:
+        cart_item = CartItem.objects.get(product=product, cart=cart, id = c_id )
+        if cart_item.quantity > 1:
+            cart_item.quantity -= 1
+            cart_item.save()
+        else:
+            cart_item.delete()
+    except:
+        pass
 
     return redirect('cart')
 
-def delete_cart(request, id):
+def delete_cart(request, id, c_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=id)
-    cart_item = CartItem.objects.filter(product=product, cart=cart)
+    cart_item = CartItem.objects.filter(product=product, cart=cart, id = c_id )
     cart_item.delete()
     return redirect('cart')
 

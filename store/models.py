@@ -16,6 +16,12 @@ from helpers.common.basemodel import BaseModel
 # Create your models here.
 class Product(BaseModel):
     """ Product model"""
+    product_sku = models.CharField(
+        verbose_name=_('Product SKU'),
+        max_length=500,
+        null=True,
+        help_text=_('Product sku should be added which identify each product')
+    )
 
     product_name = models.CharField(
         verbose_name=_('Product Name'),
@@ -41,6 +47,12 @@ class Product(BaseModel):
         verbose_name = _('Product Price'),
         null =True,
         help_text= _('Product price for the current product')
+    )
+
+    old_price = models.IntegerField (
+        verbose_name = _('Product Old Price'),
+        null =True, blank=True,
+        help_text= _('Product old price for the current product')
     )
 
     image = models.ImageField(

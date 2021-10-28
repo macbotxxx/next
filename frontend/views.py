@@ -68,15 +68,16 @@ class ProductCategory (View):
 
 
 class ProductDetails (View):
-    paginate_by = 2
 
     def get (self, request, *args, **kwargs):
         product = Product.objects.get(slug = kwargs['slug'])
         in_cart = CartItem.objects.filter(cart__cart_id =_cart_id(request), product = product).exists()
+        related = Product.objects.all().filter(category__parent = product.category)
         
         context = {
             'product': product,
             'in_cart':in_cart,
+            'related':related,
         }
         return render(self.request, 'pages/product_details.html', context)
 
@@ -111,6 +112,24 @@ def search_result(request):
 
     return JsonResponse({})
 
+
+
+class FlashSale (View):
+
+    def get (self, request, *args, **kwargs):
+        product = Product.objects.filter(flash_sale = True)
+        """product pagination"""
+        paginator = Paginator(product, 20) # Show 20 contacts per page.
+        page_number = request.GET.get('page')
+        product = paginator.get_page(page_number)
+        
+        context = {
+            'product': product,
+        }
+        return render(self.request, 'pages/flash_sale.html', context)
+
+    def post (self, request, *args, **kwargs):
+        pass
 
 
 

@@ -788,6 +788,8 @@ const searchForm = document.getElementById('search-form')
 const searchInput = document.getElementById('search-input')
 const resultsBox = document.getElementById('results-box')
 
+console.log(searchInput)
+
 const csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
 
 
@@ -800,6 +802,7 @@ const sendSearchData = (product) => {
             'product': product,
         },
         success: (res) => {
+            console.log(res)
             const data = res.data
             if (Array.isArray(data)) {
                 resultsBox.innerHTML = ""

@@ -86,33 +86,19 @@
               <div class="top-bar">
                   <div class="top-bar__left">
                       <ul class="nav-top">
-                          <li class="nav-top-item"><a class="nav-top-link" href="#">Sell on Famart.</a></li>
-                          <li class="nav-top-item"><a class="nav-top-link text-success" href="#">Register Now</a></li>
+                          <li class="nav-top-item"><a class="nav-top-link" href="#">Sell on Next Cash and Carry Online <b>COMING SOON</b>.</a></li>
                       </ul>
                   </div>
                   <div class="top-bar__right">
                       <ul class="nav-top">
                           <li class="nav-top-item contact"><a class="nav-top-link" href="tel:970978-6290"> <i class="icon-telephone"></i><span>Hotline:</span><span class="text-success font-bold">970 978-6290</span></a></li>
                           <li class="nav-top-item"><a class="nav-top-link" href="order-tracking.html">Order Tracking</a></li>
-                          <li class="nav-top-item languages"><a class="nav-top-link" href="javascript:void(0);"> <span class="current-languages">English</span><i class="icon-chevron-down"></i></a>
-                              <div class="select--dropdown">
-                                  <ul class="select-languages">
-                                      <li class="active language-item" data-value="English"><a href="javascript:void(0);">English</a></li>
-                                      <li class="language-item" data-value="Brunei"><a href="javascript:void(0);">Brunei</a></li>
-                                      <li class="language-item" data-value="Armenia"><a href="javascript:void(0);">Armenia</a></li>
-                                  </ul>
-                              </div>
+                          <li class="nav-top-item languages"><a class="nav-top-link" href="javascript:void(0);"> <span class="current-languages">Report An Issue</span></a>
+                              
                           </li>
-                          <li class="nav-top-item currency"><a class="nav-top-link" href="javascript:void(0);"> <span class="current-currency">USD</span><i class="icon-chevron-down"></i></a>
-                              <div class="select--dropdown">
-                                  <ul class="select-currency">
-                                      <li class="active currency-item" data-value="USD"><a href="javascript:void(0);">USD</a></li>
-                                      <li class="currency-item" data-value="VND"><a href="javascript:void(0);">VND</a></li>
-                                      <li class="currency-item" data-value="EUR"><a href="javascript:void(0);">EUR</a></li>
-                                  </ul>
-                              </div>
-                          </li>
-                          <li class="nav-top-item account"><a class="nav-top-link" href="javascript:void(0);"> <i class="icon-user"></i>Hi! <span class="font-bold">Jonhnathan</span></a>
+                         
+                          {%if request.user.is_authenticated %}
+                          <li class="nav-top-item account"><a class="nav-top-link" href="javascript:void(0);"> <i class="icon-user"></i>Hi! <span class="font-bold">{{request.user.first_name | title}}</span></a>
                               <div class="account--dropdown">
                                   <div class="account-anchor">
                                       <div class="triangle"></div>
@@ -126,19 +112,17 @@
                                           <li><a href="wishlist.html">Wishlist</a></li>
                                           <li><a href="#">Shipping Address</a></li>
                                       </ul>
-                                      <hr>
-                                      <ul class="account-list">
-                                          <li class="title-item"><a href="javascript:void(0);">Vendor Settings</a></li>
-                                          <li><a href="#">Dasdboard</a></li>
-                                          <li><a href="#">Products</a></li>
-                                          <li><a href="shopping-cart.html">Orders</a></li>
-                                          <li><a href="#">Settings</a></li>
-                                          <li><a href="vendor-store.html">View Store</a></li>
-                                      </ul>
-                                      <hr><a class="account-logout" href="#"><i class="icon-exit-left"></i>Log out</a>
+                                     
+                                      <hr><a class="account-logout" href="{%url 'account_logout'%}"><i class="icon-exit-left"></i>Log out</a>
                                   </div>
                               </div>
                           </li>
+                          {%else%}
+
+                          <li class="nav-top-item"><a class="nav-top-link" href="{%url 'account_login'%}">Login </a></li>
+                          <li class="nav-top-item"><a class="nav-top-link text-success" href="{%url 'account_signup'%}">Register Now</a></li>
+
+                          {%endif%}
                       </ul>
                   </div>
               </div>
@@ -150,7 +134,7 @@
                   <div class="header-inner__left">
                       <button class="navbar-toggler"><i class="icon-menu"></i></button>
                   </div>
-                  <div class="header-inner__center"><a class="logo open" href="/">NEXT<span class="text-black">CASH</span></a></div>
+                  <div class="header-inner__center"><a class="logo open" href="/"><img src="{% static 'nextonline/logo2.png' %}" style="height: 35px;" alt="" srcset=""></a></div>
                   <div class="header-inner__right">
                       <button class="button-icon icon-sm search-mobile"><i class="icon-magnifier"></i></button>
                   </div>
@@ -160,7 +144,7 @@
       <section class="ps-header--center header-desktop">
           <div class="container">
               <div class="header-inner">
-                  <div class="header-inner__left"><a class="logo" href="/">next<span class="text-black">art.</span></a>
+                  <div class="header-inner__left"><a class="logo" href="/"><img src="{% static 'nextonline/logo2.png' %}" style="height: 35px;" alt="" srcset=""></a>
                       <ul class="menu">
                           <li class="menu-item-has-children has-mega-menu">
                               <button class="category-toggler"><i class="icon-menu"></i></button>
@@ -215,7 +199,7 @@
 
                   </div>
                   <div class="header-inner__right">
-                      <button class="button-icon icon-md"><i class="icon-repeat"></i></button><a class="button-icon icon-md" href="wishlist.html"><i class="icon-heart"></i><span class="badge bg-warning">2</span></a>
+                      <a class="button-icon icon-md" href="wishlist.html"><i class="icon-heart"></i><span class="badge bg-warning">2</span></a>
                       <div class="button-icon btn-cart-header"><i class="icon-cart icon-shop5"></i><span class="badge bg-warning">{{cart_count}}</span>
                         {%if not cart_items%}
 
@@ -247,7 +231,7 @@
                                                           <p class="ps-product__meta"> <span class="ps-product__price">₦{{p.product.price | intcomma }}</span><span class="ps-product__quantity">(x{{p.quantity}})</span>
                                                           </p>
                                                       </div>
-                                                      <div class="ps-product__remove"><a href="{%url 'delete_cart' p.product.id %}" class="minus" ><i class="icon-trash2"></i></a></div>
+                                                      <div class="ps-product__remove"><a href="{%url 'delete_cart' p.product.id p.id %}" class="minus" ><i class="icon-trash2"></i></a></div>
                                                   </div>
                                               </li>
                                               {%endfor%}
@@ -263,7 +247,7 @@
                                   </div>
                               </div>
                           </div>
-                          {%endif%}
+                        {%endif%}
 
                       </div>
                   </div>
@@ -273,112 +257,17 @@
       <nav class="navigation">
           <div class="container">
               <ul class="menu">
-                  <li class="menu-item-has-children has-mega-menu active"><a class="nav-link active" href="javascript:void(0);">Home</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                      <div class="mega-menu">
-                          <div class="mega-anchor"></div>
-                          <div class="mega-menu__column">
-                              <h4>Home Pages<span class="sub-toggle"></span></h4>
-                              <ul class="sub-menu--mega">
-                                  <li class="active"><a class="active" href="/">Home Supermarket</a></li>
-                                  <li><a href="home-full-width.html">Home Supermarket Full Width</a></li>
-                                  <li><a href="home-local-store.html">Home Local Store</a></li>
-                                  <li><a href="home-sidebar.html">Home Sidebar</a></li>
-                                  <li><a href="home-business.html">Home Business</a></li>
-                              </ul>
-                          </div>
-                      </div>
+                  <li class="menu-item-has-children has-mega-menu active"><a class="nav-link active" href="/">Home</a><span class="sub-toggle"></span>
+                     
                   </li>
-                  <li class="menu-item-has-children has-mega-menu"><a class="nav-link" href="javascript:void(0);">Shop</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                      <div class="mega-menu mega-shop">
-                          <div class="mega-anchor"></div>
-                          <div class="mega-menu__column">
-                              <h4>Shop Pages<span class="sub-toggle"></span></h4>
-                              <ul class="sub-menu--mega">
-                                  <li><a href="shop-view-grid.html">Shop Default View Grid</a></li>
-                                  <li><a href="shop-view-listing.html">Shop Default View Listing</a></li>
-                                  <li><a href="shop-view-extended.html">Shop Default View Products</a></li>
-                                  <li><a href="shop-categories.html">Shop Categories</a></li>
-                                  <li><a href="shop-with-banner.html">Shop With Banner</a></li>
-                                  <li><a href="shop-all-brands.html">Shop All Brands</a></li>
-                              </ul>
-                          </div>
-                          <div class="mega-menu__column">
-                              <h4>Product Layouts<span class="sub-toggle"></span></h4>
-                              <ul class="sub-menu--mega">
-                                  <li><a href="product-default.html">Shop Default</a></li>
-                                  <li><a href="product-extended.html">Shop Extended</a></li>
-                                  <li><a href="product-sidebar.html">Shop Sidebar</a></li>
-                                  <li><a href="product-full-width.html">Shop Full Width</a></li>
-                              </ul>
-                          </div>
-                          <div class="mega-menu__column">
-                              <h4>Product Types<span class="sub-toggle"></span></h4>
-                              <ul class="sub-menu--mega">
-                                  <li><a href="product-simple.html">Simple</a></li>
-                                  <li><a href="product-variable.html">Variable</a></li>
-                                  <li><a href="product-attribute.html">Attribute (Size)</a></li>
-                                  <li><a href="product-image-swatches.html">Images Swatches</a></li>
-                                  <li><a href="product-on-sale.html">On Sale</a></li>
-                                  <li><a href="product-out-of-stock.html">Out of Stock</a></li>
-                                  <li><a href="product-groupped.html">Groupped</a></li>
-                                  <li><a href="product-countdown-timer.html">Countdown Timer</a></li>
-                                  <li><a href="product-coupon-code.html">Coupon Code</a></li>
-                                  <li><a href="product-price-list-compare.html">Price List Compare</a></li>
-                                  <li><a href="product-instagram-feed.html">Instagram Feed</a></li>
-                                  <li><a href="product-video-featured.html">Video Featured</a></li>
-                                  <li><a href="product-with-button-buy-now.html">With button Buy Now</a></li>
-                              </ul>
-                          </div>
-                          <div class="mega-menu__column">
-                              <h4>Woo Pages<span class="sub-toggle"></span></h4>
-                              <ul class="sub-menu--mega">
-                                  <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                                  <li><a href="checkout.html">Checkout</a></li>
-                                  <li><a href="wishlist.html">Wishlist</a></li>
-                                  <li><a href="/">Compare</a></li>
-                                  <li><a href="order-tracking.html">Order Tracking</a></li>
-                                  <li><a href="login-register.html">Login & Register</a></li>
-                              </ul>
-                          </div>
-                      </div>
+                  <li class="menu-item-has-children has-mega-menu"><a class="nav-link" href="javascript:void(0);">Items Below 1K</a><span class="sub-toggle"></span>
+                    
                   </li>
-                  <li class="menu-item-has-children has-mega-menu"><a class="nav-link" href="javascript:void(0);">Pages</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                      <div class="mega-menu">
-                          <div class="mega-anchor"></div>
-                          <div class="mega-menu__column">
-                              <h4>Page all<span class="sub-toggle"></span></h4>
-                              <ul class="sub-menu--mega">
-                                  <li><a href="vendor-registration.html">Vendor Register</a></li>
-                                  <li><a href="become-a-vendor.html">Become a Vendor</a></li>
-                                  <li><a href="store-list.html">Dokan Store List</a></li>
-                                  <li><a href="vendor-store.html">Dokan Vendor Store</a></li>
-                                  <li><a href="flash-sale.html">Flash Sale</a></li>
-                                  <li><a href="about-us.html">About Us</a></li>
-                                  <li><a href="contact.html">Contact</a></li>
-                                  <li><a href="faq.html">FAQs</a></li>
-                                  <li><a href="404-not-found.html">404 Not Found</a></li>
-                                  <li><a href="coming-soon.html">Coming Soon</a></li>
-                              </ul>
-                          </div>
-                      </div>
+                  <li class="menu-item-has-children has-mega-menu"><a class="nav-link" href="javascript:void(0);">Best Selling Items</a><span class="sub-toggle"></span>
+                    
                   </li>
-                  <li class="menu-item-has-children has-mega-menu"><a class="nav-link" href="javascript:void(0);">Blog</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                      <div class="mega-menu">
-                          <div class="mega-anchor"></div>
-                          <div class="mega-menu__column">
-                              <h4>Blog Type<span class="sub-toggle"></span></h4>
-                              <ul class="sub-menu--mega">
-                                  <li><a href="blog-default.html">01 Blog-Default</a></li>
-                                  <li><a href="blog-thumbnail.html">Blog Small Thumbnail</a></li>
-                                  <li><a href="blog-gird.html">Blog Gird</a></li>
-                                  <li><a href="blog-list.html">Blog Listing</a></li>
-                                  <li><a href="single-post.html">Single Post without Sidebar</a></li>
-                                  <li><a href="single-post-sidebar.html">Single Post with Sidebar</a></li>
-                              </ul>
-                          </div>
-                      </div>
-                  </li>
-                  <li class="menu-item-has-children has-mega-menu menu-item-branch"><a class="nav-link" href="javascript:void(0);">Brand</a>
+                 
+                  <li class="menu-item-has-children has-mega-menu menu-item-branch"><a class="nav-link" href="javascript:void(0);">Shop By  Brand</a>
                       <div class="mega-menu mega-brand">
                           <div class="mega-anchor"></div>
                           <div class="brand-box">
@@ -399,7 +288,8 @@
                           <div class="brand__promotion"><a href="flash-sale.html"><img src="{% static 'nextonline/img/brand/brand_02.jpg' %}" alt="alt" /></a></div>
                       </div>
                   </li>
-                  <li class="menu-item-has-children has-mega-menu"><a class="nav-link" href="flash-sale.html">Flash Sale</a></li>
+
+                  <li class="menu-item-has-children has-mega-menu menu-item-branch"><a class="nav-link" href="{%url 'flash_sale'%}">Flash Sale</a></li>
               </ul>
              
           </div>
@@ -409,112 +299,27 @@
               <div class="mobile-search__header">
                   <div class="mobile-search-box">
                       <div class="input-group">
-                          <input class="form-control" placeholder="I'm shopping for..." id="inputSearchMobile">
-                          <div class="input-group-append">
-                              <button class="btn"> <i class="icon-magnifier"></i></button>
-                          </div>
+                        <form action="" id="search-form" method="get">
+                          
+                          {% csrf_token %}
+                          <input class="form-control input-search" id="search-input" style="height:45px;" placeholder="I'm searchching for..."> 
+
+                        </form>
                       </div>
                       <button class="cancel-search"><i class="icon-cross"></i></button>
                   </div>
+
+                <div class="result-search not-visible" id="results-box">
+                         
+                </div>
+
+
               </div>
-              <div class="mobile-search__trendding">
-                  <h5> <i class="icon-power"></i>Trending search</h5>
-                  <div class="trending-content">
-                      <ul class="mobile-list-trending">
-                          <li class="title"><a>Trending search: </a></li>
-                          <li class="trending-item"><a href="#">meat</a></li>
-                          <li class="trending-item"><a href="#">fruit</a></li>
-                          <li class="trending-item"><a href="#">vegetables</a></li>
-                          <li class="trending-item"><a href="#">salad</a></li>
-                          <li class="trending-item"><a href="#">yoghurts</a></li>
-                          <li class="trending-item"><a href="#">apple</a></li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="mobile-search__history">
-                  <h5> <i class="icon-history2"></i>History<a href="javascript:void(0);">Clear all</a></h5>
-                  <div class="history-content">
-                      <ul class="history-list">
-                          <li class="history-item"><a class="history-link" href="javascript:void(0);"> <span>apple</span><i class="icon-cross2"></i></a></li>
-                          <li class="history-item"><a class="history-link" href="javascript:void(0);"> <span>organic fruit</span><i class="icon-cross2"></i></a></li>
-                          <li class="history-item"><a class="history-link" href="javascript:void(0);"> <span>meat beef</span><i class="icon-cross2"></i></a></li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="mobile-search__result">
-                  <h5> <span class="number-result">5</span>search result</h5>
-                  <ul class="list-result">
-                      <li class="cart-item">
-                          <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_18a.jpg' %}" alt="alt" /></a>
-                              <div class="ps-product__content"><a class="ps-product__name" href="product-default.html"><u>Organic</u> Large Green Bell Pepper</a>
-                                  <p class="ps-product__rating">
-                                      <select class="rating-stars">
-                                          <option value="1">1</option>
-                                          <option value="2">2</option>
-                                          <option value="3" selected="selected">3</option>
-                                          <option value="4">4</option>
-                                          <option value="5">5</option>
-                                      </select><span>(5)</span>
-                                  </p>
-                                  <p class="ps-product__meta"> <span class="ps-product__price">₦6.90</span>
-                                  </p>
-                              </div>
-                          </div>
-                      </li>
-                      <li class="cart-item">
-                          <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_16a.jpg' %}" alt="alt" /></a>
-                              <div class="ps-product__content"><a class="ps-product__name" href="product-default.html">Avocado <u>Organic</u> Hass Large</a>
-                                  <p class="ps-product__meta"> <span class="ps-product__price">₦12.90</span>
-                                  </p>
-                              </div>
-                          </div>
-                      </li>
-                      <li class="cart-item">
-                          <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_32a.jpg' %}" alt="alt" /></a>
-                              <div class="ps-product__content"><a class="ps-product__name" href="product-default.html">Tailgater Ham <u>Organic</u> Sandwich</a>
-                                  <p class="ps-product__meta"> <span class="ps-product__price">₦33.49</span>
-                                  </p>
-                              </div>
-                          </div>
-                      </li>
-                      <li class="cart-item">
-                          <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_6a.jpg' %}" alt="alt" /></a>
-                              <div class="ps-product__content"><a class="ps-product__name" href="product-default.html">Extreme <u>Organic</u> Light Can</a>
-                                  <p class="ps-product__rating">
-                                      <select class="rating-stars">
-                                          <option value="1">1</option>
-                                          <option value="2">2</option>
-                                          <option value="3">3</option>
-                                          <option value="4" selected="selected">4</option>
-                                          <option value="5">5</option>
-                                      </select><span>(16)</span>
-                                  </p>
-                                  <p class="ps-product__meta"> <span class="ps-product__price-sale">₦4.99</span><span class="ps-product__is-sale">₦8.99</span>
-                                  </p>
-                              </div>
-                          </div>
-                      </li>
-                      <li class="cart-item">
-                          <div class="ps-product--mini-cart"><a href="product-default.html"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_22a.jpg' %}" alt="alt" /></a>
-                              <div class="ps-product__content"><a class="ps-product__name" href="product-default.html">Extreme <u>Organic</u> Light Can</a>
-                                  <p class="ps-product__meta"> <span class="ps-product__price">₦12.99</span>
-                                  </p>
-                              </div>
-                          </div>
-                      </li>
-                  </ul>
-              </div>
+             
+              
           </div>
       </div>
   </header>
-
-
-<!-- 
-      {% if messages %}
-          {% for message in messages %}
-              <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-          {% endfor %}
-      {% endif %} -->
 
       {% block content %}
 
@@ -584,19 +389,19 @@
                   <div class="col-12 col-lg-4">
                       <div class="service__payment"><img src="{% static 'nextonline/img/promotion/payment_paypal.jpg' %}" alt><img src="{% static 'nextonline/img/promotion/payment_visa.jpg' %}" alt><img src="{% static 'nextonline/img/promotion/payment_mastercart.jpg' %}" alt><img src="{% static 'nextonline/img/promotion/payment_electron.jpg' %}" alt><img src="{% static 'nextonline/img/promotion/payment_skrill.jpg' %}" alt></div>
                       <p class="service__app">Get Next App to <span class="text-success">get ₦15 coupon</span></p>
-                      <div class="service__download"><a href="contact.html"><img src="{% static 'nextonline/img/promotion/appStore.jpg' %}" alt></a><a href="contact.html"><img src="{% static 'nextonline/img/promotion/googlePlay.jpg' %}" alt></a></div>
+                      <div class="service__download"><a href="#"><img src="{% static 'nextonline/img/promotion/appStore.jpg' %}" alt></a><a href="#"><img src="{% static 'nextonline/img/promotion/googlePlay.jpg' %}" alt></a></div>
                   </div>
                   <div class="col-12 col-lg-4">
                       <table class="table table-bordered">
                           <tr>
-                              <td><a href="contact.html"><img src="{% static 'nextonline/img/promotion/badges_01.jpg' %}" alt></a></td>
-                              <td><a href="contact.html"><img src="{% static 'nextonline/img/promotion/badges_02.jpg' %}" alt></a></td>
-                              <td><a href="contact.html"><img src="{% static 'nextonline/img/promotion/badges_03.jpg' %}" alt></a></td>
+                              <td><a href="#"><img src="{% static 'nextonline/img/promotion/badges_01.jpg' %}" alt></a></td>
+                              <td><a href="#"><img src="{% static 'nextonline/img/promotion/badges_02.jpg' %}" alt></a></td>
+                              <td><a href="#"><img src="{% static 'nextonline/img/promotion/badges_03.jpg' %}" alt></a></td>
                           </tr>
                           <tr>
-                              <td><a href="contact.html"><img src="{% static 'nextonline/img/promotion/badges_04.jpg' %}" alt></a></td>
-                              <td><a href="contact.html"><img src="{% static 'nextonline/img/promotion/badges_05.jpg' %}" alt></a></td>
-                              <td><a href="contact.html"><img src="{% static 'nextonline/img/promotion/badges_06.jpg' %}" alt></a></td>
+                              <td><a href="#"><img src="{% static 'nextonline/img/promotion/badges_04.jpg' %}" alt></a></td>
+                              <td><a href="#"><img src="{% static 'nextonline/img/promotion/badges_05.jpg' %}" alt></a></td>
+                              <td><a href="#"><img src="{% static 'nextonline/img/promotion/badges_06.jpg' %}" alt></a></td>
                           </tr>
                       </table>
                   </div>
@@ -610,81 +415,9 @@
                   </div>
               </div>
           </div>
-          <div class="ps-footer--categories">
-              <div class="categories__list"><b>Fresh: </b>
-                  <ul class="menu--vertical">
-                      <li class="menu-item"><a href="shop-categories.html">Meat & Poultry</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Fruit</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Vegetables</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Salad & Herbs</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Yoghurts</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Milk, Butter & Eggs</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Ham, Deli & Dips</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Cheese</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Fish</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Pizza & Garlic Bread</a></li>
-                  </ul>
-              </div>
-              <div class="categories__list"><b>Food Cupboard: </b>
-                  <ul class="menu--vertical">
-                      <li class="menu-item"><a href="shop-categories.html">Crisps, Snacks & Nuts</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Breakfast Cereals</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Tins & Cans</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Chocolate & Sweets</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Biscuits</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Rice, Pasta & Pulses</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Cooking Ingredients</a></li>
-                  </ul>
-              </div>
-              <div class="categories__list"><b>Bakery: </b>
-                  <ul class="menu--vertical">
-                      <li class="menu-item"><a href="shop-categories.html">Bread</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Rolls, Bagels & Thins</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Cakes & Treats</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Wraps, Pitta & Naan Bread</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Crumpets, Muffins & Pancakes</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Croissants & Brioche</a></li>
-                  </ul>
-              </div>
-              <div class="categories__list"><b>Frozen Foods: </b>
-                  <ul class="menu--vertical">
-                      <li class="menu-item"><a href="shop-categories.html">Ice Cream</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Fruit, Vegetables & Herbs</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Chips, Potatoes & Rice</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Fish</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Vegetarian</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Meat & Poultry</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Ready Meals & Party Food</a></li>
-                  </ul>
-              </div>
-              <div class="categories__list"><b>Ready Meals: </b>
-                  <ul class="menu--vertical">
-                      <li class="menu-item"><a href="shop-categories.html">Meals for 1</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Indian</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Italian</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Chinese</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Traditional British</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Thai & Oriental</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Mediterranean & Moroccan</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Mexican & Caribbean</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Kids' Meals</a></li>
-                  </ul>
-              </div>
-              <div class="categories__list"><b>Soft Drinks, Tea & Coffee: </b>
-                  <ul class="menu--vertical">
-                      <li class="menu-item"><a href="shop-categories.html">Fizzy Drinks</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Water</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Tea, Coffee & Hot Drinks</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Squash</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Juices</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Mixers</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Diet & No Added Sugar</a></li>
-                      <li class="menu-item"><a href="shop-categories.html">Still & Sparkling</a></li>
-                  </ul>
-              </div>
-          </div>
+        
           <div class="row ps-footer__copyright">
-              <div class="col-12 col-lg-6 ps-footer__text">&copy; 2020 Next Marhetplace. All Rights Reversed.</div>
+              <div class="col-12 col-lg-6 ps-footer__text">&copy; 2021 Next MarketPlace. All Rights Reversed.</div>
               <div class="col-12 col-lg-6 ps-footer__social"> <a class="icon_social facebook" href="#"><i class="fa fa-facebook-f"></i></a><a class="icon_social twitter" href="#"><i class="fa fa-twitter"></i></a><a class="icon_social google" href="#"><i class="fa fa-google-plus"></i></a><a class="icon_social youtube" href="#"><i class="fa fa-youtube"></i></a><a class="icon_social wifi" href="#"><i class="fa fa-wifi"></i></a></div>
           </div>
       </div>
@@ -694,9 +427,9 @@
           <ul class="menu--footer">
               <li class="nav-item"><a class="nav-link" href="/"><i class="icon-home3"></i><span>Home</span></a></li>
               <li class="nav-item"><a class="nav-link footer-category" href="javascript:void(0);"><i class="icon-list"></i><span>Category</span></a></li>
-              <li class="nav-item"><a class="nav-link footer-cart" href="shopping-cart.html"><i class="icon-cart"></i><span class="badge bg-warning">3</span><span>Cart</span></a></li>
-              <li class="nav-item"><a class="nav-link" href="wishlist.html"><i class="icon-heart"></i><span>Wishlist</span></a></li>
-              <li class="nav-item"><a class="nav-link" href="login-register.html"><i class="icon-user"></i><span>Account</span></a></li>
+              <li class="nav-item"><a class="nav-link footer-cart" href="{%url 'cart' %}"><i class="icon-cart"></i><span class="badge bg-warning">{{cart_count}}</span><span>Cart</span></a></li>
+              <li class="nav-item"><a class="nav-link" href="{%url 'cart'%}"><i class="icon-heart"></i><span>Wishlist</span></a></li>
+              <li class="nav-item"><a class="nav-link" href="{%url 'account_login'%}"><i class="icon-user"></i><span>Account</span></a></li>
           </ul>
       </div>
   </div>
@@ -707,142 +440,80 @@
   </div>
   <div class="ps-category--mobile">
       <div class="category__header">
-          <div class="category__title">All Departments</div><span class="category__close"><i class="icon-cross"></i></span>
+          <div class="category__title">All Categories</div><span class="category__close"><i class="icon-cross"></i></span>
       </div>
       <div class="category__content">
           <ul class="menu--mobile">
               <li class="daily-deals category-item"><a href="flash-sale.html">Daily Deals</a></li>
               <li class="category-item"><a href="shop-categories.html">Top Promotions</a></li>
               <li class="category-item"><a href="shop-categories.html">New Arrivals</a></li>
-              <li class="menu-item-has-children category-item"><a href="shop-categories.html">Fresh</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
+              {% recursetree links %}
+
+          
+              <li class="menu-item-has-children category-item"><a href="{{node.get_absolute_url}}">{{node.category | title}}</a><span class="sub-toggle">{% if not node.is_leaf_node %}<i class="icon-chevron-down"></i>{%endif%}</span>
+
                   <ul class="sub-menu">
-                      <li><a href="shop-view-grid.html">Meat & Poultry</a></li>
-                      <li><a href="shop-view-grid.html">Fruit</a></li>
-                      <li><a href="shop-view-grid.html">Vegetables</a></li>
-                      <li><a href="shop-view-grid.html">Milks, Butter & Eggs</a></li>
-                      <li><a href="shop-view-grid.html">Fish</a></li>
-                      <li><a href="shop-view-grid.html">Frozen</a></li>
-                      <li><a href="shop-view-grid.html">Cheese</a></li>
-                      <li><a href="shop-view-grid.html">Pasta & Sauce</a></li>
+                {% if not node.is_leaf_node %}
+                      <li><a href="shop-view-grid.html">{{ children }}</a></li>
+                {% endif %}
+
                   </ul>
+
               </li>
-              <li class="menu-item-has-children category-item"><a href="shop-categories.html">Food Cupboard</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                  <ul class="sub-menu">
-                      <li><a href="shop-view-grid.html">Crisps, Snacks & Nuts</a></li>
-                      <li><a href="shop-view-grid.html">Breakfast Cereals</a></li>
-                      <li><a href="shop-view-grid.html">Tins & Cans</a></li>
-                      <li><a href="shop-view-grid.html">Chocolate & Sweets</a></li>
-                  </ul>
-              </li>
-              <li class="category-item"><a href="shop-categories.html">Bakery</a></li>
-              <li class="category-item"><a href="shop-categories.html">Frozen Foods</a></li>
-              <li class="menu-item-has-children category-item"><a href="shop-categories.html">Ready Meals</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                  <ul class="sub-menu">
-                      <li><a href="shop-view-grid.html">Traditional British</a></li>
-                      <li><a href="shop-view-grid.html">Indian</a></li>
-                      <li><a href="shop-view-grid.html">Italian</a></li>
-                      <li><a href="shop-view-grid.html">Chinese</a></li>
-                  </ul>
-              </li>
-              <li class="menu-item-has-children category-item"><a href="shop-categories.html">Drinks, Tea &amp; Coffee</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                  <ul class="sub-menu">
-                      <li><a href="shop-view-grid.html">Tea & Coffee</a></li>
-                      <li><a href="shop-view-grid.html">Hot Drinks</a></li>
-                      <li><a href="shop-view-grid.html">Fizzy Drinks</a></li>
-                      <li><a href="shop-view-grid.html">Water</a></li>
-                  </ul>
-              </li>
-              <li class="category-item"><a href="shop-categories.html">Beer, Wine & Spirits</a></li>
-              <li class="category-item"><a href="shop-categories.html">Baby & Child</a></li>
-              <li class="category-item"><a href="shop-categories.html">Kitchen & Dining</a></li>
+              {% endrecursetree %}
+
+             
           </ul>
       </div>
   </div>
   <nav class="navigation--mobile">
       <div class="navigation__header">
           <div class="navigation__select">
-              <div class="languages"><a class="nav-top-link" href="javascript:void(0);"> <span class="current-languages">English</span><i class="icon-chevron-down"></i></a>
-                  <div class="select--dropdown">
-                      <ul class="select-languages">
-                          <li class="active language-item" data-value="English"><a href="javascript:void(0);">English</a></li>
-                          <li class="language-item" data-value="Brunei"><a href="javascript:void(0);">Brunei</a></li>
-                          <li class="language-item" data-value="Armenia"><a href="javascript:void(0);">Armenia</a></li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="currency"><a class="nav-top-link" href="javascript:void(0);"> <span class="current-currency">USD</span><i class="icon-chevron-down"></i></a>
-                  <div class="select--dropdown">
-                      <ul class="select-currency">
-                          <li class="active currency-item" data-value="USD"><a href="javascript:void(0);">USD</a></li>
-                          <li class="currency-item" data-value="VND"><a href="javascript:void(0);">VND</a></li>
-                          <li class="currency-item" data-value="EUR"><a href="javascript:void(0);">EUR</a></li>
-                      </ul>
-                  </div>
-              </div>
+             
+             
           </div>
           <div class="navigation-title">
               <button class="close-navbar-slide"><i class="icon-arrow-left"></i></button>
-              <div><span> <i class="icon-user"></i>Hi, </span><span class="account">Morgan Averill</span><a class="dropdown-user" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-chevron-down"></i></a>
-                  <div class="dropdown-menu" aria-labelledby="dropdownAccount"><a class="dropdown-item" href="#"><b>My Account</b></a><a class="dropdown-item" href="#">Dashboard</a><a class="dropdown-item" href="#">Account Setting</a><a class="dropdown-item" href="shopping-cart.html">Orders</a><a class="dropdown-item" href="wishlist.html">Wishlist</a><a class="dropdown-item" href="#">Shipping Address</a><a class="dropdown-divider"></a><a class="dropdown-item" href="#"><b>Vendor Setting</b></a><a class="dropdown-item" href="#">Dashboard</a><a class="dropdown-item" href="#">Products</a><a class="dropdown-item" href="shopping-cart.html">Orders</a><a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="vendor-store.html">View Store</a><a class="dropdown-divider"></a><a class="dropdown-item" href="#"><i class="icon-exit-left"></i>Log out</a></div>
+              <div>
+                  {%if request.user.is_authenticated %}
+                  <span> <i class="icon-user"></i>Hi, </span><a class="dropdown-user" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="account dropdown-user" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.first_name | title }}</span><i class="icon-chevron-down"></i></a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownAccount"><a class="dropdown-item" href="#"><b>My Account</b></a><a class="dropdown-item" href="#">Dashboard</a><a class="dropdown-item" href="#">Account Setting</a><a class="dropdown-item" href="shopping-cart.html">Orders</a><a class="dropdown-item" href="wishlist.html">Wishlist</a><a class="dropdown-item" href="#">Shipping Address</a><a class="dropdown-divider"></a><a class="dropdown-item" href="#"><i class="icon-exit-left"></i>Log out</a>
+                </div>
+
+                {%endif%}
               </div>
           </div>
       </div>
       <div class="navigation__content">
           <ul class="menu--mobile">
               <li class="menu-item-has-children"><a href="#">Home</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                  <ul class="sub-menu">
-                      <li><a href="/">Home Supermarket</a></li>
-                      <li><a href="home-full-width.html">Home Supermarket Full Width</a></li>
-                      <li><a href="home-local-store.html">Home Local Store</a></li>
-                      <li><a href="home-sidebar.html">Home Sidebar</a></li>
-                      <li><a href="home-business.html">Home Business</a></li>
-                  </ul>
+                  
               </li>
               <li class="menu-item-has-children"><a href="#">Shop</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                  <ul class="sub-menu">
-                      <li><a href="shop-view-grid.html">Shop Default View Grid</a></li>
-                      <li><a href="shop-view-listing.html">Shop Default View Listing</a></li>
-                      <li><a href="shop-view-extended.html">Shop Default View Products</a></li>
-                      <li><a href="shop-categories.html">Shop Categories</a></li>
-                      <li><a href="shop-with-banner.html">Shop With Banner</a></li>
-                      <li><a href="shop-all-brands.html">Shop All Brands</a></li>
-                  </ul>
+                  
               </li>
               <li class="menu-item-has-children"><a href="#">Pages</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                  <ul class="sub-menu">
-                      <li><a href="vendor-registration.html">Vendor Register</a></li>
-                      <li><a href="become-a-vendor.html">Become a Vendor</a></li>
-                      <li><a href="store-list.html">Dokan Store List</a></li>
-                      <li><a href="vendor-store.html">Dokan Vendor Store</a></li>
-                      <li><a href="flash-sale.html">Flash Sale</a></li>
-                      <li><a href="about-us.html">About Us</a></li>
-                      <li><a href="contact.html">Contact</a></li>
-                      <li><a href="faq.html">FAQs</a></li>
-                      <li><a href="404-not-found.html">404 Not Found</a></li>
-                      <li><a href="coming-soon.html">Coming Soon</a></li>
-                  </ul>
+                  
               </li>
               <li class="menu-item-has-children"><a href="#">Blog</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
-                  <ul class="sub-menu">
-                      <li><a href="blog-default.html">01 Blog-Default</a></li>
-                      <li><a href="blog-thumbnail.html">Blog Small Thumbnail</a></li>
-                      <li><a href="blog-gird.html">Blog Gird</a></li>
-                      <li><a href="blog-list.html">Blog Listing</a></li>
-                      <li><a href="single-post.html">Single Post without Sidebar</a></li>
-                      <li><a href="single-post-sidebar.html">Single Post with Sidebar</a></li>
-                  </ul>
+                 
               </li>
               <li class="menu-item-has-children"><a href="product-default.html">Brand</a></li>
-              <li class="menu-item-has-children"><a href="flash-sale.html">Flash Sale</a></li>
+              <li class="menu-item-has-children"><a href="{%url 'flash_sale'%}">Flash Sale</a></li>
           </ul>
+          {%if request.user.is_authenticated %}
+
+          {%else%}
           <ul class="menu--mobile">
-              <li class="daily-deals"><a>daily deals</a></li>
+              <li class="daily-deals"><a href = "{%url 'account_signup'%}">Register</a></li>
+              <li class="daily-deals"><a href = "{%url 'account_signup'%}">Log In</a></li>
           </ul>
+          {%endif%}
       </div>
       <div class="navigation__footer">
           <ul class="menu--icon">
-              <li class="footer-item"><a class="footer-link" href="#"><i class="icon-history2"></i><span>Recent viewed product</span></a></li>
-              <li class="footer-item"><a class="footer-link" href="#"><i class="icon-cube"></i><span>Become a vendor</span></a></li>
+              <!-- <li class="footer-item"><a class="footer-link" href="#"><i class="icon-history2"></i><span>Recent viewed product</span></a></li> -->
+              <li class="footer-item"><a class="footer-link" href="#"><i class="icon-cube"></i><span>Become a vendor <b style="color:red;">COMING SOON</b></span></a></li>
               <li class="footer-item"><a class="footer-link" href="#"><i class="icon-question-circle"></i><span>Help & Contact</span></a></li>
               <li class="footer-item"><a class="footer-link" href="#"><i class="icon-telephone"></i><span>HOTLINE: <span class='text-success'>(+1) 970 978-6290</span> (Free)</span></a></li>
           </ul>

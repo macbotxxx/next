@@ -15,7 +15,7 @@
                                 <div class="ps-content-box">
                                     <div class="ps-title">Next Organic Fruit & Vegetable Delivery <br/> <span class='text-danger'>Daily Offers.</span></div>
                                     <div class="ps-subtitle">With our deverse range of <span class='text-success'>100% fresh</span> foods.</div>
-                                    <div class="ps-shopnow"> <a href="shop-view-grid.html">Shop Now<i class="icon-chevron-right"></i></a></div>
+                                    <div class="ps-shopnow"> <a href="#">Shop Now<i class="icon-chevron-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                                     <div class="ps-node"><span class='text-success'>NEW ARRIVALS</span></div>
                                     <div class="ps-title">Whole Earth Organic Sparkling Lemonade.</div>
                                     <div class="ps-subtitle">Made with nuatural ingredients</div>
-                                    <div class="ps-shopnow"> <a href="shop-view-grid.html">Shop Now<i class="icon-chevron-right"></i></a></div>
+                                    <div class="ps-shopnow"> <a href="#">Shop Now<i class="icon-chevron-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                     <div class="ps-node"><span class='text-danger'>SALE UP TO 30%</span></div>
                                     <div class="ps-title">Whole Earth Maple Frosted Organic Corn Flakes.</div>
                                     <div class="ps-subtitle">Only from <br/> <span class='price'>₦5.99</span></div>
-                                    <div class="ps-shopnow"> <a href="shop-view-grid.html">Shop Now<i class="icon-chevron-right"></i></a></div>
+                                    <div class="ps-shopnow"> <a href="#">Shop Now<i class="icon-chevron-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -64,10 +64,10 @@
             <div class="ps-promotion--default">
                 <div class="container">
                     <div class="row m-0">
-                        <div class="col-6 col-lg-3"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/promotion/promotion_01.jpg' %}" alt="alt" /></a></div>
-                        <div class="col-6 col-lg-3"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/promotion/promotion_02.jpg' %}" alt="alt" /></a></div>
-                        <div class="col-6 col-lg-3"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/promotion/promotion_03.jpg' %}" alt="alt" /></a></div>
-                        <div class="col-6 col-lg-3"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/promotion/promotion_04.jpg' %}" alt="alt" /></a></div>
+                        <div class="col-6 col-lg-3"><a href="#"><img src="{% static 'nextonline/img/promotion/promotion_01.jpg' %}" alt="alt" /></a></div>
+                        <div class="col-6 col-lg-3"><a href="#"><img src="{% static 'nextonline/img/promotion/promotion_02.jpg' %}" alt="alt" /></a></div>
+                        <div class="col-6 col-lg-3"><a href="#"><img src="{% static 'nextonline/img/promotion/promotion_03.jpg' %}" alt="alt" /></a></div>
+                        <div class="col-6 col-lg-3"><a href="#"><img src="{% static 'nextonline/img/promotion/promotion_04.jpg' %}" alt="alt" /></a></div>
                     </div>
                 </div>
             </div>
@@ -75,14 +75,16 @@
             <section class="section-flashdeal--default ps-home--block">
                 <div class="container">
                     <div class="ps-block__header">
-                        <h3 class="ps-block__title"><i class="icon-power"></i>Flash Deals<span class="ps-countdown"><span class="ps-countdown-end">Ends in : </span><span class="ps-countdown"><b class="hours">3</b> hours : <b class="minutes">12</b> mins : <b class="seconds">45</b> secs</span><span class="ps-countdown mobile"><b class="hours">00</b> h : <b class="minutes">20</b> m : <b class="seconds">45</b> s</span></span></h3><a class="ps-block__view" href="flash-sale.html">View all<i class="icon-chevron-right"></i></a>
+                        <h3 class="ps-block__title"><i class="icon-power"></i>Flash Deals
+                            <!-- <span class="ps-countdown"><span class="ps-countdown-end">Ends in : </span><span class="ps-countdown"><b class="hours">3</b> hours : <b class="minutes">12</b> mins : <b class="seconds">45</b> secs</span><span class="ps-countdown mobile"><b class="hours">00</b> h : <b class="minutes">20</b> m : <b class="seconds">45</b> s</span></span> -->
+                        </h3><a class="ps-block__view" href="f{%url 'flash_sale'%}">View all<i class="icon-chevron-right"></i></a>
                     </div>
                     <div class="flashdeal--content">
                         <div class="owl-carousel" data-owl-auto="false" data-owl-loop="false" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="6" data-owl-duration="1000" data-owl-mousedrag="on">
                             {%for p in products %}
                             <div class="ps-product--standard"><a href="{{p.get_absolute_url}}"><img class="ps-product__thumbnail" src="{{p.image.url}}" alt="alt" /></a>
                                 <div class="ps-product__content">
-                                    <p class="ps-product-price-block"><span class="ps-product__sale">₦{{p.price | intcomma}}</span><span class="ps-product__price">₦4.90</span><span class="ps-product__off">25% Off</span></p>
+                                    <p class="ps-product-price-block"><span class="ps-product__sale">₦{{p.price | intcomma}}</span>{%if p.old_price %}<span class="ps-product__price">₦{{p.old_price | intcomma }}</span> {%endif%}</p>
                                     <p class="ps-product__type"><i class="icon-store"></i>Next Mall</p><a href="{{p.get_absolute_url}}">
                                         <h5 class="ps-product__name">{{p.product_name | title}}</h5>
                                     </a>
