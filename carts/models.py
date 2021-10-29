@@ -9,7 +9,7 @@ User = settings.AUTH_USER_MODEL
 
 
 class Cart (models.Model):
-    cart_id = models.CharField(max_length=400, blank=True)
+    cart_id = models.CharField(max_length=400, blank=True, null=True)
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -23,11 +23,11 @@ class CartItem (models.Model):
         on_delete=models.PROTECT, null=True,
         help_text=_("The user for whom account belongs to")
     )
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     product_variation = models.ManyToManyField(ProductVariation,  blank=True)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-    is_active = models.BooleanField(default=True)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
+    quantity = models.IntegerField(null=True)
+    is_active = models.BooleanField(default=True, null=True)
 
 
     def sub_totals(self):
