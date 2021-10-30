@@ -71,6 +71,7 @@
       <script defer src="{% static 'nextonline/plugins/nouislider.min.js' %}"></script>
       <!-- custom code-->
       <script defer src="{% static 'nextonline/js/main.js' %}"></script>
+      <script defer src="{% static 'nextonline/js/mobi.js' %}"></script>
       
       {% endcompress %}
 
@@ -195,8 +196,6 @@
                          
                       </div>
 
-
-
                   </div>
                   <div class="header-inner__right">
                       <a class="button-icon icon-md" href="wishlist.html"><i class="icon-heart"></i><span class="badge bg-warning">2</span></a>
@@ -298,30 +297,26 @@
           </div>
       </nav>
       <div class="mobile-search--slidebar">
-          <div class="mobile-search--content">
-              <div class="mobile-search__header">
-                  <div class="mobile-search-box">
-                      <div class="input-group">
-                        <form action="" id="search-form" method="get">
-                          
-                          {% csrf_token %}
-                          <input class="form-control input-search" id="search-input" style="height:45px;" placeholder="I'm searchching for..."> 
-
-                        </form>
-                      </div>
-                      <button class="cancel-search"><i class="icon-cross"></i></button>
-                  </div>
-
-                <div class="result-search not-visible" id="results-box">
-                         
+        <div class="mobile-search--content">
+            <div class="mobile-search__header">
+                <div class="mobile-search-box">
+                    <div class="input-group">
+                        <form action="" id="search-form-mobile" class="form-control" method="get">
+                            {% csrf_token %}
+                        <input class="" placeholder="I'm shopping for..." id="search-input-mobile">
+                       </form>
+                    </div>
+                    <button class="cancel-search"><i class="icon-cross"></i></button>
                 </div>
+            </div>
 
-
-              </div>
-             
-              
-          </div>
-      </div>
+            <div class="result-search not-visible" id="results-box-mobile">
+                         
+            </div>
+           
+            
+        </div>
+    </div>
   </header>
 
       {% block content %}
@@ -479,10 +474,9 @@
               <button class="close-navbar-slide"><i class="icon-arrow-left"></i></button>
               <div>
                   {%if request.user.is_authenticated %}
-                  <span> <i class="icon-user"></i>Hi, </span><a class="dropdown-user" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="account dropdown-user" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.first_name | title }}</span><i class="icon-chevron-down"></i></a>
-                  <div class="dropdown-menu" aria-labelledby="dropdownAccount"><a class="dropdown-item" href="#"><b>My Account</b></a><a class="dropdown-item" href="#">Dashboard</a><a class="dropdown-item" href="#">Account Setting</a><a class="dropdown-item" href="shopping-cart.html">Orders</a><a class="dropdown-item" href="wishlist.html">Wishlist</a><a class="dropdown-item" href="#">Shipping Address</a><a class="dropdown-divider"></a><a class="dropdown-item" href="#"><i class="icon-exit-left"></i>Log out</a>
+                  <div><span><a class="dropdown-user" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </span><span class="account"><i class="icon-user"></i>Hi, {{request.user.name | title}} <i class="icon-chevron-down"></i></span></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownAccount"><a class="dropdown-item" href="#"><b>My Account</b></a><a class="dropdown-item" href="#">Dashboard</a><a class="dropdown-item" href="#">Account Setting</a><a class="dropdown-item" href="shopping-cart.html">Orders</a><a class="dropdown-item" href="wishlist.html">Wishlist</a><a class="dropdown-item" href="#">Shipping Address</a><hr><a class="dropdown-divider"></a><a class="dropdown-item" href="{%url 'account_logout'%}"><i class="icon-exit-left"></i>Log out</a></div>
                 </div>
-
                 {%endif%}
               </div>
           </div>
@@ -525,7 +519,7 @@
  
 
     {% block inline_javascript %}
-    {# Script tags with only code, no src (defer by default) #}
+    
     {% endblock inline_javascript %}
   </body>
 </html>

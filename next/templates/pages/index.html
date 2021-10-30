@@ -72,7 +72,7 @@
                 </div>
             </div>
            
-            <section class="section-flashdeal--default ps-home--block">
+            <section class="secton-flashdeal--default ps-home--block">
                 <div class="container">
                     <div class="ps-block__header">
                         <h3 class="ps-block__title"><i class="icon-power"></i>Flash Deals
@@ -80,9 +80,9 @@
                         </h3><a class="ps-block__view" href="f{%url 'flash_sale'%}">View all<i class="icon-chevron-right"></i></a>
                     </div>
                     <div class="flashdeal--content">
-                        <div class="owl-carousel" data-owl-auto="false" data-owl-loop="false" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                        <div class="owl-carousel" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="1" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="6" data-owl-duration="1000" data-owl-mousedrag="on">
                             {%for p in products %}
-                            <div class="ps-product--standard"><a href="{{p.get_absolute_url}}"><img class="ps-product__thumbnail" src="{{p.image.url}}" alt="alt" /></a>
+                            <div class="ps-product--standard"><a href="{{p.get_absolute_url}}"><img class="ps-product__thumbnail" src="{{p.image.url}}" alt="alt" /></a>{%if p.stock <= 0 %} <span class="ps-badge ps-product__stock">Out Of Stock</span> {%endif%}
                                 <div class="ps-product__content">
                                     <p class="ps-product-price-block"><span class="ps-product__sale">₦{{p.price | intcomma}}</span>{%if p.old_price %}<span class="ps-product__price">₦{{p.old_price | intcomma }}</span> {%endif%}</p>
                                     <p class="ps-product__type"><i class="icon-store"></i>Next Mall</p><a href="{{p.get_absolute_url}}">
@@ -104,9 +104,9 @@
                                     <p class="ps-product__sold">Sold: 5/40</p>
                                 </div>
                                 <div class="ps-product__footer">
-                                    <p>{{p.description | truncatechars:50 }}</p>
+                                  
+                                    <div class="ps-product__footer"><a class="btn btn-warning" href="{{p.get_absolute_url}}"><span style="color:rgb(0, 0, 0); font-size:14px; font-weight:bold;">Wishlist</span></a><a class="btn btn-primary" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a></div>
                                     
-                                    <div class="ps-product__box"><a class="btn btn-warning" href="{{p.get_absolute_url}}"><span style="color:rgb(0, 0, 0); font-size:14px; font-weight:bold;">Wishlist</span></a><a class="btn btn-primary" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a></div>
                                 </div>
                             </div>
                             {%endfor%}

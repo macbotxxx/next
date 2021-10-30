@@ -134,7 +134,6 @@ def add_to_cart (request, id):
 
 def remove_from_cart (request, id, c_id):
     print(c_id)
-    cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=id)
     try:
         if request.user.is_authenticated:
@@ -154,7 +153,6 @@ def remove_from_cart (request, id, c_id):
     return redirect('cart')
 
 def delete_cart(request, id, c_id):
-    cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=id)
     if request.user.is_authenticated:
         cart_item = CartItem.objects.filter(product=product, user = request.user, id = c_id )
@@ -167,6 +165,8 @@ def delete_cart(request, id, c_id):
 
 
 def cart (request, total=0, quantity=0, cart_items=None):
+    shipping_rate_per_quantity = 0
+    grandtotal = 0
 
     try:
         if request.user.is_authenticated:

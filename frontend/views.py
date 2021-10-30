@@ -11,14 +11,6 @@ from carts.models import Cart, CartItem
 from store.models import Product
 from categories.models import Category
 
-# Create your views here.
-
-def allCat(request):
-    categories = Category.objects.all()
-    context = {
-        'categories': categories,
-    }
-
 
 
 class HomePage(View):
@@ -26,6 +18,7 @@ class HomePage(View):
 
     def get (self, request, *args, **kwargs):
         products = Product.objects.all().filter(is_available = True)
+        flash_sale = Product.objects.all().filter(flash_sale = True)
         categories = Category.objects.all()
         for c in categories:
             print(c.parent)
@@ -34,6 +27,7 @@ class HomePage(View):
         context = {
             'products': products,
             'categories': categories,
+            'flash_sale':flash_sale,
         }
 
         return render(self.request, 'pages/index.html', context)
