@@ -103,6 +103,7 @@ LOCAL_APPS = [
     "categories.apps.CategoriesConfig",
     "store.apps.StoreConfig",
     "carts.apps.CartsConfig",
+    "orders.apps.OrdersConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
