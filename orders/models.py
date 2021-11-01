@@ -141,10 +141,23 @@ class Order (BaseModel):
         help_text=_("State of which the order is been placed from or to be shipped to.")
     )
 
+    city = models.CharField(
+        verbose_name = _("Order City"),
+        max_length = 400,
+        null=True,
+        help_text=_("City of which the order is been placed from or to be shipped to.")
+    )
+
     order_note = models.TextField(
         verbose_name = _("Order Note"),
         null=True,blank=True,
         help_text=_("A short note for the order to be delieved to you.")
+    )
+
+    shipping_rate_per_quantity = models.IntegerField(
+        verbose_name = _("Order Shipping Rate"),
+        null=True,blank=True,
+        help_text=_("Shipping rate for the current order placed by the customer")
     )
 
     order_total = models.IntegerField(

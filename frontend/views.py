@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
+from orders.forms import OrderForm
 
 
 from store.models import Product
@@ -131,6 +132,7 @@ class Checkout (LoginRequiredMixin, View):
 
     def get (self, request, total=0, quantity=0,shipping_rate_per_quantity = 0,grandtotal = 0,  cart_items=None):
         try:
+            form = OrderForm(initial={'first_name': request.user.first_name,'last_name': request.user.last_name,'phone_number':request.user.contact_number,'email':request.user.email})
             if request.user.is_authenticated:
                 cart_items = CartItem.objects.filter(user=request.user, is_active=True)
             else:
@@ -150,6 +152,7 @@ class Checkout (LoginRequiredMixin, View):
         'cart_items': cart_items,
         'shipping_rate_per_quantity':shipping_rate_per_quantity,
         'grandtotal': grandtotal,
+        'form':form,
         }
         return render(self.request, 'pages/checkout.html', context)
 

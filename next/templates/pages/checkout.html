@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static humanize %}
+{% load static humanize  crispy_forms_tags %}
 {% block title %}Order Checkout{% endblock %}
 
 
@@ -17,21 +17,8 @@
             <div class="container">
                 <h2 class="page__title">Checkout</h2>
                 <div class="checkout__content">
-                    <div class="checkout__header">
-                        <div class="row">
-                            <div class="col-12 col-lg-7">
-                                <div class="checkout__header__box">
-                                    <p><i class="icon-user"></i>Returning customer? <a href="#">Click here to login</a></p><i class="icon-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-5">
-                                <div class="checkout__header__box">
-                                    <p><i class="icon-tags"></i>Have a coupon? <a href="#">Click here to renter your code</a></p><i class="icon-chevron-down"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <form method="post" action="">
+                   
+                    <form method="post" action="{%url 'place_order' %}">
                         {% csrf_token %}
 
                     <div class="row">
@@ -39,58 +26,11 @@
                             <h3 class="checkout__title">Billing Details</h3>
                             <div class="checkout__form">
                                     <div class="form-row">
-                                        <div class="col-12 col-lg-6 form-group--block">
-                                            <label>First name: <span>*</span></label>
-                                            <input class="form-control" type="text" required>
+
+                                        <div class="col-12  form-group--block">
+                                            {{form|crispy }}
                                         </div>
-                                        <div class="col-12 col-lg-6 form-group--block">
-                                            <label>Last name<span>*</span></label>
-                                            <input class="form-control is-invalid" type="text" required>
-                                            <div class="invalid-feedback">Please enter last name!</div>
-                                        </div>
-                                        <div class="col-12 form-group--block">
-                                            <label>Company name (optional)</label>
-                                            <input class="form-control" type="text">
-                                        </div>
-                                        <div class="col-12 form-group--block">
-                                            <label>Country: <span>*</span></label>
-                                            <select class="single-select2" name="state">
-                                                <option value="uk">United Kingdom</option>
-                                                <option value="vn">Viet Nam</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-12 form-group--block">
-                                            <label>Street address: <span>*</span></label>
-                                            <input class="form-control" type="text" placeholder="House number and street name">
-                                        </div>
-                                        <div class="col-12 form-group--block">
-                                            <label>Postcode/ ZIP (optional)</label>
-                                            <input class="form-control" type="text">
-                                        </div>
-                                        <div class="col-12 form-group--block">
-                                            <label>Town/ City: <span>*</span></label>
-                                            <input class="form-control" type="text" required>
-                                        </div>
-                                        <div class="col-12 form-group--block">
-                                            <label>Phone: <span>*</span></label>
-                                            <input class="form-control" type="text" required>
-                                        </div>
-                                        <div class="col-12 form-group--block">
-                                            <label>Email address: <span>*</span></label>
-                                            <input class="form-control" type="email" required>
-                                        </div>
-                                        <div class="col-12 form-group--block">
-                                            <input class="form-check-input" type="checkbox">
-                                            <label class="label-checkbox">Create an account?</label>
-                                        </div>
-                                        <div class="col-12 form-group--block">
-                                            <input class="form-check-input" type="checkbox">
-                                            <label class="label-checkbox"><b>Ship to a different address?</b></label>
-                                        </div>
-                                        <div class="col-12 form-group--block">
-                                            <label>Order notes (optional)</label>
-                                            <textarea class="form-control" placeholder="Note about your orders, e.g special notes for delivery."></textarea>
-                                        </div>
+                                       
                                     </div>
                             </div>
                         </div>
