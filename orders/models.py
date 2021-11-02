@@ -270,25 +270,11 @@ class OrderProduct (BaseModel):
         help_text= _("foreign key and session to the product table.")
         )
 
-    variation = models.ForeignKey(
-        ProductVariation, on_delete = models.CASCADE,
-        null=True, blank=True,
+    variation = models.ManyToManyField(
+        ProductVariation, 
+        blank=True,
         help_text= _("foreign key and session to the product variation table.")
         )
-    
-    color = models.CharField(
-        verbose_name = _("Product Color"),
-        max_length = 400,
-        null=True,
-        help_text=_("product color for the current product variation.")
-    )
-
-    size = models.CharField(
-        verbose_name = _("Product Size"),
-        max_length = 400,
-        null=True,
-        help_text=_("product size for the current product variation.")
-    )
 
     quantity = models.IntegerField(
         verbose_name = _("Product Quantity"),

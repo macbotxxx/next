@@ -2,7 +2,8 @@ from django.core.checks import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
 from carts.models import Cart, CartItem
-from .models import Order, Payment
+from store.models import Product
+from .models import Order, OrderProduct, Payment
 from .forms import OrderForm
 from .payment_gateway import FlutterWave, PayStack
 
@@ -97,6 +98,33 @@ def verify_payment (request, payment_ref):
         payment.status = 'success'
         payment.save()
         print('payment verified')
+        cart_items = CartItem.objects.filter(user = request.user)
+        for item in cart_items:
+            orderproduct = OrderProduct()
+            orderproduct.order_id = order.id
+            orderproduct.payment = payment
+            orderproduct.user = request.user
+            orderproduct.product_id = item.product_id
+            orderproduct.quantity = item.quantity
+            orderproduct.product_price = item.product.price
+            orderproduct.ordered = True
+            orderproduct.save()
+
+            # adding the product variation to ordered table 
+            cart_item = CartItem.objects.get(id = item.id)
+            product_v = cart_item.product_variation.all()
+            orderproduct = OrderProduct.objects.get(id = orderproduct.id)
+            orderproduct.variation.set(product_v)
+            orderproduct.save()
+
+            # reduce the quantity of the order item 
+            product = Product.objects.get(id = item.product_id)
+            product.stock -= item.quantity
+            product.save()
+
+            # cleariing the cart item of the user
+            CartItem.objects.filter(user = request.user).delete() 
+            
     else:
         print('payment not verified')
     # return redirect('checkout')
