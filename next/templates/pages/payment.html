@@ -15,27 +15,28 @@
         </div>
         <section class="section--checkout">
             <div class="container">
-                <h2 class="page__title">Checkout</h2>
+                <h2 class="page__title">Checkout Review</h2>
                 <div class="checkout__content">
                    
-                    <form method="post" action="{%url 'place_order' %}">
-                        {% csrf_token %}
+                    
 
                     <div class="row">
-                        <div class="col-12 col-lg-7">
-                            <h3 class="checkout__title">Billing Details</h3>
-                            <div class="checkout__form">
-                                    <div class="form-row">
-
-                                        <div class="col-12  form-group--block">
-                                            {{form|crispy }}
-                                        </div>
-                                       
-                                    </div>
+                        
+                        <div class="col-12 col-lg-15">
+                            <h3 class="checkout__title">Checkout Review</h3>
+                            <div class="checkout__payment">
+                                <div class="checkout__label mb-3">SHIPPING ADDRESS</div>
+                                <div class="form-group--block">
+                                   <p>{{current_order.full_name | title}}</p> 
+                                   <p>{{current_order.address | title }}</p> 
+                                   <p>{{current_order.city}}</p> 
+                                   <p>{{current_order.state}}</p> 
+                                   <p>{{current_order.phone_number}}</p> 
+                                   <p><b>Order Note:</b></p> 
+                                   <p>{{current_order.order_note}}</p> 
+                                </div>
+                                
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-5">
-                            <h3 class="checkout__title">Your Order</h3>
                             <div class="checkout__products">
                                 <div class="row">
                                     <div class="col-8">
@@ -49,6 +50,7 @@
                                     {%for p in cart_items %}
                                     <div class="checkout__product__item">
                                         <div class="checkout-product">
+                                            
                                             <div class="product__name">{{p.product.product_name | title}}<span>(x{{p.quantity}})</span></div>
                                            {%if p.product_variation.all %}
                                            {%for variations in p.product_variation.all %}
@@ -85,19 +87,67 @@
                                     </div>
                                 </div>
                             </div>
-                           
+                            <div class="checkout__payment">
+                                <div class="checkout__label mb-3">SELECT PAYMENT</div>
+                                
+                                <div class="form-group--block">
+                                    <input class="form-check-input" type="checkbox" value="cash" id="checkboxCash" checked="checked">
+                                    <label class="label-checkbox" for="checkboxCash"><b class="text-heading">Online Payment</b><img src="{% static 'nextonline/img/promotion/payment_visa.jpg' %}" alt><img src="{% static 'nextonline/img/promotion/payment_mastercart.jpg' %}" alt><img src="{% static 'nextonline/img/promotion/payment_electron.jpg' %}" alt></label>
+                                </div>
+                                <div class="checkout__payment__detail">An online payment can be simply defined as the exchange of money online, or the payment for goods or services over the internet.
+                                    <div class="triangle-box">
+                                        <div class="triangle"></div>
+                                    </div>
+                                </div>
+                               
+                            </div>
                             <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <span class="text-success">privacy policy.</span></p>
                             <div class="form-group--block">
-                                
-                      <u class="text-success">terms and conditions  </u><span>*</span></b>
-                            </div><button class="checkout__order" href="order-tracking.html">Place an order</button>
+                                <input class="form-check-input" type="checkbox" id="checkboxAgree" value="agree">
+                                <label class="label-checkbox" for="checkboxAgree"><b class="text-heading">I have read and agree to the website
+                      <u class="text-success">terms and conditions  </u><span>*</span></b></label>
+                            </div><button class="checkout__order" type="button" id="django-paystack-button" onclick="payWithNext()" href="order-tracking.html">Place an order</button>
                         </div>
                     </div>
-                </form>
+        
 
                 </div>
             </div>
         </section>
     </main>
 {% endblock %}
+
+{% block inline_javascript %}
+<script>
    
+    function payWithNext() {
+        FlutterwaveCheckout({
+        public_key: "{{key}}",
+        tx_ref: "{{payment_ref}}",
+        amount: {{grandtotal}},
+        currency: "NGN",
+        country: "NG",
+        payment_options: " ",
+       
+        customer: {
+            email: "{{request.user.email}}",
+            phone_number: "{{request.user.contact_number}}",
+            name: "{{request.user.name | title}}",
+        },
+        callback: function (data) {
+            console.log(data);
+            window.location.href="{% url 'verify_payment' payment_ref %}";
+        },
+        onclose: function() {
+            // close modal
+        },
+        customizations: {
+            title: "Next Online",
+            description: "Payment for items in cart",
+            logo: "https://assets.piedpiper.com/logo.png",
+        },
+        });
+  }
+
+</script>
+{% endblock inline_javascript %}

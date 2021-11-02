@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import OrderProduct, Order, Payement
+from .models import OrderProduct, Order, Payment
 
-@admin.register(Payement)
+@admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
-    list_display = ('user', 'payment_id', 'payment_method', 'amount_paid', 'status')
+    list_display = ('user', 'payment_ref', 'payment_method', 'amount_paid', 'verified')
     list_display_link = ('user',)
+    readonly_fields = ('payment_ref','amount_paid','payment_method','verified','status',)
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):

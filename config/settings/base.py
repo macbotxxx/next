@@ -216,6 +216,7 @@ TEMPLATES = [
                 "categories.context_processors.menu_links",
                 "carts.context_processors.counter",
                 "carts.context_processors.all_cart_items",
+                "orders.context_processors.secret_key",
             ],
         },
     }

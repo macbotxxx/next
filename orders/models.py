@@ -6,11 +6,13 @@ from django.utils.translation import gettext_lazy as _
 
 from next.users.models import User
 from store.models import Product, ProductVariation
+from .payment_gateway import FlutterWave, PayStack
 
+import secrets
 
 # Create your models here.
 
-class Payement(BaseModel):
+class Payment(BaseModel):
     """
     Payement model for accepting orders.
     """
@@ -22,8 +24,8 @@ class Payement(BaseModel):
         help_text=_("The user for whom account belongs to")
     )
 
-    payment_id = models.CharField(
-        verbose_name = _("Payment ID"),
+    payment_ref = models.CharField(
+        verbose_name = _("Payment Ref No"),
         max_length = 150,
         null=True,
         help_text=_("The payment identification number sent from the payment gateway.")
@@ -31,32 +33,62 @@ class Payement(BaseModel):
 
     payment_method = models.CharField(
         verbose_name = _("Payment Method"),
+        default = "Online Payment",
         max_length = 150,
-        null=True,
+        null=True,blank=True,
         help_text=_("The payment method used while paying for an order.")
     )
 
-    amount_paid = models.CharField(
+    amount_paid = models.IntegerField(
         verbose_name = _("Amount Paid"),
-        max_length = 150,
         null=True,
         help_text=_("Amount paid for the above order by the customer.")
+    )
+
+    verified = models.BooleanField(
+        verbose_name = _("Payment Verification"),
+        default = False,
+        null=True,blank=True,
+        help_text=_("Verified payment status to identify if the payment is been verified by the payment gateway or not.")
     )
 
     status = models.CharField(
         verbose_name = _("Payment Status"),
         max_length = 150,
         null=True,
-        help_text=_("Payment status which identifies if the payment is set or not.")
+        help_text=_("payment status to identify if the payment is been verified by the payment gateway or not.")
     )
 
+
     def __str__(self):
-        return str(self.user)
+        return str(self.payment_ref)
 
     class Meta:
         ordering = ('-created_date',)
-        verbose_name = _("Payment")
-        verbose_name_plural = _("Payment")
+        verbose_name = _("All Payment")
+        verbose_name_plural = _("All Payment")
+
+    # def save(self, *args, **kwargs) -> None:
+    #     while not self.payment_ref:
+    #         payment_ref = secrets.token_urlsafe(30)
+    #         object_with_similar_ref = Payment.objects.filter(payment_ref=payment_ref)
+    #         if not object_with_similar_ref:
+    #             self.payment_ref = payment_ref
+    #     super().save(*args, **kwargs)
+
+    # def amount_value(self) -> int:
+    #     return self.amount_paid * 100 
+
+    def verify_payment(self):
+        # paystack = PayStack()
+        flutterwave = FlutterWave()
+        status, result = flutterwave.verify_payment(self.payment_ref, self.amount_paid)
+        if status == 'success':
+            self.verified = True
+        self.save()
+        if self.verified:
+            return True
+        return False 
 
 STATUS = (
     ('New', 'New'),
@@ -80,7 +112,7 @@ class Order (BaseModel):
     )
 
     payment = models.ForeignKey(
-        Payement, on_delete = models.CASCADE,
+        Payment, on_delete = models.CASCADE,
         null=True,blank=True,
         help_text=_("Customers order payment information.")
     )
@@ -196,6 +228,14 @@ class Order (BaseModel):
     def __str__(self):
         return str(self.order_number)
 
+     # creating a function for details
+    def full_name (self):
+        return f'{self.first_name} {self.last_name}'
+
+    def address (self):
+        return f'{self.address_line_1} {self.address_line_2}'
+
+
     class Meta:
 
         ordering = ('-created_date',)
@@ -219,7 +259,7 @@ class OrderProduct (BaseModel):
         )
 
     payment = models.ForeignKey(
-        Payement, on_delete = models.CASCADE,
+        Payment, on_delete = models.CASCADE,
         null=True, blank=True,
         help_text= _("foreign key and session to the payment table.")
         )

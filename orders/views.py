@@ -1,8 +1,11 @@
-from django.shortcuts import redirect, render
+from django.core.checks import messages
+from django.shortcuts import get_object_or_404, redirect, render
 
 from carts.models import Cart, CartItem
-from .models import Order
+from .models import Order, Payment
 from .forms import OrderForm
+from .payment_gateway import FlutterWave, PayStack
+
 # Create your views here.
 
 import random
@@ -11,6 +14,9 @@ import string
 # Generating random number...
 def order_number():
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+
+def transaction_ref():
+    return ''.join(random.choices(string.ascii_lowercase + string.digits, k=35))
 
 
 def placeOrder (request,total=0, quantity=0):
@@ -53,11 +59,47 @@ def placeOrder (request,total=0, quantity=0):
             data.ip_address = request.META.get('REMOTE_ADDR')
             data.order_number = order_number()
             data.save()
-            return redirect('checkout')
+            current_order = Order.objects.get(order_number = data.order_number, user = current_user, is_ordered = False)
+
+
+            # creating payment
+            payment_ref = transaction_ref() 
+            payment = Payment.objects.create(user = current_user, payment_ref = payment_ref, amount_paid = grandtotal )
+            current_order.payment = payment
+            current_order.save()
+            
+
+            context = {
+                'current_order':current_order,
+                'shipping_rate_per_quantity': shipping_rate_per_quantity,
+                'grandtotal': grandtotal,
+                'cart_items':cart_items,
+                'payment_ref':payment_ref,
+            }
+
+            return render(request, 'pages/payment.html', context)
         
         else:
             return redirect('checkout')
 
+
+# to verify payment before saving billing status
+def verify_payment (request, payment_ref):
+    # payment = Payment.objects.filter(payment_ref=payment_ref)
+    payment = get_object_or_404(Payment, payment_ref=payment_ref)
+    verified = payment.verify_payment()
+    
+    print('order is saved and updated')
+    if verified:
+        order = Order.objects.get(payment = payment, user = request.user)
+        order.is_ordered = True
+        order.save()
+        payment.status = 'success'
+        payment.save()
+        print('payment verified')
+    else:
+        print('payment not verified')
+    # return redirect('checkout')
 
 
 
