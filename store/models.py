@@ -11,6 +11,7 @@ from django.utils import timezone
 
 from categories.models import Category
 from helpers.common.basemodel import BaseModel
+from next.users.models import User
 
 
 # Create your models here.
@@ -182,3 +183,54 @@ class ProductVariation(BaseModel):
 
     def __str__(self):
         return str(self.variation_value)
+
+
+class ReviewRating(BaseModel):
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE,
+        null=True,
+        verbose_name = _('Product Name'),
+        help_text = _('Product which the rating will be published to.')
+    )
+
+    user = models.ForeignKey(
+        User,
+        verbose_name=_("User Profile"),
+        on_delete=models.PROTECT, null=True,
+        help_text=_("The user for whom account belongs to")
+    )
+
+    subject = models.CharField(
+        verbose_name = _('Product Review Subject'),
+        null =True,
+        max_length = 250,
+        help_text=_("product review subjects")
+    )
+
+    review = models.TextField(
+        verbose_name = _('Product Review'),
+        null =True,
+        max_length = 500,
+        help_text=_("customer review the customer item.")
+    )
+
+    rating = models.IntegerField(
+        verbose_name = _('Product Rating'),
+        null =True,
+    )
+
+    status = models.BooleanField(
+        verbose_name=_("Status"),
+        default = True,
+        null =True,
+        help_text=_("Status to dectect if the product review is active or not")
+    )
+
+
+    class Meta:
+        ordering = ('-created_date',)
+        verbose_name = _("Product Review ")
+        verbose_name_plural = _("Product Review")
+
+    def __str__(self):
+        return str(self.user)

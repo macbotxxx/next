@@ -178,7 +178,7 @@
                                     <div class="col-12 col-lg-5">
                                         <div class="review__box">
                                             <div class="product__rate">4.5</div>
-                                            <select class="rating-stars">
+                                            <select name="rating" class="rating-stars">
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -216,14 +216,26 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-7">
+
+                                        {%if request.user.is_authenticated %}
+                                        {%if orderproduct %}
                                         <div class="review__title">Add A Review</div>
                                         <p class="mb-0">Your email will not be published. Required fields are marked <span class="text-danger">*</span></p>
-                                        <form>
+                                        {% if messages %}
+                                        <ul class="messages">
+                                            {% for message in messages %}
+                                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% endif %}
+
+                                        <form action="{%url 'review' product.id %}" method="post">
+                                            {% csrf_token %}
                                             <div class="form-row">
                                                 <div class="col-12 form-group--block">
                                                     <div class="input__rating">
                                                         <label>Your rating: <span>*</span></label>
-                                                        <select class="rating-stars">
+                                                        <select name="rating" required class="rating-stars">
                                                             <option value="1">1</option>
                                                             <option value="2">2</option>
                                                             <option value="3">3</option>
@@ -233,22 +245,28 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12 form-group--block">
-                                                    <label>Review: <span>*</span></label>
-                                                    <textarea class="form-control"></textarea>
-                                                </div>
-                                                <div class="col-12 col-lg-6 form-group--block">
-                                                    <label>Name: <span>*</span></label>
-                                                    <input class="form-control" type="text" required>
-                                                </div>
-                                                <div class="col-12 col-lg-6 form-group--block">
-                                                    <label>Email:</label>
-                                                    <input class="form-control" type="email">
+                                                    <label>Subject: <span>*</span></label>
+                                                    <input type="text" name="subject" class="form-control" id="">
                                                 </div>
                                                 <div class="col-12 form-group--block">
-                                                    <button class="btn ps-button ps-btn-submit">Submit Review</button>
+                                                    <label>Review: <span>*</span></label>
+                                                    <textarea name="review" class="form-control" required></textarea>
+                                                </div>
+                                               
+                                                <div class="col-12 form-group--block">
+                                                    <button type="submit" class="btn ps-button ps-btn-submit">Submit Review</button>
                                                 </div>
                                             </div>
                                         </form>
+
+                                        {%else%}
+                                        <div class="review__title">Hey {{request.user.name | title}}, <br>
+                                            You need to Order the product , so to enable you to review on it.</div>
+                                        {%endif%}
+                                        {%else%}
+                                        <div class="review__title">You must be login to post a review about the product</div>
+                                        <a href="{%url 'account_login'%}">Login Here</a>   
+                                        {%endif%}
                                     </div>
                                 </div>
                                 <div class="ps--comments">

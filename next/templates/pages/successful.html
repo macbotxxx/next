@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% load mptt_tags %}
+
+{% load static humanize %}
+
+
+{% block content %}
+    <main class="no-main">
+        <section class="section--notfound ps-page--business">
+            <div class="container">
+                <div class="notfound__content"><img style="height: 115px;" src="https://clipart.world/wp-content/uploads/2021/07/Shopping-Cart-clipart-png-free.png" alt>
+                    <h1 class="page__title">Thank You For Your Order</h1>
+                    <p>Your order was successfully, check your email for more information about your order. you can <span><a href="http://"> track your here</a></span> and if you are facing any issues , you can contact us through our 24/7 live customer service or drop an email for us. <span> <a href="http://"> Drop an email for us.</a></span></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    {% endblock %}
+  

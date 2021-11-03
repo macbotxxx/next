@@ -1,16 +1,19 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View, ListView
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
+from .forms import ReviewRatingForm
 from orders.forms import OrderForm
 
 
-from store.models import Product
+from store.models import Product, ReviewRating
 from categories.models import Category
+from orders.models import OrderProduct
 
 
 
@@ -69,11 +72,18 @@ class ProductDetails (View):
         product = Product.objects.get(slug = kwargs['slug'])
         in_cart = CartItem.objects.filter(cart__cart_id =_cart_id(request), product = product).exists()
         related = Product.objects.all().filter(category__parent = product.category)
+
+        # checking if the user actually ordered for the product before commentiing
+        try:
+            orderproduct = OrderProduct.objects.filter(user=request.user, product_id = product.id).exists()
+        except OrderProduct.DoesNotExist:
+            orderproduct = None
         
         context = {
             'product': product,
             'in_cart':in_cart,
             'related':related,
+            'orderproduct':orderproduct,
         }
         return render(self.request, 'pages/product_details.html', context)
 
@@ -160,38 +170,35 @@ class Checkout (LoginRequiredMixin, View):
         pass
 
 
+def order_successfull(request):
+    return render(request, 'pages/successful.html')
 
 
-# class ItemsByCategoryView(View):
-    # ordering = 'id'
-    # paginate_by = 10
-    # template_name = 'pages/catpro.html'
+def review (request, product_id ):
+    url = request.META.get('HTTP_REFERER')
+    if request.method == 'POST':
+        try:
+            reviews = ReviewRating.objects.get(user__id = request.user.id, product__id = product_id)
+            form = ReviewRatingForm(request.POST, instance=reviews)            
+            form.save()
+            messages.success(request, 'Product review have been updated.')
+            return redirect(url)
+        except ReviewRating.DoesNotExist:
+            form = ReviewRatingForm(request.POST)
+            if form.is_valid():
+                data = ReviewRating()
+                data.review = form.cleaned_data['review']
+                data.rating = form.cleaned_data['rating']
+                data.subject = form.cleaned_data['subject']
+                data.product_id = product_id
+                data.user = request.user
+                data.save()
+                messages.success(request, 'Product review have been sumitted.')
+                return redirect(url)
+        
+    else:
+        messages.success(request, 'Product review form needs to be submitted.')
+        return redirect(url)
 
-    # def get(self, request, *args, **kwargs):
-    #     # https://docs.djangoproject.com/en/3.1/topics/class-based-views/generic-display/#dynamic-filtering
-    #     # the following category will also be added to the context data
-    #     self.category = Category.objects.get(slug=self.kwargs['slug'])
-    #     print(self.category)
-
-    #     pass
-    #     queryset = Product.objects.filter(category=self.category)
-    #      # need to set ordering to get consistent pagination results
-    #     queryset = queryset.order_by(self.ordering)
-    #     return queryset
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['category'] = self.category
-    #     return context
-
-def getcat (request, slug = None ):
-
-
-    categories = catoff.objects.get(slug=slug)
-    queryset = Product.objects.filter(category__parent=categories)
-    context = {
-        'categories':categories,
-        'queryset': queryset,
-    }
-    return render(request, 'pages/catpro.html', context)
+    
 

@@ -12,6 +12,11 @@ from .payment_gateway import FlutterWave, PayStack
 import random
 import string
 
+# django email settings
+from django.core import mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
 # Generating random number...
 def order_number():
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
@@ -123,11 +128,27 @@ def verify_payment (request, payment_ref):
             product.save()
 
             # cleariing the cart item of the user
-            CartItem.objects.filter(user = request.user).delete() 
+            CartItem.objects.filter(user = request.user).delete()
+
+             # sending email to the customer alerting him of the succesful order 
+            subject = 'Successful Order - Next Cash and Carry Online Store'
+            html_message = render_to_string(
+                'emails/text.html',
+                {
+                 'user': request.user,
+                } 
+            )
+            plain_message = strip_tags(html_message)
+            from_email = 'From <admin@nextonline.com>'
+            to = request.user.email
+            mail.send_mail(subject, plain_message, from_email, [to], html_message = html_message) 
+
+            return redirect('order_successful')
             
     else:
         print('payment not verified')
-    # return redirect('checkout')
+        return redirect('place_order')
+    return redirect('place_order')
 
 
 
