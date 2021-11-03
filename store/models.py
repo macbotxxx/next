@@ -7,6 +7,7 @@ from config.utils import unique_slug_generator_category, unique_slug_generator
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.utils import timezone
+from django.db.models import Avg
 
 
 from categories.models import Category
@@ -106,6 +107,14 @@ class Product(BaseModel):
 
     def get_absolute_url(self):
         return reverse('product-details', args=[str(self.slug)])
+
+    # getting the average review of the product 
+    def averageReview(self):
+        reviews = ReviewRating.objects.filter(product_id = self, status = True).aggregate(average=Avg('rating'))
+        avg = 0
+        if reviews['average'] is not None:
+            avg = float(reviews['average'])
+        return avg
 
     # def save(self, *args, **kwargs):
     #     value = self.product_name

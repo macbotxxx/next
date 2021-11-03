@@ -19,13 +19,13 @@
                     <h3 class="product__name">{{product.product_name | title}}</h3>
                     <div class="row">
                         <div class="col-12 col-lg-7 product__code">
-                            <select class="rating-stars">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4" selected="selected">4</option>
-                                <option value="5">5</option>
-                            </select><span class="product__review">4 Customer Review</span><span class="product__id">SKU: <span>#{{product.product_sku}}</span></span>
+                            <select name="rating" class="rating-stars">
+                                <option value="1" {%if product.averageReview == 1 %} selected="selected" {%endif%} >1</option>
+                                <option value="2" {%if product.averageReview == 2 %} selected="selected" {%endif%} >2</option>
+                                <option value="3" {%if product.averageReview == 3 %} selected="selected" {%endif%} >3</option>
+                                <option value="4"  {%if product.averageReview == 4 %} selected="selected" {%endif%} >4</option>
+                                <option value="5" {%if product.averageReview == 5 %} selected="selected" {%endif%} >5</option>
+                                </select><span class="product__review">{{review_count}} Customer Review</span><span class="product__id">SKU: <span>#{{product.product_sku}}</span></span>
                         </div>
                         <div class="col-12 col-lg-5">
                             <div class="ps-social--share"><a class="ps-social__icon facebook" href="#"><i class="fa fa-thumbs-up"></i><span>Like</span><span class="ps-social__number">0</span></a><a class="ps-social__icon facebook" href="#"><i class="fa fa-facebook-square"></i><span>Like</span><span class="ps-social__number">0</span></a><a class="ps-social__icon twitter" href="#"><i class="fa fa-twitter"></i><span>Like</span></a><a class="ps-social__icon" href="#"><i class="fa fa-plus-square"></i><span>Like</span></a></div>
@@ -163,7 +163,7 @@
                     <ul class="nav nav-pills" role="tablist" id="productTabDetail">
                         <li class="nav-item"><a class="nav-link active" id="description-tab" data-toggle="tab" href="#description-content" role="tab" aria-controls="description-content" aria-selected="true">Description</a></li>
                         
-                        <li class="nav-item"><a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews-content" role="tab" aria-controls="reviews-content" aria-selected="false">Reviews(4)</a></li>
+                        <li class="nav-item"><a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews-content" role="tab" aria-controls="reviews-content" aria-selected="false">Reviews({{review_count}})</a></li>
                         <li class="nav-item"><a class="nav-link" id="qa-tab" data-toggle="tab" href="#qa-content" role="tab" aria-controls="qa-content" aria-selected="false">Q&A</a></li>
                         <li class="nav-item"><a class="nav-link" id="vendor-tab" data-toggle="tab" href="#vendor-content" role="tab" aria-controls="vendor-content" aria-selected="false">Vendor Info</a></li>
                     </ul>
@@ -177,13 +177,13 @@
                                 <div class="row">
                                     <div class="col-12 col-lg-5">
                                         <div class="review__box">
-                                            <div class="product__rate">4.5</div>
+                                            <div class="product__rate">{{product.averageReview}}</div>
                                             <select name="rating" class="rating-stars">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4" selected="selected">4</option>
-                                                <option value="5">5</option>
+                                            <option value="1" {%if product.averageReview == 1 %} selected="selected" {%endif%} >1</option>
+                                            <option value="2" {%if product.averageReview == 2 %} selected="selected" {%endif%} >2</option>
+                                            <option value="3" {%if product.averageReview == 3 %} selected="selected" {%endif%} >3</option>
+                                            <option value="4"  {%if product.averageReview == 4 %} selected="selected" {%endif%} >4</option>
+                                            <option value="5" {%if product.averageReview == 5 %} selected="selected" {%endif%} >5</option>
                                             </select>
                                             <p>Avg. Star Rating: <b class="text-black">(4 reviews)</b></p>
                                             <div class="review__progress">
@@ -246,7 +246,7 @@
                                                 </div>
                                                 <div class="col-12 form-group--block">
                                                     <label>Subject: <span>*</span></label>
-                                                    <input type="text" name="subject" class="form-control" id="">
+                                                    <input type="text" name="subject" class="form-control" id="" required>
                                                 </div>
                                                 <div class="col-12 form-group--block">
                                                     <label>Review: <span>*</span></label>
@@ -270,80 +270,34 @@
                                     </div>
                                 </div>
                                 <div class="ps--comments">
-                                    <h5 class="comment__title">4 Comments</h5>
+                                    {%for review in reviews %}
+                                    <h5 class="comment__title">{{review_count}} Comments</h5>
+                                    {%endfor%}
+
                                     <ul class="comment__list">
-                                        <li class="comment__item">
-                                            <div class="item__avatar"><img src="{% static 'nextonline/img/blogs/comment_avatar1.png' %}" alt="alt" /></div>
-                                            <div class="item__content">
-                                                <div class="item__name">Elyn Y.</div>
-                                                <div class="item__date">- June 14, 2020</div>
-                                                <div class="item__check"> <i class="icon-checkmark-circle"></i>Verified Purchase</div>
-                                                <div class="item__rate">
-                                                    <select class="rating-stars">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4" selected="selected">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
-                                                </div>
-                                                <p class="item__des">{{product.product_name }} is great. {{product.product_name }} is the most valuable business resource we have EVER purchased. I have gotten at least 50 times the value from {{product.product_name }}. I just can't get enough of {{product.product_name }}. I want to get a T-Shirt with {{product.product_name }} on it so I can show it off to everyone.</p>
-                                            </div>
-                                        </li>
-                                        <li class="comment__item">
-                                            <div class="item__avatar"><img src="{% static 'nextonline/img/blogs/comment_avatar2.png' %}" alt="alt" /></div>
-                                            <div class="item__content">
-                                                <div class="item__name">Rick E.</div>
-                                                <div class="item__date">- June 14, 2020</div>
-                                                <div class="item__check"> <i class="icon-checkmark-circle"></i>Verified Purchase</div>
-                                                <div class="item__rate">
-                                                    <select class="rating-stars">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4" selected="selected">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
-                                                </div>
-                                                <p class="item__des">{{product.product_name }} is great. {{product.product_name }} is the most valuable business resource we have EVER purchased. I have gotten at least 50 times the value from {{product.product_name }}. I just can't get enough of {{product.product_name }}. I want to get a T-Shirt with {{product.product_name }} on it so I can show it off to everyone.</p>
-                                            </div>
-                                        </li>
+                                       {%for review in reviews %}
                                         <li class="comment__item">
                                             <div class="item__avatar"><img src="{% static 'nextonline/img/blogs/comment_no_avatar.png' %}" alt="alt" /></div>
                                             <div class="item__content">
-                                                <div class="item__name">Timmi Y.</div>
-                                                <div class="item__date">- June 13, 2020</div>
+                                                <div class="item__name">{{review.user.name | title}}</div>
+                                                <div class="item__date">- {{review.created_date}}</div>
                                                 <div class="item__check"> <i class="icon-checkmark-circle"></i>Verified Purchase</div>
                                                 <div class="item__rate">
-                                                    <select class="rating-stars">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5" selected="selected">5</option>
-                                                    </select>
+                                                <select class="rating-stars" readonly>
+                                                    <option  {%if review.rating == 1 %} selected="selected" {%endif%}>1</option>
+                                                    <option   {%if review.rating == 2 %} selected="selected" {%endif%}>2</option>
+                                                    <option  {%if review.rating == 3 %} selected="selected" {%endif%}>3</option>
+                                                    <option   {%if review.rating == 4 %} selected="selected" {%endif%}>4</option>
+                                                    <option    {%if review.rating == 5 %} selected="selected" {%endif%}>5</option>
+                                                </select>
                                                 </div>
-                                                <p class="item__des">{{product.product_name }} is great. {{product.product_name }} is the most valuable business resource we have EVER purchased. I have gotten at least 50 times the value from {{product.product_name }}. I just can't get enough of {{product.product_name }}. I want to get a T-Shirt with {{product.product_name }} on it so I can show it off to everyone.</p>
+                                                <div class="item__name">{{review.subject | title}}</div>
+                                                <p class="item__des">{{review.review}}</p>
                                             </div>
                                         </li>
-                                        <li class="comment__item">
-                                            <div class="item__avatar"><img src="{% static 'nextonline/img/blogs/comment_no_avatar.png' %}" alt="alt" /></div>
-                                            <div class="item__content">
-                                                <div class="item__name">Jack F.</div>
-                                                <div class="item__date">- June 05, 2020</div>
-                                                <div class="item__check"> <i class="icon-checkmark-circle"></i>Verified Purchase</div>
-                                                <div class="item__rate">
-                                                    <select class="rating-stars">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5" selected="selected">5</option>
-                                                    </select>
-                                                </div>
-                                                <p class="item__des">{{product.product_name }} is great. {{product.product_name }} is the most valuable business resource we have EVER purchased. I have gotten at least 50 times the value from {{product.product_name }}. I just can't get enough of {{product.product_name }}. I want to get a T-Shirt with {{product.product_name }} on it so I can show it off to everyone.</p>
-                                            </div>
-                                        </li>
+
+                                        {%endfor%}
+                                        
                                     </ul>
                                 </div>
                             </div>

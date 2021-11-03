@@ -74,16 +74,24 @@ class ProductDetails (View):
         related = Product.objects.all().filter(category__parent = product.category)
 
         # checking if the user actually ordered for the product before commentiing
-        try:
-            orderproduct = OrderProduct.objects.filter(user=request.user, product_id = product.id).exists()
-        except OrderProduct.DoesNotExist:
+        if request.user.is_authenticated:
+            try:
+                orderproduct = OrderProduct.objects.filter(user=request.user, product_id = product.id).exists()
+            except OrderProduct.DoesNotExist:
+                orderproduct = None
+        else:
             orderproduct = None
+        # getting the review of the product
+        reviews = ReviewRating.objects.filter(product_id=product.id)
+        review_count = reviews.count()
         
         context = {
             'product': product,
             'in_cart':in_cart,
             'related':related,
             'orderproduct':orderproduct,
+            'reviews':reviews,
+            'review_count':review_count,
         }
         return render(self.request, 'pages/product_details.html', context)
 
@@ -179,10 +187,14 @@ def review (request, product_id ):
     if request.method == 'POST':
         try:
             reviews = ReviewRating.objects.get(user__id = request.user.id, product__id = product_id)
-            form = ReviewRatingForm(request.POST, instance=reviews)            
-            form.save()
-            messages.success(request, 'Product review have been updated.')
-            return redirect(url)
+            form = ReviewRatingForm(request.POST, instance=reviews)
+            if form.is_valid():            
+                form.save()
+                messages.success(request, 'Product review have been updated.')
+                return redirect(url)
+            else:
+                messages.success(request, 'Product review form needs to be submitted.')
+                return redirect(url)
         except ReviewRating.DoesNotExist:
             form = ReviewRatingForm(request.POST)
             if form.is_valid():
@@ -194,6 +206,9 @@ def review (request, product_id ):
                 data.user = request.user
                 data.save()
                 messages.success(request, 'Product review have been sumitted.')
+                return redirect(url)
+            else:
+                messages.success(request, 'Product review form needs to be submitted.')
                 return redirect(url)
         
     else:
