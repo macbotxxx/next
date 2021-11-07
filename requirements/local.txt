@@ -1,4 +1,5 @@
 alabaster==0.7.12
+arabic-reshaper==2.1.3
 argon2-cffi==21.1.0
 asgiref==3.4.1
 astroid==2.8.0
@@ -7,6 +8,7 @@ Babel==2.9.1
 backcall==0.2.0
 backports.entry-points-selectable==1.1.0
 black==21.9b0
+Brotli==1.0.9
 certifi==2021.5.30
 cffi==1.14.6
 cfgv==3.3.1
@@ -15,10 +17,12 @@ click==8.0.1
 colorama==0.4.4
 coverage==5.5
 cryptography==3.4.8
+cssselect2==0.4.1
 decorator==5.1.0
 defusedxml==0.7.1
 distlib==0.3.3
 Django==3.1.13
+django-admin-thumbnails==0.2.6
 django-allauth==0.45.0
 django-appconf==1.0.5
 django-compressor==2.4.1
@@ -28,9 +32,12 @@ django-crispy-forms==1.12.0
 django-debug-toolbar==3.2.2
 django-environ==0.7.0
 django-extensions==3.1.3
+django-js-asset==1.2.2
 django-model-utils==4.1.1
+django-mptt==0.13.4
 django-phonenumber-field==5.2.0
 django-redis==5.0.0
+django-resized==0.3.11
 django-stubs==1.8.0
 django-stubs-ext==0.3.1
 djangorestframework==3.12.4
@@ -40,7 +47,10 @@ Faker==8.14.0
 filelock==3.1.0
 flake8==3.9.2
 flake8-isort==4.0.0
+fonttools==4.28.0
+future==0.18.2
 hiredis==2.0.0
+html5lib==1.1
 identify==2.2.15
 idna==3.2
 imagesize==1.2.0
@@ -75,6 +85,7 @@ ptyprocess==0.7.0
 py==1.10.0
 pycodestyle==2.7.0
 pycparser==2.20
+pydyf==0.1.2
 pyflakes==2.3.1
 Pygments==2.10.0
 PyJWT==2.1.0
@@ -82,9 +93,12 @@ pylint==2.11.1
 pylint-django==2.4.4
 pylint-plugin-utils==0.6
 pyparsing==2.4.7
+PyPDF2==1.26.0
+pyphen==0.11.0
 pytest==6.2.5
 pytest-django==4.4.0
 pytest-sugar==0.9.4
+python-bidi==0.4.2
 python-dateutil==2.8.2
 python-slugify==5.0.2
 python3-openid==3.2.0
@@ -93,11 +107,13 @@ PyYAML==5.4.1
 rcssmin==1.0.6
 redis==3.5.3
 regex==2021.9.24
+reportlab==3.6.2
 requests==2.26.0
 requests-oauthlib==1.3.0
 rjsmin==1.1.0
 six==1.16.0
 snowballstemmer==2.1.0
+sorl-thumbnail==12.7.0
 Sphinx==4.2.0
 sphinx-autobuild==2021.3.14
 sphinxcontrib-applehelp==1.0.2
@@ -110,6 +126,7 @@ sqlparse==0.4.2
 termcolor==1.1.0
 testfixtures==6.18.3
 text-unidecode==1.3
+tinycss2==1.1.0
 toml==0.10.2
 tomli==1.2.1
 tornado==6.1
@@ -118,6 +135,10 @@ typing-extensions==3.10.0.2
 urllib3==1.26.7
 virtualenv==20.8.1
 wcwidth==0.2.5
+weasyprint==53.3
+webencodings==0.5.1
 Werkzeug==1.0.1
 whitenoise==5.3.0
 wrapt==1.12.1
+xhtml2pdf==0.2.5
+zopfli==0.1.9

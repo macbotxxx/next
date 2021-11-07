@@ -45,7 +45,12 @@
                                         <div class="ps-product__variants">
                                             <div class="ps-product__gallery">
                                                 <div class="ps-gallery__item active"><img src="{{product.image.url}}" alt="alt" /></div>
-                                                <div class="ps-gallery__item"><img src="{% static 'nextonline/img/products/09-KitchenDining/09_8b.jpg' %}" alt="alt" /></div>
+                                                {%for image in images %}
+                                                <div class="ps-gallery__item">
+                                                    <img src="{{image.image.url}}" alt="{{product.product_name | title}}" />
+                                                </div>
+                                                {%endfor%}
+
                                             </div>
                                             <div class="ps-product__thumbnail">
                                                 <div class="ps-product__zoom"><img id="ps-product-zoom" src="{{product.image.url}}" alt="alt" />

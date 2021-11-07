@@ -94,6 +94,8 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "phonenumber_field",
+    "sorl.thumbnail",
+    
 ]
 
 LOCAL_APPS = [
@@ -342,3 +344,4 @@ REST_FRAMEWORK = {
 CORS_URLS_REGEX = r"^/api/.*$"
 # Your stuff...
 # ------------------------------------------------------------------------------
+

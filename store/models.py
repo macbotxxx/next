@@ -14,6 +14,14 @@ from categories.models import Category
 from helpers.common.basemodel import BaseModel
 from next.users.models import User
 
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
+
+
+
+
 
 # Create your models here.
 class Product(BaseModel):
@@ -116,17 +124,58 @@ class Product(BaseModel):
             avg = float(reviews['average'])
         return avg
 
-    # def save(self, *args, **kwargs):
-    #     value = self.product_name
-    #     if not self.slug:
-    #         self.slug = slugify(value, allow_unicode=True)
-    #     super().save(*args, **kwargs)
+    #  to resize an image to a given height and width,
+    def save(self, *args, **kwargs):
+        if self.image:
+            super().save(*args, **kwargs)
+            # Image.open() can also open other image types
+            img = Image.open(self.image.path)
+            # WIDTH and HEIGHT are integers
+            resized_img = img.resize((640, 640))
+            resized_img.save(self.image.path)
+
+   
 
 # product slug 
 def slug_generator(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
 pre_save.connect(slug_generator, sender=Product)
+
+
+class ProductImage(BaseModel):
+    # adding product multiple images
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE,
+        null=True,
+        verbose_name=_("Product"),
+        help_text=_("Product of which the images belongs to.")
+    )
+
+    image = models.ImageField(
+        verbose_name = _('Product Image'),
+        upload_to = "photos/products",
+        null =True,
+        help_text= _('Product image for the current product, which should be with no logo or trademark')
+    )
+
+    class Meta:
+        ordering = ('-created_date',)
+        verbose_name = _("Product Image")
+        verbose_name_plural = _("Product Images")
+
+    def __str__(self):
+        return str(self.product)
+        
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            super().save(*args, **kwargs)
+            # Image.open() can also open other image types
+            img = Image.open(self.image.path)
+            # WIDTH and HEIGHT are integers
+            resized_img = img.resize((640, 640))
+            resized_img.save(self.image.path)
 
 
 

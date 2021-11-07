@@ -109,7 +109,7 @@
                                   <div class="account__content">
                                       <ul class="account-list">
                                           <li class="title-item"><a href="javascript:void(0);">My Account</a></li>
-                                          <li><a href="#">Dasdboard</a></li>
+                                          <li><a href="{%url 'user_dashboard' %}">Dasdboard</a></li>
                                           <li><a href="#">Account Setting</a></li>
                                           <li><a href="shopping-cart.html">Orders</a></li>
                                           <li><a href="wishlist.html">Wishlist</a></li>
@@ -264,10 +264,10 @@
                   <li class="menu-item-has-children has-mega-menu active"><a class="nav-link active" href="/">Home</a><span class="sub-toggle"></span>
                      
                   </li>
-                  <li class="menu-item-has-children has-mega-menu"><a class="nav-link" href="javascript:void(0);">Items Below 1K</a><span class="sub-toggle"></span>
+                  <li class="menu-item-has-children has-mega-menu"><a class="nav-link" href="{%url 'onekitems'  %}">Items Below 1K</a><span class="sub-toggle"></span>
                     
                   </li>
-                  <li class="menu-item-has-children has-mega-menu"><a class="nav-link" href="javascript:void(0);">Best Selling Items</a><span class="sub-toggle"></span>
+                  <li class="menu-item-has-children has-mega-menu"><a class="nav-link" href="{%url 'BestSelling' %}">Best Selling Items</a><span class="sub-toggle"></span>
                     
                   </li>
                  
@@ -477,7 +477,7 @@
               <div>
                   {%if request.user.is_authenticated %}
                   <div><span><a class="dropdown-user" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </span><span class="account"><i class="icon-user"></i>Hi, {{request.user.name | title}} <i class="icon-chevron-down"></i></span></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownAccount"><a class="dropdown-item" href="#"><b>My Account</b></a><a class="dropdown-item" href="#">Dashboard</a><a class="dropdown-item" href="#">Account Setting</a><a class="dropdown-item" href="shopping-cart.html">Orders</a><a class="dropdown-item" href="wishlist.html">Wishlist</a><a class="dropdown-item" href="#">Shipping Address</a><hr><a class="dropdown-divider"></a><a class="dropdown-item" href="{%url 'account_logout'%}"><i class="icon-exit-left"></i>Log out</a></div>
+                    <div class="dropdown-menu" aria-labelledby="dropdownAccount"><a class="dropdown-item" href="#"><b>My Account</b></a><a class="dropdown-item" href="{%url 'user_dashboard' %}">Dashboard</a><a class="dropdown-item" href="#">Account Setting</a><a class="dropdown-item" href="shopping-cart.html">Orders</a><a class="dropdown-item" href="wishlist.html">Wishlist</a><a class="dropdown-item" href="#">Shipping Address</a><hr><a class="dropdown-divider"></a><a class="dropdown-item" href="{%url 'account_logout'%}"><i class="icon-exit-left"></i>Log out</a></div>
                 </div>
                 {%endif%}
               </div>

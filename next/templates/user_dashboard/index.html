@@ -1,100 +1,164 @@
-
 {% extends "base.html" %}
 {% load static humanize %}
-{% block title %}User Dashboard{% endblock %}
+{% block title %}product details{% endblock %}
 
 
 
-{% block content %}
-<main class="no-main">
-    <section class="section--shopping-cart">
-        <div class="container shopping-container">
-        <div class="row">
-            <aside class="col-md-3">
-                <!--   SIDEBAR   -->
-                <ul class="list-group">
-                    <a class="list-group-item active" href="#"> My order history </a>
-                    <a class="list-group-item" href="#"> Transactions </a>
-                    <a class="list-group-item" href="#"> Return and refunds </a>
-                    <a class="list-group-item" href="#">Settings </a>
-                    <a class="list-group-item" href="#"> My Selling Items </a>
-                    <a class="list-group-item" href="#"> Received orders </a>
+    {% block content %}
+    <main class="no-main">
+        <div class="ps-breadcrumb">
+            <div class="container">
+                <ul class="ps-breadcrumb__list">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="javascript:void(0);">User Dashboard</a></li>
                 </ul>
-                <br>
-                <a class="btn btn-light btn-block" href="#"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
-                <!--   SIDEBAR .//END   -->
-            </aside>
-            <main class="col-md-9">
-                <article class="card">
-                <header class="card-header">
-                    <strong class="d-inline-block mr-3">Order ID: 6123456789</strong>
-                    <span>Order Date: 16 December 2018</span>
-                </header>
-                <div class="card-body">
-                    <div class="row"> 
-                        <div class="col-md-8">
-                            <h6 class="text-muted">Delivery to</h6>
-                            <p>Michael Jackson <br>  
-                            Phone +1234567890 Email: myname@pixsellz.com <br>
-                            Location: Home number, Building name, Street 123,  Tashkent, UZB <br> 
-                            P.O. Box: 100123
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <h6 class="text-muted">Payment</h6>
-                            <span class="text-success">
-                                <i class="fab fa-lg fa-cc-visa"></i>
-                                Visa  **** 4216  
-                            </span>
-                            <p>Subtotal: $356 <br>
-                            Shipping fee:  $56 <br> 
-                            <span class="b">Total:  $456 </span>
-                            </p>
-                        </div>
-                    </div> <!-- row.// -->
-                </div> <!-- card-body .// -->
-                <div class="table-responsive">
-                <table class="table table-hover">
-                    <tr>
-                        <td width="65">
-                            <img src="../images/items/1.jpg" class="img-xs border">
-                        </td>
-                        <td> 
-                            <p class="title mb-0">Product name goes here </p>
-                            <var class="price text-muted">USD 145</var>
-                        </td>
-                        <td> Seller <br> Nike clothing </td>
-                        <td width="250"> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../images/items/2.jpg" class="img-xs border">
-                        </td>
-                        <td> 
-                            <p class="title mb-0">Another name goes here </p>
-                            <var class="price text-muted">USD 15</var>
-                        </td>
-                        <td> Seller <br> ABC shop </td>
-                        <td> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../images/items/3.jpg" class="img-xs border">
-                        </td>
-                        <td> 
-                            <p class="title mb-0">The name of the product  goes here </p>
-                            <var class="price text-muted">USD 145</var>
-                        </td>
-                        <td> Seller <br> Wallmart </td>
-                        <td> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
-                    </tr>
-                </table>
-                </div> <!-- table-responsive .end// -->
-                </article> <!-- order-group.// --> 
-            </main>
-        </div> <!-- row.// -->
+            </div>
         </div>
+        <section class="section--storeList">
+            <div class="container">
+                <h2 class="page__title">Welcome back {{request.user.name | title}}</h2>
+               
+                <div class="storeList__content">
+                    <div class="row">
+                      
+                        <div class="col-12 col-lg-4">
+                            <div class="storeList__item">
+                                <div class="item__header"><img src="{% static 'nextonline/img/pages/store_list_2.jpg' %}" alt="alt" />
+                                    <div class="item__content">
+                                        <div class="item__feature">Customer Info</div>
+                                        <h5 class="item__title">{{request.user.name | title}}</h5>
+                                        
+                                        <div class="item__street">{{request.user.email}}</div>
+                                        <div class="item__address"><i class="fa fa-phone"></i>{{request.user.contact_number}}</div>
+                                        <div class="item__phone">Order an item above 150,000,00 naira and stand a chance to win a 50k coupon </div>
+                                    </div>
+                                </div>
+                                <div class="item__footer"><a class="item__store" href="vendor-store.html">Edit Profile Details</a>
+                                    <div class="item__avatar">
+                                        <div class="avatar"><img src="{% static 'nextonline/img/pages/store_list_no_avatar.jpg' %}" alt="alt" /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                          <div class="col-12 col-lg-4">
+                            <div class="storeList__item">
+                                <div class="item__header"><img src="{% static 'nextonline/img/pages/store_list_3.jpg' %}" alt="alt" />
+                                    <div class="item__content no-bg">
+                                        <div class="item__feature"><span style="color:white;">Default Shipping Address</span></div>
+                                        <h5 class="item__title">Shannan Yu</h5>
+                                        <div class="item__rating">
+                                            <select class="rating-stars">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5" selected="selected">5</option>
+                                            </select>
+                                        </div>
+                                        <div class="item__street">77 Edgefield St.</div>
+                                        <div class="item__address">Deerfield, IL 60015</div>
+                                        <div class="item__phone"> <i class="fa fa-phone"></i>(201) 566-4856</div>
+                                    </div>
+                                </div>
+                                <div class="item__footer"><a class="item__store" href="vendor-store.html">Change or Add Shipping Address</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="storeList__item">
+                                <div class="item__header"><img src="{% static 'nextonline/img/pages/store_list_3.jpg' %}" alt="alt" />
+                                    <div class="item__content no-bg">
+                                        <h5 class="item__title">Total Order</h5>
+                                        
+                                        <div class="item__street">Successful Order <b>50</b> </div>
+                                        <div class="item__address">Wishlist Items <b>10</b></div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="item__footer"><a class="item__store" href="vendor-store.html">View All Orders</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
 
-    </section>
-</main>
-{%endblock%}
+                        
+                       
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        <section class="section--wishlist">
+            <div class="container">
+                <div class="wishlist__content">
+                    <div class="wishlist__product">
+                        <div class="wishlist__product--mobile">
+                            <div class="row m-0">
+                                {%for p in order %}
+                                <div class="col-6 col-md-4 p-0">
+                                    <div class="ps-product--standard">
+                                        <a class="ps-product__trash" href="javascript:void(0);"></a><a href="{%url 'get_product_id' p.id %}"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_1a.jpg'%}" alt="alt" /></a>
+                                        <div class="ps-product__content">
+                                            <p class="ps-product__ofstock"><b>Order ID:</b> <br> {{p.order.order_number}}</p><a href="{%url 'get_product_id' p.id %}">
+                                               
+                                            </a>
+                                            <b>Ordered Date:</b> <br>
+                                            <p class="ps-product__unit">{{p.created_date}}</p>
+                                            <b>Total Amount:</b> <br>
+                                            <p class="ps-product__meta"><span class="ps-product__price">₦{{p.order.order_total | intcomma}}</span></p>
+                                        </div>
+                                        <div class="ps-product__footer">
+                                            <a href="{%url 'get_product_id' p.id %}" class="wishlist__readmore w-100">View Order</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {%endfor%}
+
+                            </div>
+                        </div>
+                        <div class="wishlist__product--desktop">
+                            <table class="table">
+                                <thead class="wishlist__thead">
+                                    <tr>
+                                        <th scope="col">Tracking Number</th>
+                                        <th scope="col">Total Amount</th>
+                                        <th scope="col">Order Date</th>
+                                        <th scope="col">Stock Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="wishlist__tbody">
+                                    {%for p in order %}
+                                    <tr>
+                                      
+                                        <td>
+                                            <div class="ps-product--vertical"><a href="{%url 'get_product_id' p.id %}">{{p.order.order_number}}</a>
+                                                <div class="ps-product__content">
+                                                   
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <td><span class="ps-product__instock">₦{{p.order.order_total | intcomma}}</span>
+                                        </td>
+                                        <td><span class="ps-product__price">{{p.created_date}}</span>
+                                        </td>
+                                        <td>
+                                            <a class="btn wishlist__btn add-cart" href="{%url 'generate_pdf' %}"><i class="icon-eye"></i>View Order</a>
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+                                  
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+    </main>
+    {% endblock %}
+  

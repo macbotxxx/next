@@ -11,7 +11,7 @@ from .forms import ReviewRatingForm
 from orders.forms import OrderForm
 
 
-from store.models import Product, ReviewRating
+from store.models import Product, ProductImage, ReviewRating
 from categories.models import Category
 from orders.models import OrderProduct
 
@@ -21,17 +21,22 @@ class HomePage(View):
     """ class base view for the homepage """
 
     def get (self, request, *args, **kwargs):
-        products = Product.objects.all().filter(is_available = True)
-        flash_sale = Product.objects.all().filter(flash_sale = True)
-        categories = Category.objects.all()
-        for c in categories:
-            print(c.parent)
-           
+        products = Product.objects.all().filter(is_available = True, best_selling = True).order_by('-created_date')[:20]
+        flash_sale = Product.objects.all().filter(flash_sale = True, is_available = True)[:20]
+        onekitems = Product.objects.all().filter(is_available = True).order_by('price')[0:20]
+        recommendedP = Product.objects.all().filter(is_available = True).order_by('-created_date')[:20]
+    
+        # getting the product rating 
+        for product in products:
+            reviews = ReviewRating.objects.filter(product_id=product.id)
+                   
 
         context = {
             'products': products,
-            'categories': categories,
             'flash_sale':flash_sale,
+            'reviews': reviews,
+            'onekitems': onekitems,
+            'recommendedP':recommendedP,
         }
 
         return render(self.request, 'pages/index.html', context)
@@ -54,9 +59,14 @@ class ProductCategory (View):
         page_number = request.GET.get('page')
         products = paginator.get_page(page_number)
 
+         # getting the product rating 
+        for product in products:
+            reviews = ReviewRating.objects.filter(product_id=product.id)
+        
         context = {
             'category':category,
             'products': products,
+            'reviews':reviews,
         }
 
         return render(self.request, 'pages/category.html', context)
@@ -84,7 +94,14 @@ class ProductDetails (View):
         # getting the review of the product
         reviews = ReviewRating.objects.filter(product_id=product.id)
         review_count = reviews.count()
-        
+
+        # getting product multiple images
+        try:
+            images = ProductImage.objects.filter(product_id=product.id)
+        except ProductImage.DoesNotExist:
+            images = None
+
+
         context = {
             'product': product,
             'in_cart':in_cart,
@@ -92,6 +109,7 @@ class ProductDetails (View):
             'orderproduct':orderproduct,
             'reviews':reviews,
             'review_count':review_count,
+            'images':images,
         }
         return render(self.request, 'pages/product_details.html', context)
 
@@ -132,6 +150,50 @@ class FlashSale (View):
 
     def get (self, request, *args, **kwargs):
         product = Product.objects.filter(flash_sale = True)
+        """product pagination"""
+        paginator = Paginator(product, 20) # Show 20 contacts per page.
+        page_number = request.GET.get('page')
+        product = paginator.get_page(page_number)
+        
+        context = {
+            'product': product,
+        }
+        return render(self.request, 'pages/flash_sale.html', context)
+
+    def post (self, request, *args, **kwargs):
+        pass
+
+
+
+class Onekitems (View):
+    """
+    Showing items that are below one thousand naira
+    """
+    def get (self, request, *args, **kwargs):
+        product =  Product.objects.all().filter(is_available = True).order_by('price')
+
+        """product pagination"""
+        paginator = Paginator(product, 20) # Show 20 contacts per page.
+        page_number = request.GET.get('page')
+        product = paginator.get_page(page_number)
+        
+        context = {
+            'product': product,
+        }
+        return render(self.request, 'pages/flash_sale.html', context)
+
+    def post (self, request, *args, **kwargs):
+        pass
+
+
+class BestSelling (View):
+    """
+    Showing items that are below one thousand naira
+    """
+
+    def get (self, request, *args, **kwargs):
+        product =  Product.objects.all().filter(is_available = True).order_by('-created_date')
+
         """product pagination"""
         paginator = Paginator(product, 20) # Show 20 contacts per page.
         page_number = request.GET.get('page')
