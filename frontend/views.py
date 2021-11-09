@@ -50,16 +50,20 @@ class ProductCategory (View):
     """ product category """
 
     def get (self, request, *args, **kwargs):
-        
+
         category = Category.objects.get(slug= kwargs['slug'])
-        products = Product.objects.filter(category__parent=category)
+        if category.parent is None:
+            products = Product.objects.filter(category__parent=category)
+        else:
+            products = Product.objects.filter(category=category)
+
     
         """product pagination"""
         paginator = Paginator(products, 20) # Show 20 contacts per page.
         page_number = request.GET.get('page')
         products = paginator.get_page(page_number)
 
-         # getting the product rating 
+        #  getting the product rating 
         for product in products:
             reviews = ReviewRating.objects.filter(product_id=product.id)
         
@@ -221,7 +225,7 @@ class Checkout (LoginRequiredMixin, View):
             for cart_item in cart_items:
                 total += (cart_item.product.price * cart_item.quantity)
                 quantity += cart_item.quantity
-            shipping_rate_per_quantity = ( 800 * quantity )
+            shipping_rate_per_quantity = ( 100 * quantity )
             grandtotal = total + shipping_rate_per_quantity
         except:
             pass

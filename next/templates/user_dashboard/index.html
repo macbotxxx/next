@@ -133,19 +133,19 @@
                                     <tr>
                                       
                                         <td>
-                                            <div class="ps-product--vertical"><a href="{%url 'get_product_id' p.id %}">{{p.order.order_number}}</a>
+                                            <div class="ps-product--vertical"><a href="{%url 'get_product_id' p.order_number %}">{{p.order_number}}</a>
                                                 <div class="ps-product__content">
                                                    
                                                 </div>
                                             </div>
                                         </td>
                                         
-                                        <td><span class="ps-product__instock">₦{{p.order.order_total | intcomma}}</span>
+                                        <td><span class="ps-product__instock">₦{{p.order_total | intcomma}}</span>
                                         </td>
                                         <td><span class="ps-product__price">{{p.created_date}}</span>
                                         </td>
                                         <td>
-                                            <a class="btn wishlist__btn add-cart" href="{%url 'generate_pdf' %}"><i class="icon-eye"></i>View Order</a>
+                                            <a class="btn wishlist__btn add-cart" href="{%url 'generate_pdf' p.order_number %}"><i class="icon-eye"></i>View Order</a>
                                         </td>
                                     </tr>
                                     {%endfor%}

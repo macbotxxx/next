@@ -19,6 +19,8 @@ from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 import sys
 
+from tinymce.models import HTMLField
+
 
 
 
@@ -47,11 +49,7 @@ class Product(BaseModel):
         help_text= _('Slug field for the category which is auto generated when the product name is been created')
     )
 
-    description = models.TextField(
-        verbose_name = _('Product Description'),
-        null=True,
-        help_text= _('Product description for the current product and note it should be well organized and explainable.')
-    )
+    
 
     price = models.IntegerField (
         verbose_name = _('Product Price'),
@@ -103,6 +101,12 @@ class Product(BaseModel):
         verbose_name = _("Flash Sale"),
         default = False, null =True,
         help_text = _("to identify which product is among the flash sale for the month.")
+    )
+
+    description = HTMLField(
+        verbose_name = _('Product Description'),
+        null=True,
+        help_text= _('Product description for the current product and note it should be well organized and explainable.')
     )
     
     class Meta:

@@ -41,7 +41,7 @@ def placeOrder (request,total=0, quantity=0):
     for cart_item in cart_items:
         total += (cart_item.product.price * cart_item.quantity)
         quantity += cart_item.quantity
-    shipping_rate_per_quantity = ( 800 * quantity )
+    shipping_rate_per_quantity = ( 100 * quantity )
     grandtotal = total + shipping_rate_per_quantity
 
     if request.method == 'POST':
@@ -112,11 +112,13 @@ def verify_payment (request, payment_ref):
             orderproduct.product_id = item.product_id
             orderproduct.quantity = item.quantity
             orderproduct.product_price = item.product.price
+            orderproduct.product_total_price = item.quantity * item.product.price
             orderproduct.ordered = True
             orderproduct.save()
 
             # adding the product variation to ordered table 
-            cart_item = CartItem.objects.get(id = item.id)
+            print(item.product_id)
+            cart_item = CartItem.objects.get(id=item.id)
             product_v = cart_item.product_variation.all()
             orderproduct = OrderProduct.objects.get(id = orderproduct.id)
             orderproduct.variation.set(product_v)
@@ -128,27 +130,27 @@ def verify_payment (request, payment_ref):
             product.save()
 
             # cleariing the cart item of the user
-            CartItem.objects.filter(user = request.user).delete()
+            CartItem.objects.filter(id=item.id).delete()
 
-             # sending email to the customer alerting him of the succesful order 
-            subject = 'Successful Order - Next Cash and Carry Online Store'
-            html_message = render_to_string(
-                'emails/text.html',
-                {
-                 'user': request.user,
-                } 
-            )
-            plain_message = strip_tags(html_message)
-            from_email = 'From <admin@nextonline.com>'
-            to = request.user.email
-            mail.send_mail(subject, plain_message, from_email, [to], html_message = html_message) 
+            #  sending email to the customer alerting him of the succesful order 
+            # subject = 'Successful Order - Next Cash and Carry Online Store'
+            # html_message = render_to_string(
+            #     'emails/text.html',
+            #     {
+            #      'user': request.user,
+            #     } 
+            # )
+            # plain_message = strip_tags(html_message)
+            # from_email = 'From <admin@nextonline.com>'
+            # to = request.user.email
+            # mail.send_mail(subject, plain_message, from_email, [to], html_message = html_message) 
 
-            return redirect('order_successful')
+        return redirect('order_successful')
             
     else:
         print('payment not verified')
         return redirect('place_order')
-    return redirect('place_order')
+    # return redirect('place_order')
 
 
 

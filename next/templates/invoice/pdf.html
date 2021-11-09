@@ -1,897 +1,735 @@
 
+{%load static humanize %}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-		<title>{subject}</title>
+<title>{subject}</title>
 
-		<meta  name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0," /> 
-		
-		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'/>
-		
-		
+<meta  name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0," /> 
 
-	</head>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'/>
 
-	<body> 
 
-		<style type="text/css">			
-			
-						
-			 html {
-				width: 100%;
-			}
-			body {
-				margin: 0;
-				padding: 0;
-				width: 100%;
-				-webkit-text-size-adjust: none;
-				-ms-text-size-adjust: none;
-			}
-			img {
-				display: block !important;
-				border: 0;
-				-ms-interpolation-mode: bicubic;
-			}
-			 .ReadMsgBody {
-				width: 100%;
-			}
-			.ExternalClass {
-				width: 100%;
-			}			
-			.ExternalClass,
-			.ExternalClass p,
-			.ExternalClass span,
-			.ExternalClass font,
-			.ExternalClass td,
-			.ExternalClass div {
-				line-height: 100%;
-			}
-			 .images {
-				display: block !important;
-				width: 100% !important;
-			}			
-			.MsoNormal {
-				font-family:Open Sans,Arial, Helvetica Neue, Helvetica, sans-serif !important;
-			}
-			p {
-				margin: 0 !important;
-				padding: 0 !important;
-			}			
-			.display-button td,
-			.display-button a {
-				font-family:Open Sans, Arial, Helvetica Neue, Helvetica, sans-serif !important; 
-			}						
-			.display-button a:hover {
-				text-decoration: none !important;
-			}
-			
-			/* MYMAIL STYLES */
-			
-			a { color: #ff4202; text-decoration: none; }
-			
-			/* MYMAIL PREHEADER - HIDDEN BY DEFAULT */
-			div.preheader{line-height:0px;font-size:0px;height:0px;display:none !important;display:none;visibility:hidden;}
 
-			/* MEDIA QUIRES */
-			
-			
-			@media only screen and (max-width:640px) {
-				body {
-					width:auto !important;
-				}
-				table[class=display-width] {
-					width:100% !important;
-				}	
-				table[class=nulltable] {
-					display:none !important;
-				}	
-				.null {
-					display:none !important;
-				}
-				.hide-height {
-					height:0 !important;
-				}
-				.common-height {
-					height:40px !important;
-				}				
-				.hide {
-					display:none !important;
-				}				
-				.title-width-1 {
-					width:120px !important;
-				}				
-				 td[class=title-width] {
-					width:100px !important;
-				}				
-				.follow {
-					width:15px !important;
-				}
-			}
+</head>
 
-			@media only screen and (max-width:480px) {
-				table[class=display-width] table {
-					width:100% !important;
-				}
-				table[class=display-width] .button-width .display-button {
-					width:auto !important;
-				}
-			}	
+<body style="color: #0c10ee"> 
 
-			@media only screen and (max-width:380px) {					
-				.product {
-					font-size:12px !important;
-				}
-				.product-width {
-					width:11px !important;
-				}
-				.menu {
-					font-size:10px !important;
-				}
-			}	
-			
-			@media only screen and (max-width:320px) {					
-				 td[class=title-width] {
-					width:auto !important;
-				}				
-			}	
-			
+<style type="text/css">			
 
-		</style>
-		<div class="preheader">{preheader}</div>
-		
-	<modules>
-		
-		<module label="Menu" active auto>
-		
-		<!-- MENU STARTS -->
-		
-		<table align="center" bgcolor="#333333" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tbody>
+
+html {
+width: 100%;
+color:#0c10ee;
+}
+body {
+color:#0c10ee;
+margin: 0;
+padding: 0;
+width: 100%;
+-webkit-text-size-adjust: none;
+-ms-text-size-adjust: none;
+}
+img {
+display: block !important;
+border: 0;
+-ms-interpolation-mode: bicubic;
+}
+.ReadMsgBody {
+width: 100%;
+}
+.ExternalClass {
+width: 100%;
+}			
+.ExternalClass,
+.ExternalClass p,
+.ExternalClass span,
+.ExternalClass font,
+.ExternalClass td,
+.ExternalClass div {
+line-height: 100%;
+}
+.images {
+display: block !important;
+width: 100% !important;
+}			
+.MsoNormal {
+font-family:Open Sans,Arial, Helvetica Neue, Helvetica, sans-serif !important;
+}
+p {
+margin: 0 !important;
+padding: 0 !important;
+}			
+.display-button td,
+.display-button a {
+font-family:Open Sans, Arial, Helvetica Neue, Helvetica, sans-serif !important; 
+}						
+.display-button a:hover {
+text-decoration: none !important;
+}
+
+/* MYMAIL STYLES */
+
+a { color: #ff4202; text-decoration: none; }
+
+/* MYMAIL PREHEADER - HIDDEN BY DEFAULT */
+div.preheader{line-height:0px;font-size:0px;height:0px;display:none !important;display:none;visibility:hidden;}
+
+/* MEDIA QUIRES */
+
+
+@media only screen and (max-width:640px) {
+body {
+width:auto !important;
+}
+table[class=display-width] {
+width:100% !important;
+}	
+table[class=nulltable] {
+display:none !important;
+}	
+.null {
+display:none !important;
+}
+.hide-height {
+height:0 !important;
+}
+.common-height {
+height:40px !important;
+}				
+.hide {
+display:none !important;
+}				
+.title-width-1 {
+width:120px !important;
+}				
+td[class=title-width] {
+width:100px !important;
+}				
+.follow {
+width:15px !important;
+}
+}
+
+@media only screen and (max-width:480px) {
+table[class=display-width] table {
+width:100% !important;
+}
+table[class=display-width] .button-width .display-button {
+width:auto !important;
+}
+}	
+
+@media only screen and (max-width:380px) {					
+.product {
+font-size:12px !important;
+}
+.product-width {
+width:11px !important;
+}
+.menu {
+font-size:10px !important;
+}
+}	
+
+@media only screen and (max-width:320px) {					
+td[class=title-width] {
+width:auto !important;
+}				
+}	
+
+
+</style>
+<div class="preheader">{preheader}</div>
+
+<modules>
+
+<module label="Menu" active auto>
+
+<!-- MENU STARTS -->
+
+{%for product in products %}
+
+<table align="center"  border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td align="center">
+<table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="680">
+<tr>
+<td align="center" style="padding:0 30px;">
+	<table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="600">			
+		<tr>
+			<td height="30"></td>
+		</tr>
+		<tr>
+			<td align="center" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:25px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:uppercase;">
+				<multi label="Title">Order Invoice</multi>
+			</td>
+		</tr>
+		<tr>
+			<td height="30"></td>
+		</tr>										
+		<tr>
+			<td>
+				<!--TABLE LEFT-->
+				<table align="left" border="0" cellspacing="0" cellpadding="0" class="display-width" width="16%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+					<tbody>
+						<tr>
+							<td align="center" valign="middle">
+								<a href="#" style="color:#444444;text-decoration:none;">
+									<img src="{% static 'nextonline/logo2.png' %}" alt="Next" width="100" editable label="Logo Image" />
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<!--TABLE MIDDLE-->
+				<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="15" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+					<tbody>
+						<tr>
+							<td height="20"></td>
+						</tr> 
+					</tbody>
+				</table>
+				
+				<!--TABLE CENTER-->
+				<table align="left" border="0" cellspacing="0" cellpadding="0" class="display-width" width="40%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+					<tbody>
+						<tr>
+							<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:15px;">
+									<multi label="Heading">Next Cash And Carry</multi>
+							</td>
+						</tr>
+						<tr>
+							<td height="10"></td>
+						</tr>
+						<tr>
+							<td align="left" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;letter-spacing:1px;line-height:24px;text-transform:uppercase;">
+								<multi label="Address">Opp Jss, Ahmadu Bello, Central,<br/>  Abuja, Nigeria.</multi>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<!--TABLE MIDDLE-->
+				<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+					<tbody>
+						<tr>
+							<td width="1" height="40"></td>
+						</tr> 
+					</tbody>
+				</table>
+				
+				<!--TABLE RIGHT-->
+				<table align="right" border="0" cellspacing="0" cellpadding="0" class="display-width" width="35%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:auto;">
+					<tbody>	
+						<tr>
+							<td height="15"></td>
+						</tr>
+						<tr>
+							<td align="left">
+								<table align="left" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; width:auto !important;">
+									<tr>
+										<td align="left" valign="top">
+											<table align="left"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+												<tr>
+													<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;font-weight:bold;letter-spacing:1px;line-height:15px;text-transform:uppercase;">
+														<multi label="Date">Date :</multi>
+													</td>
+												</tr>
+												<tr>
+													<td height="5"></td>
+												</tr>
+												<tr>
+													<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;font-weight:bold;letter-spacing:1px;line-height:15px;text-transform:uppercase;">
+														<multi label="Content">Invoice #</multi>
+													</td>
+												</tr>																			
+											</table>
+										</td>
+										<td width="15"></td>
+										<td align="left" valign="top">
+											<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+												
+												<tr>
+													<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;letter-spacing:1px;line-height:15px;text-transform:uppercase;">
+														<multi label="Content">{{product.created_date}}</multi>
+													</td>
+												</tr>
+												<tr>
+													<td height="5"></td>
+												</tr>
+												<tr>
+													<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;letter-spacing:1px;line-height:15px;text-transform:uppercase;">
+														<multi label="Content">{{product.order.order_number}}</multi>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>													
+			</td>
+		</tr>										
+	</table>
+</td>
+</tr>
+<tr>
+<td height="30" style="border-bottom:1px dashed #eeeeee;"></td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- MENU ENDS -->
+
+</module>
+
+<module label="Invoice" active auto>
+
+<!-- INVOICE STARTS -->
+
+<table align="center"  border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="center">
+<table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="680">
+<tr>
+<td align="center" style="border-bottom:1px solid #eeeeee;padding:0 30px;">
+<table align="center"   border="0" cellpadding="0" cellspacing="0" class="display-width" width="600">
+	<tr>
+		<td align="center">
+			<table align="center"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
 				<tr>
-					<td align="center">
-						<table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="680">
+					<td height="40"></td>
+				</tr>
+				<tr>
+					<td align="left">
+						<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">	
 							<tr>
-								<td align="center" style="padding:0 30px;">
-									<table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="600">			
+								<td>
+									<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="48%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
 										<tr>
-											<td height="30"></td>
-										</tr>
-										<tr>
-											<td align="center" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:25px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:uppercase;">
-												<multi label="Title">Invoice</multi>
+											<td align="left">
+												<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
+													<tr>
+														<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:15px;">
+															<multi label="Heading"> Ship From:</multi>
+														</td>
+													</tr>
+													<tr>
+														<td height="10"></td>
+													</tr>
+													<tr>
+														<td>
+															<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+																<tr>
+																	<td style="width:60% !important;border-bottom:3px solid #333333;"></td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td height="10"></td>
+													</tr>
+													<tr>
+														<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:24px;text-transform:uppercase;">
+															<multi label="Content">Next Cash And Carry <br/> 0700 700 0001 <br/>
+																Opp Jss, Ahmadu Bello, Central,  <br/> Abuja,  <br/> Nigeria.</multi>
+														</td>
+													</tr>
+												</table>
 											</td>
 										</tr>
+									</table>
+							
+										<table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+										<tbody>
+											<tr>
+												<td style="line-height:40px;" height="40" width="1"></td>
+											</tr>
+										</tbody>
+									</table>
+									
+									<table align="right" border="0" cellpadding="0" cellspacing="0" class="display-width" width="48%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
 										<tr>
-											<td height="30"></td>
-										</tr>										
+											<td align="left">
+												<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
+													<tr>
+														<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:15px;">
+															<multi label="Heading"> Ship To:</multi>
+														</td>
+													</tr>
+													<tr>
+														<td height="10"></td>
+													</tr>
+													<tr>
+														<td align="left">
+															<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" >
+																<tr>
+																	<td style="width:60% !important;border-bottom:3px solid #333333;"></td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td height="10"></td>
+													</tr>
+													<tr>
+														<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:24px;text-transform:uppercase;">
+															<multi label="Content">{{product.order.first_name}} {{product.order.last_name}} <br/> {{product.order.phone_number}} <br/>{{product.order.address_line_1 }} <br/> {%if product.order.address_line_2 %} {{product.order.address_line_1 }} <br/> {%endif%} {{product.order.city}}, <br> {{product.order.state}} </multi>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>	
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td height="30" style="border-bottom:1px dashed #dddddd;"></td>
+				</tr>
+				<tr>
+					<td height="30"></td>
+				</tr>
+				<tr>
+					<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;">
+						<multi label="Content">Items Ordered and Total amount paid.</multi>
+					</td>
+				</tr>
+				<tr>
+					<td height="30"></td>
+				</tr>
+				<tr>
+					<td align="center">	
+						<table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+							<tr>
+								<td width="600"> 
+									<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
 										<tr>
-											<td>
-												<!--TABLE LEFT-->
-												<table align="left" border="0" cellspacing="0" cellpadding="0" class="display-width" width="16%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-													<tbody>
-														<tr>
-															<td align="center" valign="middle">
-																<a href="#" style="color:#444444;text-decoration:none;">
-																	<img src="http://pennyblacktemplates.com/demo/notifications/invoice/images/100x50.png" alt="150x50" width="100" editable label="Logo Image" />
-																</a>
-															</td>
-														</tr>
-													</tbody>
+											<td align="center" height="50" bgcolor="#03a9f4">
+												<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+													<tr>
+														<td width="20" class="product-width"></td>
+														<td align="left" width="250" class="MsoNormal product title-width-1" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:uppercase;">
+															<multi label="Product">Product</multi>
+														</td>
+														<td width="20" class="product-width"></td>
+														<td align="left" width="70" class="MsoNormal product" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:uppercase;">
+															<multi label="Price">Price</multi>
+														</td>
+														<td width="20" class="product-width"></td>
+														<td align="left" width="60" class="MsoNormal product" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:uppercase;">
+															<multi label="Quantity">Quantity</multi>
+														</td>
+														<td width="20" class="product-width"></td>
+														<td align="left" width="60" class="MsoNormal product" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:uppercase;">
+															<multi label="Amount">Amount</multi>
+														</td>
+														<td width="20"></td>
+													</tr>
 												</table>
-												
-												<!--TABLE MIDDLE-->
-												<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="15" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-													<tbody>
-														<tr>
-															<td height="20"></td>
-														</tr> 
-													</tbody>
-												</table>
-												
-												<!--TABLE CENTER-->
-												<table align="left" border="0" cellspacing="0" cellpadding="0" class="display-width" width="40%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-													<tbody>
-														<tr>
-															<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:15px;">
-																 <multi label="Heading">Company Name</multi>
-															</td>
-														</tr>
-														<tr>
-															<td height="10"></td>
-														</tr>
-														<tr>
-															<td align="left" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;letter-spacing:1px;line-height:24px;text-transform:uppercase;">
-																<multi label="Address">No AB-232, Superb Avenue,<br/> 67 First street, New York .</multi>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-												
-												<!--TABLE MIDDLE-->
-												<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-													<tbody>
-														<tr>
-															<td width="1" height="40"></td>
-														</tr> 
-													</tbody>
-												</table>
-												
-												<!--TABLE RIGHT-->
-												<table align="right" border="0" cellspacing="0" cellpadding="0" class="display-width" width="35%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:auto;">
-													<tbody>	
+											</td>
+										</tr>																
+										<tr>
+											<td bgcolor="#f6f6f6">
+												<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+													
+													
+													
+													{%for p in order_item %}
+
+													<tr>
+														<td height="20"></td>
+													</tr>
+													<tr>
+														<td width="20"></td>
+														<td align="left" width="250" class="title-width">
+															<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+																<tr>
+																	<td align="left" valign="middle" width="70">																								
+																		<img src="{{p.product.image.url}}" alt="60x60x3" width="60" editable label="Bag Image" />
+																	</td>
+																	<td class="hide">
+																		<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+																			<tr>
+																				<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
+																					<multi label="Content">{{p.product.product_name | title}}</multi>
+																					{%if p.variation.all %}
+																					{%for variations in p.variation.all %}
+																					<br>
+																					<multi label="Content" style="color:blue; font-size:10px;">{{variations.variations_category | title}} : {{variations.variation_value}}</multi>
+																					{%endfor %}
+																					{%endif%}
+																				</td>
+																			</tr>
+																			
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+														<td width="20"></td>
+														<td align="left" width="90" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
+															<multi label="Content">₦{{p.product.price | intcomma}}</multi>
+														</td>
+														<td width="20"></td>
+														<td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
+															<multi label="Content">{{p.quantity}}</multi>
+														</td>
+														<td width="20"></td>
+														<td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
+															<multi label="Content">₦{{p.product_total_price | intcomma}}</multi>
+														</td>
+														<td width="20"></td>
+													</tr>
+
+													<tr>
+														<td height="20"></td>
+													</tr>
+													<tr>
+														<td colspan="10" style="border-bottom:1px solid #dddddd;"></td>
+													</tr>
+
+													{%endfor%}
+
+
+
+												</table>																	
+											</td>																
+										</tr>
+									</table>
+								</td>
+							</tr>																				
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td height="30"></td>
+				</tr>
+				<tr>
+					<td>
+						<!-- SUB TOTAL -->
+
+						<table align="right" border="0" cellpadding="0" cellspacing="0" width="48%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:auto;">
+							<tbody>
+								<tr>
+									<td align="right">
+										<table align="right" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; width:auto !important;">
+											<tr>
+												<td align="left" valign="top">
+													<table align="left"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+														
 														<tr>
 															<td height="15"></td>
 														</tr>
 														<tr>
-															<td align="left">
-																<table align="left" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; width:auto !important;">
+															<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;">
+																<multi label="Content"> Shipping &amp; Handling Per Item:</multi>
+															</td>
+														</tr>
+																																	
+													</table>
+												</td>
+												<td width="26">&nbsp;</td>
+												<td align="left" valign="top">
+													<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+													
+														<tr>
+															<td height="15"></td>
+														</tr>
+														<tr>
+															<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;">
+																<multi label="Content"> ₦{{product.order.shipping_rate_per_quantity | intcomma }}</multi>
+															</td>
+														</tr>	
+														
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td height="20"></td>
+								</tr>
+								<tr>
+									<td style="border-bottom:1px solid #eeeeee;"></td>
+								</tr>
+								<tr>
+									<td height="20"></td>
+								</tr>
+								<tr>
+									<td align="right">
+										<table align="right" border="0" cellpadding="0" cellspacing="0" width="100%" style="width:auto;">
+											<tr>
+												<td align="right">
+													<table align="right" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:auto !important;">
+														<tr>
+															<td align="left" valign="top">
+																<table align="left"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
 																	<tr>
-																		<td align="left" valign="top">
-																			<table align="left"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																				<tr>
-																					<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;font-weight:bold;letter-spacing:1px;line-height:15px;text-transform:uppercase;">
-																						<multi label="Date">Date :</multi>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td height="5"></td>
-																				</tr>
-																				<tr>
-																					<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;font-weight:bold;letter-spacing:1px;line-height:15px;text-transform:uppercase;">
-																						<multi label="Content">Invoice #</multi>
-																					</td>
-																				</tr>																			
-																			</table>
+																		<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;line-height:20px;">
+																			<multi label="Content">  Total Paid: </multi>
 																		</td>
-																		<td width="15"></td>
-																		<td align="left" valign="top">
-																			<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																				<tr>
-																					<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;letter-spacing:1px;line-height:15px;text-transform:uppercase;">
-																						<multi label="Content">August 30, 2016</multi>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td height="5"></td>
-																				</tr>
-																				<tr>
-																					<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;letter-spacing:1px;line-height:15px;text-transform:uppercase;">
-																						<multi label="Content">INV8267</multi>
-																					</td>
-																				</tr>
-																			</table>
+																	</tr>
+																</table>
+															</td>
+															<td width="26">&nbsp;</td>
+															<td align="left" valign="top">
+																<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+																	<tr>
+																		<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;line-height:20px;">
+																				<multi label="Content"> ₦{{product.order.order_total | intcomma }} </multi>
 																		</td>
 																	</tr>
 																</table>
 															</td>
 														</tr>
-													</tbody>
-												</table>													
+														
+													
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+						
+				
+				<tr>
+					<td height="40"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>	
+</table>
+</td>
+</tr>					
+</table>
+</td>
+</tr>			
+</table>
+
+{%endfor%}
+
+<!-- INVOICE ENDS -->	
+
+</module>
+
+<module label="Footer" active auto>		
+
+<!-- FOOTER STARTS -->
+
+<table align="center"  border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="center" >
+<table align="center"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+<tr>
+<td align="center">
+<table align="center" bgcolor="#03a9f4" border="0" cellpadding="0" cellspacing="0" class="display-width" width="680">										
+	<tr>
+		<td align="center" style="padding:0 30px;">
+			<table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="600">
+				<tr>
+					<td align="center">
+						<table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+							<tr>
+								<td height="30"></td>
+							</tr>	
+							<tr>
+								<td>
+								
+									<!-- TABLE LEFT -->
+									
+									<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="43%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+										<tbody>
+											<tr>
+												<td align="center">
+													<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" style="width:auto;">
+														<tr>
+															<td>
+																<table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
+																	<tr>
+																		<td align="center" class="MsoNormal" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;letter-spacing:1px;line-height:24px;">
+																			<multi label="Copyright">Issued by Next Cash And Carry Online Store </multi>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									
+									<table align="left" border="0" cellpadding="0" cellspacing="0" width="15%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+										<tr>
+											<td style="line-height:20px;" height="20" width="1"></td>
+										</tr>
+									</table>
+																
+									<!-- TABLE RIGHT -->
+
+									<table align="right" border="0" cellpadding="0" cellspacing="0" class="display-width" width="37%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:auto;">
+										<tr>
+											<td align="center">
+												<table align="center" border="0" cellspacing="0" cellpadding="0" class="display-width" style="width:auto !important;">
+													<tr>
+														<td align="left" class="MsoNormal" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;letter-spacing:1px;line-height:24px;">
+																<multi label="Follow">Any Issues ? Contact Us</multi>
+														</td>
+														<td width="20" class="follow">&nbsp;</td>
+														<td align="left">
+															<p>0700 700 0001
+															</p>
+														</td>
+																										
+													</tr>
+												</table>
 											</td>
-										</tr>										
+										</tr>
 									</table>
 								</td>
-							</tr>
-							<tr>
-								<td height="30" style="border-bottom:1px dashed #eeeeee;"></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
-			</tbody>
-		</table>
-		
-		<!-- MENU ENDS -->
-		
-		</module>
-		
-		<module label="Invoice" active auto>
-		
-		<!-- INVOICE STARTS -->
-		
-		<table align="center" bgcolor="#333333" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tr>
-				<td align="center">
-					<table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="display-width" width="680">
-						<tr>
-							<td align="center" style="border-bottom:1px solid #eeeeee;padding:0 30px;">
-								<table align="center"   border="0" cellpadding="0" cellspacing="0" class="display-width" width="600">
-									<tr>
-										<td align="center">
-											<table align="center"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-												<tr>
-													<td height="40"></td>
-												</tr>
-												<tr>
-													<td align="left">
-														<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">	
-															<tr>
-																<td>
-																	<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="48%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-																		<tr>
-																			<td align="left">
-																				<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
-																					<tr>
-																						<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:15px;">
-																							<multi label="Heading"> Bill To:</multi>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td height="10"></td>
-																					</tr>
-																					<tr>
-																						<td>
-																							<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																								<tr>
-																									<td style="width:60% !important;border-bottom:3px solid #333333;"></td>
-																								</tr>
-																							</table>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td height="10"></td>
-																					</tr>
-																					<tr>
-																						<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:24px;text-transform:uppercase;">
-																							<multi label="Content">Petersmith, <br/> No,7, Park Avenue, <br/> East Place Ny City, <br/> New York 123456.</multi>
-																						</td>
-																					</tr>
-																				</table>
-																			</td>
-																		</tr>
-																	</table>
-															
-																	 <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-																		<tbody>
-																			<tr>
-																				<td style="line-height:40px;" height="40" width="1"></td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	
-																	<table align="right" border="0" cellpadding="0" cellspacing="0" class="display-width" width="48%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-																		<tr>
-																			<td align="left">
-																				<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
-																					<tr>
-																						<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:15px;">
-																							<multi label="Heading"> Ship To:</multi>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td height="10"></td>
-																					</tr>
-																					<tr>
-																						<td align="left">
-																							<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" >
-																								<tr>
-																									<td style="width:60% !important;border-bottom:3px solid #333333;"></td>
-																								</tr>
-																							</table>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td height="10"></td>
-																					</tr>
-																					<tr>
-																						<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:24px;text-transform:uppercase;">
-																							<multi label="Content">Petersmith, <br/> No,7, Park Avenue, <br/> East Place Ny City, <br/> New York 123456.</multi>
-																						</td>
-																					</tr>
-																				</table>
-																			</td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>	
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td height="30" style="border-bottom:1px dashed #dddddd;"></td>
-												</tr>
-												<tr>
-													<td height="30"></td>
-												</tr>
-												<tr>
-													<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;">
-														<multi label="Content">Keep this part for your records.</multi>
-													</td>
-												</tr>
-												<tr>
-													<td height="30"></td>
-												</tr>
-												<tr>
-													<td align="center">	
-														<table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-															<tr>
-																<td width="600"> 
-																	<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-																		<tr>
-																			<td align="center" height="50" bgcolor="#03a9f4">
-																				<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																					<tr>
-																						<td width="20" class="product-width"></td>
-																						<td align="left" width="250" class="MsoNormal product title-width-1" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:uppercase;">
-																							<multi label="Product">Product</multi>
-																						</td>
-																						<td width="20" class="product-width"></td>
-																						<td align="left" width="70" class="MsoNormal product" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:uppercase;">
-																							<multi label="Price">Price</multi>
-																						</td>
-																						<td width="20" class="product-width"></td>
-																						<td align="left" width="60" class="MsoNormal product" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:uppercase;">
-																							<multi label="Quantity">Quantity</multi>
-																						</td>
-																						<td width="20" class="product-width"></td>
-																						<td align="left" width="60" class="MsoNormal product" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:uppercase;">
-																							<multi label="Amount">Amount</multi>
-																						</td>
-																						<td width="20"></td>
-																					</tr>
-																				</table>
-																			</td>
-																		</tr>																
-																		<tr>
-																			<td bgcolor="#f6f6f6">
-																				<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																					<tr>
-																						<td height="20"></td>
-																					</tr>
-																					<tr>
-																						<td width="20"></td>
-																						<td align="left" width="250" class="title-width">
-																							<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																								<tr>
-																									<td align="left" valign="middle" width="70">																								
-																										<img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/60x60x1.png" alt="60x60x1" width="60" editable label="Footwear Image" />
-																									</td>																							
-																									<td class="hide">
-																										<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																											<tr>
-																												<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
-																													<multi label="Content">Footwear</multi>
-																												</td>
-																											</tr>
-																											
-																										</table>
-																									</td>
-																								</tr>
-																							</table>
-																						</td>
-																						<td width="20"></td>
-																						<td align="left" width="90" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
-																							<multi label="Content">$35.99</multi>
-																						</td>
-																						<td width="20"></td>
-																						<td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
-																							<multi label="Content">2</multi>
-																						</td>
-																						<td width="20"></td>
-																						<td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
-																							<multi label="Content">$99.99</multi>
-																						</td>
-																						<td width="20"></td>
-																					</tr>
-																					<tr>
-																						<td height="20"></td>
-																					</tr>
-																					<tr>
-																						<td colspan="10" style="border-bottom:1px solid #dddddd;"></td>
-																					</tr>
-																					<tr>
-																						<td height="20"></td>
-																					</tr>
-																					<tr>
-																						<td width="20"></td>
-																						<td align="left" width="250" class="title-width">
-																							<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																								<tr>
-																									<td align="left" valign="middle" width="70">																								
-																										<img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/60x60x2.png" alt="60x60x2" width="60" editable label="Watch Image" />
-																									</td>
-																									<td class="hide">
-																										<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																											<tr>
-																												<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
-																													<multi label="Content">Fast Track Watch</multi>
-																												</td>
-																											</tr>
-																											
-																										</table>
-																									</td>
-																								</tr>
-																							</table>
-																						</td>
-																						<td width="20"></td>
-																						<td align="left" width="90" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
-																							<multi label="Content">$49.99</multi>
-																						</td>
-																						<td width="20"></td>
-																						<td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
-																							<multi label="Content">2</multi>
-																						</td>
-																						<td width="20"></td>
-																						<td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
-																							<multi label="Content">$199.99</multi>
-																						</td>
-																						<td width="20"></td>
-																					</tr>
-																					<tr>
-																						<td height="20"></td>
-																					</tr>
-																					<tr>
-																						<td colspan="10" style="border-bottom:1px solid #dddddd;"></td>
-																					</tr>
-																					<tr>
-																						<td height="20"></td>
-																					</tr>
-																					<tr>
-																						<td width="20"></td>
-																						<td align="left" width="250" class="title-width">
-																							<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																								<tr>
-																									<td align="left" valign="middle" width="70">																								
-																										<img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/60x60x3.png" alt="60x60x3" width="60" editable label="Bag Image" />
-																									</td>
-																									<td class="hide">
-																										<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																											<tr>
-																												<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
-																													<multi label="Content">Women's Bag</multi>
-																												</td>
-																											</tr>
-																											
-																										</table>
-																									</td>
-																								</tr>
-																							</table>
-																						</td>
-																						<td width="20"></td>
-																						<td align="left" width="90" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
-																							<multi label="Content">$59.99</multi>
-																						</td>
-																						<td width="20"></td>
-																						<td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
-																							<multi label="Content">2</multi>
-																						</td>
-																						<td width="20"></td>
-																						<td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
-																							<multi label="Content">$299.99</multi>
-																						</td>
-																						<td width="20"></td>
-																					</tr>
-																					<tr>
-																						<td height="20"></td>
-																					</tr>
-																					<tr>
-																						<td colspan="10" style="border-bottom:1px solid #dddddd;"></td>
-																					</tr>
-																				</table>																	
-																			</td>																
-																		</tr>
-																	</table>
-																</td>
-															</tr>																				
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td height="30"></td>
-												</tr>
-												<tr>
-													<td>
-														<!-- SUB TOTAL -->
+				<tr>
+					<td height="30"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>	
+</table>
+</td>
+</tr>					
+</table>
+</td>
+</tr>			
+</table>
 
-														<table align="right" border="0" cellpadding="0" cellspacing="0" width="48%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:auto;">
-															<tbody>
-																<tr>
-																	<td align="right">
-																		<table align="right" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; width:auto !important;">
-																			<tr>
-																				<td align="left" valign="top">
-																					<table align="left"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																						<tr>
-																							<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;">
-																								 <multi label="Content">Item Subtotal :</multi>
-																							</td>
-																						</tr>
-																						<tr>
-																							<td height="15"></td>
-																						</tr>
-																						<tr>
-																							<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;">
-																								<multi label="Content"> Shipping &amp; Handling :</multi>
-																							</td>
-																						</tr>
-																						<tr>
-																							<td height="25"></td>
-																						</tr>
-																						<tr>
-																							<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;">
-																								<multi label="Content"> Total Before Tax :</multi>
-																							</td>
-																						</tr>
-																						<tr>
-																							<td height="15"></td>
-																						</tr>
-																						<tr>
-																							<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;">
-																								<multi label="Content"> Sales Tax Collected :</multi>
-																							</td>
-																						</tr>																						
-																					</table>
-																				</td>
-																				<td width="26">&nbsp;</td>
-																				<td align="left" valign="top">
-																					<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																						<tr>
-																							<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;">
-																								 <multi label="Content"> $24,515.56</multi>
-																							</td>
-																						</tr>
-																						<tr>
-																							<td height="15"></td>
-																						</tr>
-																						<tr>
-																							<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;">
-																								<multi label="Content"> $0.00</multi>
-																							</td>
-																						</tr>	
-																						<tr>
-																							<td height="25"></td>
-																						</tr>
-																						<tr>
-																							<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;">
-																								<multi label="Content"> $24,515.56</multi>
-																							</td>
-																						</tr>
-																						<tr>
-																							<td height="15"></td>
-																						</tr>
-																						<tr>
-																							<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;">
-																								<multi label="Content"> $3,064.44</multi>
-																							</td>
-																						</tr>
-																					</table>
-																				</td>
-																			</tr>
-																		</table>
-																	</td>
-																</tr>
-																<tr>
-																	<td height="20"></td>
-																</tr>
-																<tr>
-																	<td style="border-bottom:1px solid #eeeeee;"></td>
-																</tr>
-																<tr>
-																	<td height="20"></td>
-																</tr>
-																<tr>
-																	<td align="right">
-																		<table align="right" border="0" cellpadding="0" cellspacing="0" width="100%" style="width:auto;">
-																			<tr>
-																				<td align="right">
-																					<table align="right" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:auto !important;">
-																						<tr>
-																							<td align="left" valign="top">
-																								<table align="left"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																									<tr>
-																										<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;line-height:20px;">
-																											<multi label="Content">  Total : </multi>
-																										</td>
-																									</tr>
-																								</table>
-																							</td>
-																							<td width="26">&nbsp;</td>
-																							<td align="left" valign="top">
-																								<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																									<tr>
-																										<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;line-height:20px;">
-																											 <multi label="Content"> $27,580.00 </multi>
-																										</td>
-																									</tr>
-																								</table>
-																							</td>
-																						</tr>
-																						<tr>
-																							<td height="10"></td>
-																						</tr>
-																						<tr>
-																							<td align="left" valign="top">
-																								<table align="left"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																									<tr>
-																										<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;line-height:20px;">
-																											 <multi label="Content"> Total Paid :</multi>
-																										</td>
-																									</tr>
-																								</table>
-																							</td>
-																							<td width="26">&nbsp;</td>
-																							<td align="left" valign="top">
-																								<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																									<tr>
-																										<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;line-height:20px;">
-																											  <multi label="Content">$27,580.00</multi>
-																										</td>
-																									</tr>
-																								</table>
-																							</td>
-																						</tr>
-																						<tr>
-																							<td height="10"></td>
-																						</tr>
-																						<tr>
-																							<td align="left" valign="top">
-																								<table align="left"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																									<tr>
-																										<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;line-height:20px;">
-																											 <multi label="Content"> Amount Due:</multi>
-																										</td>
-																									</tr>
-																								</table>
-																							</td>
-																							<td width="26">&nbsp;</td>
-																							<td align="left" valign="top">
-																								<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-																									<tr>
-																										<td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;line-height:20px;">
-																											  <multi label="Content">$0.00</multi>
-																										</td>
-																									</tr>
-																								</table>
-																							</td>
-																						</tr>
-																					</table>
-																				</td>
-																			</tr>
-																		</table>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
-													</td>
-												</tr>
-														
-												
-												<tr>
-													<td height="40"></td>
-												</tr>
-											</table>
-										</td>
-									</tr>	
-								</table>
-							</td>
-						</tr>					
-					</table>
-				</td>
-			</tr>			
-		</table>
-		
-		<!-- INVOICE ENDS -->	
+<!-- FOOTER ENDS -->
 
-	</module>
+</module>
 
-	<module label="Footer" active auto>		
-		
-		<!-- FOOTER STARTS -->
-		
-		<table align="center" bgcolor="#333333" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tr>
-				<td align="center" >
-					<table align="center"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-						<tr>
-							<td align="center">
-								<table align="center" bgcolor="#03a9f4" border="0" cellpadding="0" cellspacing="0" class="display-width" width="680">										
-									<tr>
-										<td align="center" style="padding:0 30px;">
-											<table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="600">
-												<tr>
-													<td align="center">
-														<table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-															<tr>
-																<td height="30"></td>
-															</tr>	
-															<tr>
-																<td>
-																
-																	<!-- TABLE LEFT -->
-																	
-																	<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="43%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-																		<tbody>
-																			<tr>
-																				<td align="center">
-																					<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" style="width:auto;">
-																						<tr>
-																							<td>
-																								<table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
-																									<tr>
-																										<td align="center" class="MsoNormal" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;letter-spacing:1px;line-height:24px;">
-																											<multi label="Copyright">{copyright}</multi>
-																										</td>
-																									</tr>
-																								</table>
-																							</td>
-																						</tr>
-																					</table>
-																				</td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	
-																	<table align="left" border="0" cellpadding="0" cellspacing="0" width="15%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-																		<tr>
-																			<td style="line-height:20px;" height="20" width="1"></td>
-																		</tr>
-																	</table>
-																								
-																	<!-- TABLE RIGHT -->
+</modules>
 
-																	<table align="right" border="0" cellpadding="0" cellspacing="0" class="display-width" width="37%" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;width:auto;">
-																		<tr>
-																			<td align="center">
-																				<table align="center" border="0" cellspacing="0" cellpadding="0" class="display-width" style="width:auto !important;">
-																					<tr>
-																						<td align="left" class="MsoNormal" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;letter-spacing:1px;line-height:24px;">
-																								<multi label="Follow">Follow Us</multi>
-																						</td>
-																						<td width="20" class="follow">&nbsp;</td>
-																						<td align="left">
-																							<a href="#" style="color:#ffffff;text-decoration:none;">
-																								<img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/25x25x1.png" alt="25x25x1" width="25" editable label="Social Icon" />
-																							</a>
-																						</td>
-																						<td width="10">&nbsp;</td>
-																						<td align="left">
-																							<a href="#" style="color:#ffffff;text-decoration:none;">
-																								<img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/25x25x2.png" alt="25x25x2" width="25" editable label="Social Icon" />
-																							</a>
-																						</td>
-																						<td width="10">&nbsp;</td>
-																						<td align="left">
-																							<a href="#" style="color:#ffffff;text-decoration:none;">
-																								<img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/25x25x3.png" alt="25x25x3" width="25" editable label="Social Icon" />
-																							</a>
-																						</td>
-																						<td width="10">&nbsp;</td>
-																						<td align="left">
-																							<a href="#" style="color:#ffffff;text-decoration:none;">
-																								<img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/25x25x4.png" alt="25x25x4" width="25" editable label="Social Icon" />
-																							</a>
-																						</td>																	
-																					</tr>
-																				</table>
-																			</td>
-																		</tr>
-																	</table>
-																</td>
-															</tr>
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td height="30"></td>
-												</tr>
-											</table>
-										</td>
-									</tr>	
-								</table>
-							</td>
-						</tr>					
-					</table>
-				</td>
-			</tr>			
-		</table>
-		
-		<!-- FOOTER ENDS -->
-		
-		</module>
-		
-	</modules>
-	
-	</body>
+</body>
 </html>

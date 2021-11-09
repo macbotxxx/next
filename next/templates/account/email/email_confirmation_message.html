@@ -1,3 +1,4 @@
+
 {% extends "account/email/base_message.html" %}
 {% load account %}
 {% load i18n %}
@@ -5,6 +6,68 @@
 {% block content %}
 {% autoescape off %}
 {% user_display user as user_display %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
-You're receiving this e-mail because user {{ user_display }} has given your e-mail address to register an account on {{ site_domain }}.
-
-To confirm this is correct, go to {{ activate_url }}{% endblocktrans %}{% endautoescape %}{% endblock %}
+<tr>
+<td align="center">	
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+<tr>
+	<td align="center" style="padding:0 30px;">															
+		<table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="600">
+			<tbody>	
+				<tr>
+					<td height="30"></td>
+				</tr>
+				<tr>
+					<td align="left">
+						<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+							<tr>
+								<td align="center" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:25px;font-weight:600;letter-spacing:1px;line-height:35px;text-transform:capitalize;">
+									<multi label="Title">Activate Your Account</multi>
+								</td>
+							</tr>																	
+							<tr>
+								<td height="20"></td>
+							</tr>
+							<tr>
+								<td align="center" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;line-height:24px;">
+									<multi label="IntroContent">Welcome to <b>NEXT CASH AND CARRY ONLINE STORE </b>, only one step left to complete your registration. To activate your account, kindly click the button below and if you are facing any issue you can contact us, we are here to help you and bring the best service to your door step. <br /> NOTE: You're receiving this e-mail because a user has given your e-mail address to register an account on {{ site_domain }}. </multi>
+								</td>												
+							</tr>																
+							<tr>
+								<td height="20"></td>
+							</tr>
+							<tr>
+								<td align="center" class="button-width">
+									<table align="center" bgcolor="#f44202" border="0" cellspacing="0" cellpadding="0" class="display-button textbutton" style="border-radius:5px;"> <!-- USING TABLE AS BUTTON -->
+										<tr>
+											<td align="center" valign="middle" class="MsoNormal" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:bold;letter-spacing:1px;padding:7px 15px;text-transform:uppercase;">
+												<a href="{{ activate_url }}" style="color:#ffffff;text-decoration:none;" editable label="Activate Button">Activate</a>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td height="20"></td>
+							</tr>	
+							<tr>
+								<td align="center" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;line-height:24px;">
+									<multi label="Content">To contact us, please visit <span style="color:#03a9f4; "><a href="https://nextcashandcarry.com.ng/contact-us/" style="color:#03a9f4; text-decoration: underline;">https://nextcashandcarry.com.ng/contact-us/</a></span></multi>
+								</td>
+							</tr>
+							<tr>
+								<td height="15"></td>
+							</tr>
+							
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td height="30"></td>
+				</tr>
+			</tbody>
+		</table>										
+	</td>
+</tr>
+</table>
+{% endblocktrans %}{% endautoescape %}
+{% endblock %}

@@ -288,6 +288,12 @@ class OrderProduct (BaseModel):
         help_text=_("price for the current product.")
     )
 
+    product_total_price = models.IntegerField(
+        verbose_name = _("Product Total Price "),
+        null=True,blank=True,
+        help_text=_("total price for the current product which is calculated by the quantity of the product with the product price.")
+    )
+
     ordered = models.BooleanField(
         verbose_name = _("Order Operation"),
         default=False,null=True,blank=True,
