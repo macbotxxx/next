@@ -138,11 +138,14 @@
                            
                             <p class="category__des"><b class='text-black'>Fresh food</b> is food which has not been preserved and has not spoiled yet. For vegetables and fruits, this means that they have been recently harvested and treated properly postharvest; for meat, it has recently been slaughtered and butchered; for fish, it has been recently caught or harvested and kept cold.</p>
                     </div>
-                        
+                    <div class="result__header">
+                        <h4 class="title">{{count}}<span>Product Found</span></h4>
                        
-                        <div class="result__header mobile">
-                            <h4 class="title">{%for c in product %} {{c.count}} {%endfor%}<span>Product Found</span></h4>
-                        </div>
+                    </div>
+                 
+                    <div class="result__header mobile">
+                        <h4 class="title">{{count}}<span>Product Found</span></h4>
+                    </div>
                         <div class="result__content mt-4">
                             <div class="section-shop--grid">
                                 <div class="row m-0">

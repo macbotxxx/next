@@ -160,13 +160,18 @@ class FlashSale (View):
 
     def get (self, request, *args, **kwargs):
         product = Product.objects.filter(flash_sale = True)
+        count = product.count()
+
         """product pagination"""
         paginator = Paginator(product, 20) # Show 20 contacts per page.
         page_number = request.GET.get('page')
         product = paginator.get_page(page_number)
+
+
         
         context = {
             'product': product,
+            'count':count,
         }
         return render(self.request, 'pages/flash_sale.html', context)
 
