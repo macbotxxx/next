@@ -104,11 +104,13 @@
                                     </div>
                                     <p class="ps-product__sold">Availability :{%if p.stock <= 0 %} <span style="color:red; font-size:14px; font-weight:bold;"> Out Of Stock</span> {%else%}  {{p.stock}} {%endif%}</p>
                                 </div>
-                                <div class="ps-product__footer">
-                                  
-                                    <div class="ps-product__footer"><a class="btn btn-primary w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a></div>
-                                    
-                                </div>
+                                 <div class="ps-product__footer">
+                                                    {%if p.stock <= 0 %}
+                                                    <a class="btn btn-danger w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Out Of Stock</span> </a>
+                                                    {%else%}
+                                                    <a class="btn btn-primary w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a>
+                                                    {%endif%}
+                                                </div>
                             </div>
                             {%endfor%}
                         
@@ -163,11 +165,13 @@
                                     </div>
                                     <p class="ps-product__sold">Availability :{%if p.stock <= 0 %} <span style="color:red; font-size:14px; font-weight:bold;"> Out Of Stock</span> {%else%}  {{p.stock}} {%endif%}</p>
                                 </div>
-                                <div class="ps-product__footer">
-                                  
-                                    <div class="ps-product__footer"><a class="btn btn-primary w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a></div>
-                                    
-                                </div>
+                                 <div class="ps-product__footer">
+                                                    {%if p.stock <= 0 %}
+                                                    <a class="btn btn-danger w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Out Of Stock</span> </a>
+                                                    {%else%}
+                                                    <a class="btn btn-primary w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a>
+                                                    {%endif%}
+                                                </div>
                             </div>
                             {%endfor%}
                                       
@@ -202,11 +206,13 @@
                                     </div>
                                     <p class="ps-product__sold">Availability :{%if p.stock <= 0 %} <span style="color:red; font-size:14px; font-weight:bold;"> Out Of Stock</span> {%else%}  {{p.stock}} {%endif%}</p>
                                 </div>
-                                <div class="ps-product__footer">
-                                  
-                                    <div class="ps-product__footer"><a class="btn btn-primary w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a></div>
-                                    
-                                </div>
+                                 <div class="ps-product__footer">
+                                                    {%if p.stock <= 0 %}
+                                                    <a class="btn btn-danger w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Out Of Stock</span> </a>
+                                                    {%else%}
+                                                    <a class="btn btn-primary w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a>
+                                                    {%endif%}
+                                                </div>
                             </div>
                                     </div>
                             {%endfor%}
@@ -260,11 +266,13 @@
                                     </div>
                                     <p class="ps-product__sold">Availability :{%if p.stock <= 0 %} <span style="color:red; font-size:14px; font-weight:bold;"> Out Of Stock</span> {%else%}  {{p.stock}} {%endif%}</p>
                                 </div>
-                                <div class="ps-product__footer">
-                                  
-                                    <div class="ps-product__footer"><a class="btn btn-primary w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a></div>
-                                    
-                                </div>
+                                 <div class="ps-product__footer">
+                                                    {%if p.stock <= 0 %}
+                                                    <a class="btn btn-danger w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Out Of Stock</span> </a>
+                                                    {%else%}
+                                                    <a class="btn btn-primary w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a>
+                                                    {%endif%}
+                                                </div>
                             </div>
                             {%endfor%}
                                       
@@ -299,11 +307,13 @@
                                     </div>
                                     <p class="ps-product__sold">Availability :{%if p.stock <= 0 %} <span style="color:red; font-size:14px; font-weight:bold;"> Out Of Stock</span> {%else%}  {{p.stock}} {%endif%}</p>
                                 </div>
-                                <div class="ps-product__footer">
-                                  
-                                    <div class="ps-product__footer"><a class="btn btn-primary w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a></div>
-                                    
-                                </div>
+                                 <div class="ps-product__footer">
+                                                    {%if p.stock <= 0 %}
+                                                    <a class="btn btn-danger w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Out Of Stock</span> </a>
+                                                    {%else%}
+                                                    <a class="btn btn-primary w-100" href="{{p.get_absolute_url}}"> <span style="color:white; font-size:14px; font-weight:bold;">Add To Cart</span> </a>
+                                                    {%endif%}
+                                                </div>
                             </div>
                                     </div>
                             {%endfor%}
