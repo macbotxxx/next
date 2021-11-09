@@ -54,8 +54,12 @@ class ProductCategory (View):
         category = Category.objects.get(slug= kwargs['slug'])
         if category.parent is None:
             products = Product.objects.filter(category__parent=category)
+            count = products.count()
+
         else:
             products = Product.objects.filter(category=category)
+            count = products.count()
+
 
     
         """product pagination"""
@@ -66,11 +70,13 @@ class ProductCategory (View):
         #  getting the product rating 
         for product in products:
             reviews = ReviewRating.objects.filter(product_id=product.id)
-        
+
+     
         context = {
             'category':category,
             'products': products,
             'reviews':reviews,
+            'count':count,
         }
 
         return render(self.request, 'pages/category.html', context)

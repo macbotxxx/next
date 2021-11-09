@@ -111,8 +111,8 @@
                                           <li class="title-item"><a href="javascript:void(0);">My Account</a></li>
                                           <li><a href="{%url 'user_dashboard' %}">Dasdboard</a></li>
                                           <li><a href="#">Account Setting</a></li>
-                                          <li><a href="shopping-cart.html">Orders</a></li>
-                                          <li><a href="wishlist.html">Wishlist</a></li>
+                                          <li><a href="#">Orders</a></li>
+                                          <li><a href="#">Wishlist</a></li>
                                           <li><a href="#">Shipping Address</a></li>
                                       </ul>
                                      
@@ -153,9 +153,9 @@
                               <button class="category-toggler"><i class="icon-menu"></i></button>
                               <div class="mega-menu mega-menu-category">
                                   <ul class="menu--mobile menu--horizontal">
-                                      <li class="daily-deals category-item"><a href="flash-sale.html">Daily Deals</a></li>
-                                      <li class="category-item"><a href="shop-categories.html">Top Promotions</a></li>
-                                      <li class="category-item"><a class="active" href="shop-categories.html">New Arrivals</a></li>
+                                      <li class="daily-deals category-item"><a href="#">Daily Deals</a></li>
+                                      <li class="category-item"><a href="#">Top Promotions</a></li>
+                                      <li class="category-item"><a class="active" href="#">New Arrivals</a></li>
                                     
                                       {% recursetree links %}
                                       <li class="has-mega-menu category-item"><a href="{{node.get_absolute_url}}">{{node.category}}</a>
@@ -168,11 +168,11 @@
                                               <div class="mega-menu__column">
                                                   <h4>{{node.category}}<span class="sub-toggle"></span></h4>
                                                   <ul class="sub-menu--mega">
-                                                      <li><a href="shop-view-grid.html"> {{ children }}</a></li>
+                                                      <li><a href="#"> {{ children }}</a></li>
                                                      
                                                   </ul>
                                               </div>
-                                              <div class="mega-menu__column"><a class="mega-menu__thumbnail" href="flash-sale.html"><img src="{{node.image.url}}" alt="alt" /></a>
+                                              <div class="mega-menu__column"><a class="mega-menu__thumbnail" href="#"><img src="{{node.image.url}}" alt="alt" /></a>
                                               </div>
                                           </div>
 	                                   {% endif %}
@@ -200,7 +200,7 @@
 
                   </div>
                   <div class="header-inner__right">
-                      <a class="button-icon icon-md" href="wishlist.html"><i class="icon-heart"></i><span class="badge bg-warning">2</span></a>
+                      <a class="button-icon icon-md" href="#"><i class="icon-heart"></i><span class="badge bg-warning">2</span></a>
                       <div class="button-icon btn-cart-header"><i class="icon-cart icon-shop5"></i><span class="badge bg-warning">{{cart_count}}</span>
                         {%if not cart_items%}
 
@@ -277,19 +277,19 @@
                           <div class="brand-box">
                               <div class="brand__title">FEATURED BRAND</div>
                               <div class="row">
-                                  <div class="col-4"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/brand/brand_themeforest.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/brand/brand_envato.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/brand/brand_codecanyon.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/brand/brand_cudicjungle.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/brand/brand_videohive.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/brand/brand_photodune.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/brand/brand_evatotuts.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/brand/brand_3docean.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="shop-view-grid.html"><img src="{% static 'nextonline/img/brand/microlancer.jpg' %}" alt="alt" /></a></div>
-                              </div><a class="brand__link" href="shop-all-brands.html">See all brands<i class="icon-chevron-right"></i></a>
+                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_themeforest.jpg' %}" alt="alt" /></a></div>
+                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_envato.jpg' %}" alt="alt" /></a></div>
+                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_codecanyon.jpg' %}" alt="alt" /></a></div>
+                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_cudicjungle.jpg' %}" alt="alt" /></a></div>
+                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_videohive.jpg' %}" alt="alt" /></a></div>
+                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_photodune.jpg' %}" alt="alt" /></a></div>
+                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_evatotuts.jpg' %}" alt="alt" /></a></div>
+                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_3docean.jpg' %}" alt="alt" /></a></div>
+                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/microlancer.jpg' %}" alt="alt" /></a></div>
+                              </div><a class="brand__link" href="#">See all brands<i class="icon-chevron-right"></i></a>
                           </div>
-                          <div class="brand__promotion"><a href="flash-sale.html"><img src="{% static 'nextonline/img/brand/brand_01.jpg' %}" alt="alt" /></a></div>
-                          <div class="brand__promotion"><a href="flash-sale.html"><img src="{% static 'nextonline/img/brand/brand_02.jpg' %}" alt="alt" /></a></div>
+                          <div class="brand__promotion"><a href="#"><img src="{% static 'nextonline/img/brand/brand_01.jpg' %}" alt="alt" /></a></div>
+                          <div class="brand__promotion"><a href="#"><img src="{% static 'nextonline/img/brand/brand_02.jpg' %}" alt="alt" /></a></div>
                       </div>
                   </li>
 
@@ -444,9 +444,9 @@
       </div>
       <div class="category__content">
           <ul class="menu--mobile">
-              <li class="daily-deals category-item"><a href="flash-sale.html">Daily Deals</a></li>
-              <li class="category-item"><a href="shop-categories.html">Top Promotions</a></li>
-              <li class="category-item"><a href="shop-categories.html">New Arrivals</a></li>
+              <li class="daily-deals category-item"><a href="#">Daily Deals</a></li>
+              <li class="category-item"><a href="#">Top Promotions</a></li>
+              <li class="category-item"><a href="#">New Arrivals</a></li>
               {% recursetree links %}
 
           
@@ -454,7 +454,7 @@
 
                   <ul class="sub-menu">
                 {% if not node.is_leaf_node %}
-                      <li><a href="shop-view-grid.html">{{ children }}</a></li>
+                      <li><a href="#">{{ children }}</a></li>
                 {% endif %}
 
                   </ul>
@@ -477,7 +477,7 @@
               <div>
                   {%if request.user.is_authenticated %}
                   <div><span><a class="dropdown-user" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </span><span class="account"><i class="icon-user"></i>Hi, {{request.user.name | title}} <i class="icon-chevron-down"></i></span></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownAccount"><a class="dropdown-item" href="#"><b>My Account</b></a><a class="dropdown-item" href="{%url 'user_dashboard' %}">Dashboard</a><a class="dropdown-item" href="#">Account Setting</a><a class="dropdown-item" href="shopping-cart.html">Orders</a><a class="dropdown-item" href="wishlist.html">Wishlist</a><a class="dropdown-item" href="#">Shipping Address</a><hr><a class="dropdown-divider"></a><a class="dropdown-item" href="{%url 'account_logout'%}"><i class="icon-exit-left"></i>Log out</a></div>
+                    <div class="dropdown-menu" aria-labelledby="dropdownAccount"><a class="dropdown-item" href="#"><b>My Account</b></a><a class="dropdown-item" href="{%url 'user_dashboard' %}">Dashboard</a><a class="dropdown-item" href="#">Account Setting</a><a class="dropdown-item" href="#">Orders</a><a class="dropdown-item" href="#">Wishlist</a><a class="dropdown-item" href="#">Shipping Address</a><hr><a class="dropdown-divider"></a><a class="dropdown-item" href="{%url 'account_logout'%}"><i class="icon-exit-left"></i>Log out</a></div>
                 </div>
                 {%endif%}
               </div>
@@ -497,7 +497,7 @@
               <li class="menu-item-has-children"><a href="#">Blog</a><span class="sub-toggle"><i class="icon-chevron-down"></i></span>
                  
               </li>
-              <li class="menu-item-has-children"><a href="product-default.html">Brand</a></li>
+              <li class="menu-item-has-children"><a href="#">Brand</a></li>
               <li class="menu-item-has-children"><a href="{%url 'flash_sale'%}">Flash Sale</a></li>
           </ul>
           {%if request.user.is_authenticated %}
