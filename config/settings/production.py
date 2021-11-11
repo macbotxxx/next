@@ -4,16 +4,28 @@ from .base import env
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-SECRET_KEY = env("DJANGO_SECRET_KEY")
+# SECRET_KEY = env("DJANGO_SECRET_KEY")
+SECRET_KEY = "KUzEjh6IYLPwJK8L0VvirF4GLqPkzZgT8KLcIX0iHO2SJg4LXmZKqHmVA5VFyLQk",
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["nextcashandcarry.com.ng"])
+# ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["nextcashandcarry.com.ng"])
+ALLOWED_HOSTS =  ["localhost", "0.0.0.0", "127.0.0.1", "161.35.9.151", "161.35.9.151:8000"]
 
+DEBUG = False
 # DATABASES
 # ------------------------------------------------------------------------------
-DATABASES["default"] = env.db("DATABASE_URL")  # noqa F405
-DATABASES["default"]["ATOMIC_REQUESTS"] = True  # noqa F405
-DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa F405
-
+# DATABASES["default"] = env.db("DATABASE_URL")  # noqa F405
+# DATABASES["default"]["ATOMIC_REQUESTS"] = True  # noqa F405
+# DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa F405
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'next',
+        'USER': 'macbot',
+        'PASSWORD': 'M08034169322i',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
 # CACHES
 # ------------------------------------------------------------------------------
 CACHES = {
@@ -34,7 +46,7 @@ CACHES = {
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-proxy-ssl-header
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-ssl-redirect
-SECURE_SSL_REDIRECT = env.bool("DJANGO_SECURE_SSL_REDIRECT", default=True)
+SECURE_SSL_REDIRECT =True
 # https://docs.djangoproject.com/en/dev/ref/settings/#session-cookie-secure
 SESSION_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-secure
@@ -44,15 +56,13 @@ CSRF_COOKIE_SECURE = True
 # TODO: set this to 60 seconds first and then to 518400 once you prove the former works
 SECURE_HSTS_SECONDS = 60
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-include-subdomains
-SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool(
-    "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS", default=True
-)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-preload
-SECURE_HSTS_PRELOAD = env.bool("DJANGO_SECURE_HSTS_PRELOAD", default=True)
+SECURE_HSTS_PRELOAD =True
 # https://docs.djangoproject.com/en/dev/ref/middleware/#x-content-type-options-nosniff
-SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
-    "DJANGO_SECURE_CONTENT_TYPE_NOSNIFF", default=True
-)
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
 
 # STATIC
 # ------------------------
@@ -76,21 +86,17 @@ TEMPLATES[-1]["OPTIONS"]["loaders"] = [  # type: ignore[index] # noqa F405
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
-DEFAULT_FROM_EMAIL = env(
-    "DJANGO_DEFAULT_FROM_EMAIL", default="next <noreply@nextcashandcarry.com.ng>"
+DEFAULT_FROM_EMAIL = "next <noreply@nextcashandcarry.com.ng>"
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
-SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = env(
-    "DJANGO_EMAIL_SUBJECT_PREFIX",
-    default="[next]",
-)
+EMAIL_SUBJECT_PREFIX = "[next]"
 
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL regex.
-ADMIN_URL = env("DJANGO_ADMIN_URL")
+ADMIN_URL = "admin/"
 
 # Anymail
 # ------------------------------------------------------------------------------
@@ -99,13 +105,20 @@ INSTALLED_APPS += ["anymail"]  # noqa F405
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 # https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
 # https://anymail.readthedocs.io/en/stable/esps/sendgrid/
-EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
-ANYMAIL = {
-    "SENDGRID_API_KEY": env("SENDGRID_API_KEY"),
-    "SENDGRID_GENERATE_MESSAGE_ID": env("SENDGRID_GENERATE_MESSAGE_ID"),
-    "SENDGRID_MERGE_FIELD_FORMAT": env("SENDGRID_MERGE_FIELD_FORMAT"),
-    "SENDGRID_API_URL": env("SENDGRID_API_URL", default="https://api.sendgrid.com/v3/"),
-}
+# EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+# ANYMAIL = {
+#     "SENDGRID_API_KEY": env("SENDGRID_API_KEY"),
+#     "SENDGRID_GENERATE_MESSAGE_ID": env("SENDGRID_GENERATE_MESSAGE_ID"),
+#     "SENDGRID_MERGE_FIELD_FORMAT": env("SENDGRID_MERGE_FIELD_FORMAT"),
+#     "SENDGRID_API_URL": env("SENDGRID_API_URL", default="https://api.sendgrid.com/v3/"),
+# }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'f7f1d4d566645a'
+EMAIL_HOST_PASSWORD = '1917db4a003d90'
+EMAIL_PORT = '2525'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # django-compressor
 # ------------------------------------------------------------------------------
