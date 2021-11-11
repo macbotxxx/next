@@ -8,7 +8,7 @@ from .base import env
 SECRET_KEY = "KUzEjh6IYLPwJK8L0VvirF4GLqPkzZgT8KLcIX0iHO2SJg4LXmZKqHmVA5VFyLQk",
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 # ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["nextcashandcarry.com.ng"])
-ALLOWED_HOSTS =  ["localhost", "0.0.0.0", "127.0.0.1", "161.35.9.151", "161.35.9.151:8000"]
+ALLOWED_HOSTS =  ["localhost", "0.0.0.0", "127.0.0.1"]
 
 DEBUG = False
 # DATABASES
@@ -31,7 +31,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": env("REDIS_URL"),
+        "LOCATION": "",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             # Mimicing memcache behavior.
