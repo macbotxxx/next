@@ -1,9 +1,20 @@
 {% extends "base.html" %}
+{% load static humanize %}
+
+
+
 
 {% block title %}Page not found{% endblock %}
 
 {% block content %}
-<h1>Page not found</h1>
-
-<p>{% if exception %}{{ exception }}{% else %}This is not the page you were looking for.{% endif %}</p>
+<main class="no-main">
+    <section class="section--notfound ps-page--business">
+        <div class="container">
+            <div class="notfound__content"><img src="{% static 'nextonline/img/pages/page-not-found.png' %}" alt>
+                <h1 class="page__title">Oop! Page not found.</h1>
+                <p>We can't find the page you're looking for. You can either <span>return to the previous page, visit our home page</span>or search for something else.</p>
+            </div>
+        </div>
+    </section>
+</main>
 {% endblock content %}

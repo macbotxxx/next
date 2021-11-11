@@ -3,9 +3,15 @@
 {% block title %}Server Error{% endblock %}
 
 {% block content %}
-<h1>Ooops!!! 500</h1>
 
-<h3>Looks like something went wrong!</h3>
-
-<p>We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing.</p>
+<main class="no-main">
+    <section class="section--notfound ps-page--business">
+        <div class="container">
+            <div class="notfound__content"><img src="{% static 'nextonline/img/pages/page-not-found.png' %}" alt>
+                <h1 class="page__title">Ooops!!! 500 <br/> Looks like something went wrong!</h1>
+                <p>We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing..</p>
+            </div>
+        </div>
+    </section>
+</main>
 {% endblock content %}
