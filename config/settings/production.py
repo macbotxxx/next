@@ -8,7 +8,7 @@ from .base import env
 SECRET_KEY = "KUzEjh6IYLPwJK8L0VvirF4GLqPkzZgT8KLcIX0iHO2SJg4LXmZKqHmVA5VFyLQk",
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 # ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["nextcashandcarry.com.ng"])
-ALLOWED_HOSTS =  ["localhost", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS =  ["localhost", "0.0.0.0", "127.0.0.1", "165.227.197.121"]
 
 DEBUG = False
 # DATABASES
