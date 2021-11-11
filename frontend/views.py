@@ -26,7 +26,8 @@ class HomePage(View):
         onekitems = Product.objects.all().filter(is_available = True).order_by('price')[0:20]
         recommendedP = Product.objects.all().filter(is_available = True).order_by('-created_date')[:20]
     
-        # getting the product rating 
+        # getting the product rating
+        reviews = [] 
         for product in products:
             reviews = ReviewRating.objects.filter(product_id=product.id)
                    
