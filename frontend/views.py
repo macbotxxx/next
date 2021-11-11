@@ -69,6 +69,7 @@ class ProductCategory (View):
         products = paginator.get_page(page_number)
 
         #  getting the product rating 
+        reviews = [] 
         for product in products:
             reviews = ReviewRating.objects.filter(product_id=product.id)
 
@@ -103,6 +104,7 @@ class ProductDetails (View):
         else:
             orderproduct = None
         # getting the review of the product
+        reviews = [] 
         reviews = ReviewRating.objects.filter(product_id=product.id)
         review_count = reviews.count()
 
