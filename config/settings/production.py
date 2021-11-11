@@ -20,7 +20,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'next',
-        'USER': 'macbot',
+        'USER': 'nextcashandcarry',
         'PASSWORD': 'M08034169322i',
         'HOST': 'localhost',
         'PORT': '',
