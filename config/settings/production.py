@@ -125,7 +125,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
 COMPRESS_ENABLED = False
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_STORAGE
-COMPRESS_STORAGE = STATICFILES_STORAGE
+COMPRESS_STORAGE = "compressor.storage.GzipCompressorFileStorage"
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_URL
 COMPRESS_URL = STATIC_URL  # noqa F405
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
@@ -138,6 +138,7 @@ COMPRESS_FILTERS = {
     ],
     "js": ["compressor.filters.jsmin.JSMinFilter"],
 }
+
 
 FLUTTERWAVE_SECRET_KEY = "FLWSECK_TEST-c42542ddb1606364343282cca40553d6-X"
 FLUTTERWAVE_PUBLIC_KEY = "FLWPUBK_TEST-f7d9f9de817c51ba37355d7a70b8224f-X"
