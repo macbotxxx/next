@@ -120,6 +120,12 @@ EMAIL_HOST_PASSWORD = '1917db4a003d90'
 EMAIL_PORT = '2525'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/' 
+STATICFILES_DIRS = [os.path.join(APPS_DIR, 'staticfiles/')]
+STATIC_ROOT = os.path.join(APPS_DIR, 'static')
+MEDIA_ROOT = os.path.join(APPS_DIR, 'media') 
+
 # django-compressor
 # ------------------------------------------------------------------------------
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
