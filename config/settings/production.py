@@ -10,7 +10,7 @@ SECRET_KEY = "eL11HSttByEoHvSJazxndPml7bGrlQ63VDJgmv2N3eqsA5eRJmnX1AzEyhLCr4Tl",
 # ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["nextcashandcarry.com.ng"])
 ALLOWED_HOSTS =  ["localhost", "0.0.0.0", "127.0.0.1", "165.227.197.121"]
 
-DEBUG = True
+DEBUG = False
 # DATABASES
 # ------------------------------------------------------------------------------
 # DATABASES["default"] = env.db("DATABASE_URL")  # noqa F405
@@ -66,7 +66,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # STATIC
 # ------------------------
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # MEDIA
 # ------------------------------------------------------------------------------
 
@@ -120,31 +120,24 @@ EMAIL_HOST_PASSWORD = '1917db4a003d90'
 EMAIL_PORT = '2525'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/' 
-STATICFILES_DIRS = [os.path.join(APPS_DIR, 'staticfiles/')]
-STATIC_ROOT = os.path.join(APPS_DIR, 'static')
-MEDIA_ROOT = os.path.join(APPS_DIR, 'media') 
-
-# # django-compressor
-# # ------------------------------------------------------------------------------
-# # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
-# COMPRESS_ENABLED = False
-# # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_STORAGE
-# COMPRESS_STORAGE = "compressor.storage.GzipCompressorFileStorage"
-# # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_URL
-# COMPRESS_URL = STATIC_URL  # noqa F405
-# # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
-# COMPRESS_OFFLINE = False  # Offline compression is required when using Whitenoise
-# # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_FILTERS
-# COMPRESS_FILTERS = {
-#     "css": [
-#         "compressor.filters.css_default.CssAbsoluteFilter",
-#         "compressor.filters.cssmin.rCSSMinFilter",
-#     ],
-#     "js": ["compressor.filters.jsmin.JSMinFilter"],
-# }
-
+# django-compressor
+# ------------------------------------------------------------------------------
+# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
+COMPRESS_ENABLED = True
+# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_STORAGE
+COMPRESS_STORAGE = STATICFILES_STORAGE
+# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_URL
+COMPRESS_URL = STATIC_URL  # noqa F405
+# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
+COMPRESS_OFFLINE = False  # Offline compression is required when using Whitenoise
+# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_FILTERS
+COMPRESS_FILTERS = {
+    "css": [
+        "compressor.filters.css_default.CssAbsoluteFilter",
+        "compressor.filters.cssmin.rCSSMinFilter",
+    ],
+    "js": ["compressor.filters.jsmin.JSMinFilter"],
+}
 
 FLUTTERWAVE_SECRET_KEY = "FLWSECK_TEST-c42542ddb1606364343282cca40553d6-X"
 FLUTTERWAVE_PUBLIC_KEY = "FLWPUBK_TEST-f7d9f9de817c51ba37355d7a70b8224f-X"
