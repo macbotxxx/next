@@ -123,7 +123,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # django-compressor
 # ------------------------------------------------------------------------------
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_STORAGE
 COMPRESS_STORAGE = STATICFILES_STORAGE
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_URL
