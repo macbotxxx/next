@@ -4,7 +4,7 @@ from .base import env
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = True
+DEBUG = False
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = "eL11HSttByEoHvSJazxndPml7bGrlQ63VDJgmv2N3eqsA5eRJmnX1AzEyhLCr4Tl",
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
@@ -54,25 +54,6 @@ INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
 INSTALLED_APPS += ["django_extensions"]  # noqa F405
 
 
-
-# django-compressor
-# ------------------------------------------------------------------------------
-# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
-COMPRESS_ENABLED = True
-# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_STORAGE
-COMPRESS_STORAGE = "compressor.storage.GzipCompressorFileStorage"
-# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_URL
-COMPRESS_URL = STATIC_URL  # noqa F405
-# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
-COMPRESS_OFFLINE = True  # Offline compression is required when using Whitenoise
-# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_FILTERS
-COMPRESS_FILTERS = {
-    "css": [
-        "compressor.filters.css_default.CssAbsoluteFilter",
-        "compressor.filters.cssmin.rCSSMinFilter",
-    ],
-    "js": ["compressor.filters.jsmin.JSMinFilter"],
-}
 
 
 # Your stuff...
