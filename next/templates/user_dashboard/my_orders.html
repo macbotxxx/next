@@ -26,22 +26,22 @@
                                 {%for p in order %}
                                 <div class="col-6 col-md-4 p-0">
                                     <div class="ps-product--standard">
-                                        <a class="ps-product__trash" href="javascript:void(0);"></a><a href="{%url 'get_product_id' p.id %}"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_1a.jpg'%}" alt="alt" /></a>
+                                        <a class="ps-product__trash" href="javascript:void(0);"></a><a href="{%url 'generate_pdf' p.order_number %}"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_1a.jpg'%}" alt="alt" /></a>
                                         <div class="ps-product__content">
-                                            <p class="ps-product__ofstock"><b>Order ID:</b> <br> {{p.order.order_number}}</p><a href="{%url 'get_product_id' p.id %}">
+                                            <p class="ps-product__ofstock"><b>Order ID:</b> <br> {{p.order_number}}</p><a href="{%url 'generate_pdf' p.order_number %}">
                                                
                                             </a>
                                             <b>Ordered Date:</b> <br>
                                             <p class="ps-product__unit">{{p.created_date}}</p>
                                             <b>Total Amount:</b> <br>
-                                            <p class="ps-product__meta"><span class="ps-product__price">₦{{p.order.order_total | intcomma}}</span></p>
+                                            <p class="ps-product__meta"><span class="ps-product__price">₦{{p.order_total | intcomma}}</span></p>
                                         </div>
                                         <div class="ps-product__footer">
-                                            <a href="{%url 'get_product_id' p.id %}" class="wishlist__readmore w-100">View Order</a>
+                                            <a href="{%url 'generate_pdf' p.order_number %}" class="wishlist__readmore w-100">View Order</a>
                                         </div>
                                     </div>
                                 </div>
-
+                    
                                 {%endfor%}
 
                             </div>
@@ -61,11 +61,11 @@
                                     <tr>
                                       
                                         <td>
-                                            <div class="ps-product--vertical"><a href="{%url 'get_product_id' p.order_number %}">{{p.order_number}}</a>
-                                                <div class="ps-product__content">
-                                                   
-                                                </div>
+                                        <div class="ps-product--vertical"><a href="{%url 'generate_pdf' p.order_number %}">{{p.order_number}}</a>
+                                            <div class="ps-product__content">
+                                                
                                             </div>
+                                        </div>
                                         </td>
                                         
                                         <td><span class="ps-product__instock">₦{{p.order_total | intcomma}}</span>
@@ -77,13 +77,34 @@
                                         </td>
                                     </tr>
                                     {%endfor%}
+                                   
                                   
                                    
                                 </tbody>
                             </table>
+                            
                         </div>
+                       
                     </div>
-                   
+                    <div class="ps-pagination blog--pagination">
+                        <ul class="pagination">
+                            {% if order.has_previous %}
+                            <li class="chevron"><a href="?page={{ order.previous_page_number }}"><i class="icon-chevron-left"></i></a></li>
+                            {% endif %}
+                            {%for num in order.paginator.page_range %}
+                            {%if order.number == num %}
+                            <li class="active"><a href="?page={{num}}">{{num}}</a></li>
+                            {% elif num > order.number|add:'-3' and num < order.number|add:'3' %}
+                            <li class=""><a href="?page={{num}}">{{num}}</a></li>
+                            {%endif%}
+                            {%endfor%}
+                            {% if order.has_next %}
+                            <li class="chevron"><a href="?page={{order.next_page_number }}"><i class="icon-chevron-right"></i></a></li>
+                            {% endif %}
+
+
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>

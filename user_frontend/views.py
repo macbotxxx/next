@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.http import FileResponse
 from django.views.generic import View, ListView
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from reportlab.pdfgen import canvas
 from wkhtmltopdf.views import PDFTemplateView
@@ -95,7 +96,11 @@ def password_change (request):
 @login_required()
 def my_orders (request):
     order = Order.objects.all().filter(user=request.user, is_ordered = True).order_by('-created_date')[:10]
+    """product pagination"""
+    paginator = Paginator(order, 20) # Show 20 contacts per page.
+    page_number = request.GET.get('page')
+    order = paginator.get_page(page_number)
     context = {
         'order': order,
     }
-    return render( request, 'user_dashboard/index.html', context)
+    return render( request, 'user_dashboard/my_orders.html', context)
