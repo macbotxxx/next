@@ -79,7 +79,7 @@
                                       <ul class="account-list">
                                           <li class="title-item"><a href="javascript:void(0);">My Account</a></li>
                                           <li><a href="{%url 'user_dashboard' %}">Dasdboard</a></li>
-                                          <li><a href="#">Account Setting</a></li>
+                                          <li><a href="{%url 'profile_edit' %}">Account Setting</a></li>
                                           <li><a href="#">Orders</a></li>
                                           <li><a href="#">Wishlist</a></li>
                                           <li><a href="#">Shipping Address</a></li>
@@ -446,7 +446,7 @@
               <div>
                   {%if request.user.is_authenticated %}
                   <div><span><a class="dropdown-user" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </span><span class="account"><i class="icon-user"></i>Hi, {{request.user.name | title}} <i class="icon-chevron-down"></i></span></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownAccount"><a class="dropdown-item" href="#"><b>My Account</b></a><a class="dropdown-item" href="{%url 'user_dashboard' %}">Dashboard</a><a class="dropdown-item" href="#">Account Setting</a><a class="dropdown-item" href="#">Orders</a><a class="dropdown-item" href="#">Wishlist</a><a class="dropdown-item" href="#">Shipping Address</a><hr><a class="dropdown-divider"></a><a class="dropdown-item" href="{%url 'account_logout'%}"><i class="icon-exit-left"></i>Log out</a></div>
+                    <div class="dropdown-menu" aria-labelledby="dropdownAccount"><a class="dropdown-item" href="#"><b>My Account</b></a><a class="dropdown-item" href="{%url 'user_dashboard' %}">Dashboard</a><a class="dropdown-item" href="{%url 'profile_edit'%}">Account Setting</a><a class="dropdown-item" href="#">Orders</a><a class="dropdown-item" href="#">Wishlist</a><a class="dropdown-item" href="#">Shipping Address</a><hr><a class="dropdown-divider"></a><a class="dropdown-item" href="{%url 'account_logout'%}"><i class="icon-exit-left"></i>Log out</a></div>
                 </div>
                 {%endif%}
               </div>

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static humanize  crispy_forms_tags%}
+{% block title %}product details{% endblock %}
+
+
+
+    {% block content %}
+    <main class="no-main">
+        <div class="ps-breadcrumb">
+            <div class="container">
+                <ul class="ps-breadcrumb__list">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="javascript:void(0);">My Account Settings</a></li>
+                </ul>
+            </div>
+        </div>
+        <section class="section--registration">
+            <div class="container">
+                <h2 class="page__title">Profile Settings</h2>
+                <div class="registration__content">
+                    <div class="row">
+                      
+                        <div class="col-12 col-lg-5">
+                            <h3 class="registration__title">Update My Information</h3>
+                            <form method="post">
+                                {% csrf_token %}
+
+                            <div class="registration__box">
+                                    <div class="form-row">
+                                        <div class="col-12 form-group--block">
+                                           {{setting | crispy }}
+                                        </div>
+                                      
+                                    </div>
+                            </div>
+                           
+                            <button type="submit" class="btn ps-button">Update Profile</button>
+                        </form>
+
+                        </div>
+                        <div class="col-12 col-lg-5">
+                            <h3 class="registration__title">Change Password</h3>
+                            <form method="post" action="{%url 'password_change' %}">
+
+                            <div class="registration__box">
+                                    {% csrf_token %}
+                                    <div class="form-row">
+                                        <div class="col-12 form-group--block">
+                                           {{password_form|crispy }}
+                                        </div>
+                                     
+                                    </div>
+                            </div>
+                            <p> <span class="text-success">Change Password ? </span>A password is a string of characters used to verify the identity of a user during the authentication process. Passwords are typically used in tandem with a username; they are designed to be known only to the user and allow that user to gain access to a device, application or website. Passwords can vary in length and can contain letters, numbers and special characters.</p>
+                            <button  type="submit" class="btn ps-button">Change Password</button>
+                        </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    {% endblock %}
+
+
+  
+   

@@ -1,10 +1,18 @@
 from codecs import decode
-from django.shortcuts import get_object_or_404, render
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from django.template.loader import render_to_string
+from .forms import ProfileSettingsForm
 
 from orders.models import Order, OrderProduct
 from store.models import Product, ProductImage, ReviewRating
+
+from django.views.generic import View, ListView
+from next.users.models import User
+
 
 
 from weasyprint import HTML
@@ -53,4 +61,32 @@ class InvoicePDFView(PDFTemplateView):
         context['item_total'] = item_total
         return context
 
+def profile_edit (request):
+    password = PasswordChangeForm(request.user)
+    setting = ProfileSettingsForm(initial={'first_name': request.user.first_name,'last_name': request.user.last_name,'phone_number':request.user.contact_number})
+    url = request.META.get('HTTP_REFERER')
+
+    if request.method == 'POST':
+        setting = ProfileSettingsForm(request.POST)
+        if setting.is_valid():
+            user_profile = User.objects.get(id=request.user.id)
+            user_profile.first_name = setting.cleaned_data['first_name']
+            user_profile.last_name = setting.cleaned_data['last_name']
+            user_profile.phone_number = setting.cleaned_data['phone_number']
+            user_profile.save()
+            return redirect('url')
+
+    context = {
+        'password_form':password,
+        'setting': setting,
+    }
+    return render(request,'user_dashboard/edit_profile.html', context)
+
    
+def password_change (request):
+    if request.method == 'POST':
+            form = PasswordChangeForm(request.user, request.POST)
+            if form.is_valid():
+                user = form.save()
+                update_session_auth_hash(request, user)  # Important!
+                messages.error(request, 'Your password was successfully updated!')
