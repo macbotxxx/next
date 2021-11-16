@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static humanize %}
+{% block title %}product details{% endblock %}
+
+
+
+    {% block content %}
+    <main class="no-main">
+        <div class="ps-breadcrumb">
+            <div class="container">
+                <ul class="ps-breadcrumb__list">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="javascript:void(0);">My Orders</a></li>
+                </ul>
+            </div>
+        </div>
+     
+        <section class="section--wishlist">
+            <h2 class="page__title">My orders</h2>
+
+            <div class="container">
+                <div class="wishlist__content">
+                    <div class="wishlist__product">
+                        <div class="wishlist__product--mobile">
+                            <div class="row m-0">
+                                {%for p in order %}
+                                <div class="col-6 col-md-4 p-0">
+                                    <div class="ps-product--standard">
+                                        <a class="ps-product__trash" href="javascript:void(0);"></a><a href="{%url 'get_product_id' p.id %}"><img class="ps-product__thumbnail" src="{% static 'nextonline/img/products/01-Fresh/01_1a.jpg'%}" alt="alt" /></a>
+                                        <div class="ps-product__content">
+                                            <p class="ps-product__ofstock"><b>Order ID:</b> <br> {{p.order.order_number}}</p><a href="{%url 'get_product_id' p.id %}">
+                                               
+                                            </a>
+                                            <b>Ordered Date:</b> <br>
+                                            <p class="ps-product__unit">{{p.created_date}}</p>
+                                            <b>Total Amount:</b> <br>
+                                            <p class="ps-product__meta"><span class="ps-product__price">₦{{p.order.order_total | intcomma}}</span></p>
+                                        </div>
+                                        <div class="ps-product__footer">
+                                            <a href="{%url 'get_product_id' p.id %}" class="wishlist__readmore w-100">View Order</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {%endfor%}
+
+                            </div>
+                        </div>
+                        <div class="wishlist__product--desktop">
+                            <table class="table">
+                                <thead class="wishlist__thead">
+                                    <tr>
+                                        <th scope="col">Tracking Number</th>
+                                        <th scope="col">Total Amount</th>
+                                        <th scope="col">Order Date</th>
+                                        <th scope="col">Stock Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="wishlist__tbody">
+                                    {%for p in order %}
+                                    <tr>
+                                      
+                                        <td>
+                                            <div class="ps-product--vertical"><a href="{%url 'get_product_id' p.order_number %}">{{p.order_number}}</a>
+                                                <div class="ps-product__content">
+                                                   
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <td><span class="ps-product__instock">₦{{p.order_total | intcomma}}</span>
+                                        </td>
+                                        <td><span class="ps-product__price">{{p.created_date}}</span>
+                                        </td>
+                                        <td>
+                                            <a class="btn wishlist__btn add-cart" href="{%url 'generate_pdf' p.order_number %}"><i class="icon-eye"></i>View Order</a>
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+                                  
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+    </main>
+    {% endblock %}
+  

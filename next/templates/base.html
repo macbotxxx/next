@@ -1,4 +1,4 @@
-{% load static i18n  humanize%}
+{% load static i18n compress  humanize%}
 {% load mptt_tags %}
 <!DOCTYPE html>
 <html lang="en">
@@ -31,21 +31,56 @@
 
 
     <!-- Your stuff: Third-party CSS libraries go here -->
-  
+    {% compress css %}
     <!-- This file stores project-specific CSS -->
-    <link rel="stylesheet" href="{% static 'nextonline/fonts/Linearicons/Font/demo-files/demo.css' %}">
-    <link rel="stylesheet" href="{% static 'nextonline/plugins/bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'nextonline/plugins/font-awesome/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'nextonline/plugins/jquery-bar-rating/themes/fontawesome-stars.css' %}">
-    <link rel="stylesheet" href="{% static 'nextonline/plugins/select2/css/select2.min.css' %}">
-    <link rel="stylesheet" href="{% static 'nextonline/plugins/owl-carousel/assets/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'nextonline/plugins/slick/slick.css' %}">
-    <link rel="stylesheet" href="{% static 'nextonline/plugins/lightGallery/css/lightgallery.min.css' %}">
-    <link rel="stylesheet" href="{% static 'nextonline/css/style.css' %}">
-    
+    <link defer rel="stylesheet" href="{% static 'nextonline/fonts/Linearicons/Font/demo-files/demo.css' %}">
+    <link defer rel="stylesheet" href="{% static 'nextonline/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link defer rel="stylesheet" href="{% static 'nextonline/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link defer rel="stylesheet" href="{% static 'nextonline/plugins/jquery-bar-rating/themes/fontawesome-stars.css' %}">
+    <link defer rel="stylesheet" href="{% static 'nextonline/plugins/select2/css/select2.min.css' %}">
+    <link defer rel="stylesheet" href="{% static 'nextonline/plugins/owl-carousel/assets/owl.carousel.min.css' %}">
+    <link defer rel="stylesheet" href="{% static 'nextonline/plugins/slick/slick.css' %}">
+    <link defer rel="stylesheet" href="{% static 'nextonline/plugins/lightGallery/css/lightgallery.min.css' %}">
+    <link defer rel="stylesheet" href="{% static 'nextonline/css/style.css' %}">
+    {% endcompress %}
 
 
     {% endblock %}
+
+         <!-- Le javascript
+    ================================================== -->
+    {# Placed at the top of the document so pages load faster with defer #}
+    {% block javascript %}
+      <!-- Bootstrap JS and its dependencies-->
+      <script defer data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+
+      <!-- Your stuff: Third-party javascript libraries go here -->
+
+      <!-- place project specific Javascript in this file -->
+      {% compress js %}
+      
+      <script defer src="{% static 'nextonline/plugins/jquery.min.js' %}"></script>
+      <script defer src="{% static 'nextonline/plugins/popper.min.js' %}"></script>
+      <script defer src="{% static 'nextonline/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+      <script defer src="{% static 'nextonline/plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+      <script defer src="{% static 'nextonline/plugins/jquery.matchHeight-min.js' %}"></script>
+      <script defer src="{% static 'nextonline/plugins/jquery-bar-rating/jquery.barrating.min.js' %}"></script>
+      <script defer src="{% static 'nextonline/plugins/select2/js/select2.min.js' %}"></script>
+      <script defer src="{% static 'nextonline/plugins/slick/slick.js' %}"></script>
+      <script defer src="{% static 'nextonline/plugins/lightGallery/js/lightgallery-all.min.js' %}"></script>
+      <script defer src="{% static 'nextonline/plugins/nouislider.min.js' %}"></script>
+      <!-- custom code-->
+      <script defer src="{% static 'nextonline/js/main.js' %}"></script>
+      <script defer src="{% static 'nextonline/js/mobi.js' %}"></script>
+      <script defer src="https://js.paystack.co/v1/inline.js"></script> 
+      <script defer src="https://checkout.flutterwave.com/v3.js"></script>
+
+      {% endcompress %}
+      
+
+
+    {% endblock javascript %}
 
 
   </head>
@@ -446,7 +481,10 @@
               <div>
                   {%if request.user.is_authenticated %}
                   <div><span><a class="dropdown-user" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </span><span class="account"><i class="icon-user"></i>Hi, {{request.user.name | title}} <i class="icon-chevron-down"></i></span></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownAccount"><a class="dropdown-item" href="#"><b>My Account</b></a><a class="dropdown-item" href="{%url 'user_dashboard' %}">Dashboard</a><a class="dropdown-item" href="{%url 'profile_edit'%}">Account Setting</a><a class="dropdown-item" href="#">Orders</a><a class="dropdown-item" href="#">Wishlist</a><a class="dropdown-item" href="#">Shipping Address</a><hr><a class="dropdown-divider"></a><a class="dropdown-item" href="{%url 'account_logout'%}"><i class="icon-exit-left"></i>Log out</a></div>
+                    <div class="dropdown-menu" aria-labelledby="dropdownAccount"><a class="dropdown-item" href="#"><b>My Account</b></a><a class="dropdown-item" href="{%url 'user_dashboard' %}">Dashboard</a><a class="dropdown-item" href="{%url 'profile_edit'%}">Account Setting</a><a class="dropdown-item" href="{%url 'my_orders' %}">Orders</a>
+                        
+                        <!-- <a class="dropdown-item" href="#">Wishlist</a><a class="dropdown-item" href="#">Shipping Address</a><hr> -->
+                        <a class="dropdown-divider"></a><a class="dropdown-item" href="{%url 'account_logout'%}"><i class="icon-exit-left"></i>Log out</a></div>
                 </div>
                 {%endif%}
               </div>
