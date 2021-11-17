@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static humanize %}
+{% load static humanize crispy_forms_tags %}
 
 
 
@@ -21,102 +21,28 @@
                         <div class="ps-shop--sidebar">
                           
                             <div class="sidebar__sort">
-                              
+                              <form action="" method="get">
                                 <div class="sidebar__block open">
                                     <div class="sidebar__title">BY PRICE<span class="shop-widget-toggle"><i class="icon-minus"></i></span></div>
                                     <div class="block__content">
                                         
-                                        <div class="block__input">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text">₦</span></div>
-                                                <input class="form-control" type="text" id="input-with-keypress-0">
-                                            </div>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text">₦</span></div>
-                                                <input class="form-control" type="text" id="input-with-keypress-1">
-                                            </div>
-                                            <button>Go</button>
-                                        </div>
+                                     
+                                            {{filter.form.price__gt | as_crispy_field}}
+                                            {{filter.form.price__lt | as_crispy_field }}
+                                 
+                                   
                                     </div>
                                 </div>
                                 <div class="sidebar__block open">
-                                    <div class="sidebar__title">AVG. REVIEW<span class="shop-widget-toggle"><i class="icon-minus"></i></span></div>
+                                    <div class="sidebar__title">By Best and Flash Sale<span class="shop-widget-toggle"><i class="icon-minus"></i></span></div>
                                     <div class="block__content">
-                                        <ul>
-                                            <li>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="avg5" value="">
-                                                    <label for="rating5">
-                                                        <select class="rating-stars" id="rating5">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5" selected="selected">5</option>
-                                                        </select><span class="text-up">& Up</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="avg4" value="">
-                                                    <label for="rating4">
-                                                        <select class="rating-stars" id="rating4">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4" selected="selected">4</option>
-                                                            <option value="5">5</option>
-                                                        </select><span class="text-up">& Up</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="avg3" value="">
-                                                    <label for="rating3">
-                                                        <select class="rating-stars" id="rating3">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3" selected="selected">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                        </select><span class="text-up">& Up</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="avg2" value="">
-                                                    <label for="rating2">
-                                                        <select class="rating-stars" id="rating2">
-                                                            <option value="1">1</option>
-                                                            <option value="2" selected="selected">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                        </select><span class="text-up">& Up</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="avg1" value="">
-                                                    <label for="rating1">
-                                                        <select class="rating-stars" id="rating1">
-                                                            <option value="1" selected="selected">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                        </select><span class="text-up">& Up</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                       {{filter.form.best_selling | as_crispy_field }}
+                                       {{filter.form.flash_sale | as_crispy_field }}
                                     </div>
                                 </div>
-                               
+
+                                <button  type="submit" class="btn ps-button">Filter</button>
+                            </form>
                             </div>
                         </div>
                     </div>

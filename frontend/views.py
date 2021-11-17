@@ -8,12 +8,14 @@ from django.contrib import messages
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
 from .forms import ReviewRatingForm
+from .filters import ProductFilter
 from orders.forms import OrderForm
 
 
 from store.models import Product, ProductImage, ReviewRating
 from categories.models import Category
 from orders.models import OrderProduct
+
 
 
 
@@ -53,25 +55,30 @@ class ProductCategory (View):
     def get (self, request, *args, **kwargs):
 
         category = Category.objects.get(slug= kwargs['slug'])
+        filter = ProductFilter()
         if category.parent is None:
             products = Product.objects.filter(category__parent=category)
-            count = products.count()
 
         else:
             products = Product.objects.filter(category=category)
-            count = products.count()
 
 
-    
+        myFilter = ProductFilter(request.GET, queryset=products)
+        products = myFilter.qs
+        count = products.count()
+        
         """product pagination"""
         paginator = Paginator(products, 20) # Show 20 contacts per page.
         page_number = request.GET.get('page')
         products = paginator.get_page(page_number)
+        
 
         #  getting the product rating 
         reviews = [] 
         for product in products:
             reviews = ReviewRating.objects.filter(product_id=product.id)
+            
+        
 
      
         context = {
@@ -79,6 +86,7 @@ class ProductCategory (View):
             'products': products,
             'reviews':reviews,
             'count':count,
+            'filter':filter,
         }
 
         return render(self.request, 'pages/category.html', context)

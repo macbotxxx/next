@@ -102,6 +102,13 @@ class Product(BaseModel):
         default = False, null =True,
         help_text = _("to identify which product is among the flash sale for the month.")
     )
+    
+    short_description = models.TextField(
+        verbose_name = _("Product Short Description"),
+        max_length = 255,
+        null = True,
+        help_text = _("Short description of the product which shouldnt be long.")
+        )
 
     description = HTMLField(
         verbose_name = _('Product Description'),
