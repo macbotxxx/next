@@ -84,6 +84,7 @@ THIRD_PARTY_APPS = [
     "phonenumber_field",
     "sorl.thumbnail",
     "tinymce",
+    "admin_honeypot",
     
 ]
 
@@ -146,6 +147,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django_session_timeout.middleware.SessionTimeoutMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -154,6 +156,13 @@ MIDDLEWARE = [
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+
+# https://pypi.org/project/django-session-timeout/
+SESSION_EXPIRE_SECONDS = 3600  # 1 hour
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_TIMEOUT_REDIRECT = 'account_login'
+
 
 # STATIC_URL = '/static/'
 # MEDIA_URL = '/media/' 
@@ -254,7 +263,8 @@ EMAIL_TIMEOUT = 5
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL.
-ADMIN_URL = "admin/"
+MAIN_ADMIN_URL = "admin/"
+ADMIN_URL = "admindesk/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [("""Michael Jr Assanama""", "admin@next.com")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
