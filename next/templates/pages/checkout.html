@@ -23,15 +23,89 @@
 
                     <div class="row">
                         <div class="col-12 col-lg-7">
-                            <h3 class="checkout__title">Billing Details</h3>
-                            <div class="checkout__form">
-                                    <div class="form-row">
+                            <h3 class="checkout__title">Shipping Address</h3>
+                            {% if default_shipping_address %}
 
-                                        <div class="col-12  form-group--block">
-                                            {{form|crispy }}
+                            
+                           <p> <strong> Hey {{request.user.name | title }} </strong>, <br> You already have a saved default address , you can input a new one or tick on the use default address button </p>
+                        
+                             
+                           
+
+                            <div class="checkout__payment">
+                                <div class="checkout__label mb-3">CHOOSE DEFAULT ADDRESS</div>
+                                <div class="form-group--block">
+                                    <input type="checkbox" class="" name="use_default_shipping" id="use_default_shipping">
+                                        <label class="" for="use_default_shipping"><b class="text-heading">Click to use default shipping address </b></label>
+                                 </div>
+                               
+                                <div class="checkout__payment__detail">
+                                    <b>Full Name: </b> {{default_shipping_address.full_name | title}} <br>
+                                    <b>Contact Number: </b> {{default_shipping_address.phone_number}} <br>
+                                    <b>Email: </b> {{default_shipping_address.email}} <br>
+                                    <b>Address : </b> {{default_shipping_address.address | title}} <br>
+                                    <b>State: </b> {{default_shipping_address.state | title}} <br>
+                                    <div class="triangle-box">
+                                        <div class="triangle"></div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                     
+                           
+                            {%endif%}
+                            <div class="checkout__form">
+                                    <div class="form-row hideable_shipping_form">
+
+                                        <div class="col-12 col-lg-6 form-group--block">
+                                            <label>First Name: <span>*</span></label>
+                                            <input class="form-control" id="id_first_name" name="first_name" value="{{request.user.first_name}}"  type="text" >
+                                        </div>
+
+                                        <div class="col-12 col-lg-6 form-group--block">
+                                            <label>Last Name: <span>*</span></label>
+                                            <input class="form-control" id="id_last_name" name="last_name" value="{{request.user.last_name}}"  type="text" >
+                                        </div>
+                                        <div class="col-12 col-lg-6 form-group--block">
+                                            <label>Contact Number: <span>*</span></label>
+                                            <input class="form-control" id="id_phone_number" name="phone_number" value="{{request.user.contact_number}}"  type="text" >
+                                        </div>
+
+                                        <div class="col-12 col-lg-6 form-group--block">
+                                            <label>Email: <span>*</span></label>
+                                            <input class="form-control" id="id_email" name="email" value="{{request.user.email}}"  type="text" >
+                                        </div>
+                                        
+                                        <div class="col-12 form-group--block">
+                                            <label>Shipping Address: <span>*</span> </label>
+                                            <input class="form-control" id="id_address_line_2" name="address_line_2" type="text" >
                                         </div>
                                        
+                                        <div class="col-12 form-group--block">
+                                            <label>Shipping Address 2  (optional):</label>
+                                            <input class="form-control" id="id_address_line_1" name="address_line_1" type="text" >
+                                        </div>
+
+                                       
+                                        <div class="col-12 col-lg-6 form-group--block">
+                                            <label>Shipping Local Gov : <span>*</span></label>
+                                            <input class="form-control" id="id_shipping_local_gov" name="shipping_local_gov"   type="text" >
+                                        </div>
+
+                                        <div class="col-12 col-lg-6 form-group--block">
+                                            <label>State: <span>*</span></label>
+                                            {{form.shipping_state }}
+                                        </div>
+                                       
+
+
+                                        <div class="col-12 col-lg-6 form-group--block custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" name="set_default_shipping" id="set_default_shipping">
+                                            <label class="custom-control-label" for="set_default_shipping">Save as default shipping address</label>
+                                          </div>
+  
                                     </div>
+                                   
                             </div>
                         </div>
                         <div class="col-12 col-lg-5">
@@ -101,3 +175,35 @@
     </main>
 {% endblock %}
    
+{% block inline_javascript %}
+<script>
+    var hideable_shipping_form = document.querySelector('.hideable_shipping_form');
+    var default_card = document.querySelector('#default-card');
+    // var hideable_billing_form = $('.hideable_billing_form');
+    
+    var use_default_shipping = document.querySelector("input[name='use_default_shipping']");
+    // var use_default_billing = document.querySelector("input[name=use_default_billing]");
+    
+    use_default_shipping.addEventListener('change', function() {
+      if (this.checked) {
+        // alert('hello');
+        hideable_shipping_form.style="display: none";
+        default_card.style="display: unset";
+
+      } else {
+        // alert('hello world');
+        hideable_shipping_form.style="display: unset";
+        default_card.style="display: none";
+      }
+    })
+    
+    // use_default_billing.addEventListener('change', function() {
+    //   if (this.checked) {
+    //     hideable_billing_form.hide();
+    //   } else {
+    //     hideable_billing_form.show();
+    //   }
+    // })
+    
+  </script>
+  {% endblock inline_javascript %}

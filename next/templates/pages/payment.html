@@ -27,13 +27,12 @@
                             <div class="checkout__payment">
                                 <div class="checkout__label mb-3">SHIPPING ADDRESS</div>
                                 <div class="form-group--block">
-                                   <p>{{current_order.full_name | title}}</p> 
-                                   <p>{{current_order.address | title }}</p> 
-                                   <p>{{current_order.city}}</p> 
-                                   <p>{{current_order.state}}</p> 
-                                   <p>{{current_order.phone_number}}</p> 
-                                   <p><b>Order Note:</b></p> 
-                                   <p>{{current_order.order_note}}</p> 
+                                   <p>{{current_order.shipping_address.full_name | title}}</p> 
+                                   <p>{{current_order.shipping_address.address | title }}</p> 
+                                   <p>{{current_order.shipping_address.city}}</p> 
+                                   <p>{{current_order.shipping_address.state}}</p> 
+                                   <p>{{current_order.shipping_address.phone_number}}</p> 
+                                  
                                 </div>
                                 
                             </div>

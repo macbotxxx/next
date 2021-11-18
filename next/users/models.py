@@ -148,6 +148,102 @@ def create_user_registed_ip(sender, instance, created, **kwargs):
         UserRegisteredIp.objects.create(user=instance,registered_ip_address = instance.registered_ip_address, is_active = True)
         print('profile is created')
 
+
+
+class Shipping_Address (BaseModel):
+    """
+    Shipping Address model which is consist of the customer Shipping Address details 
+   of the current user
+    """
+
+    user = models.ForeignKey(
+        'User',
+        verbose_name=_("User Profile"),
+        on_delete=models.PROTECT, null=True,
+        help_text=_("The user for whom account belongs to")
+    )
+
+    first_name = models.CharField(
+        verbose_name = _("Legal First Name"),
+        max_length = 150,
+        null=True,
+        help_text=_("Customer legal first name"),
+    )
+
+    last_name = models.CharField(
+        verbose_name = _("Legal Last Name "),
+        max_length = 150,
+        null=True,
+        help_text=_("Customer legal last name")
+    )
+
+    phone_number = models.CharField(
+        verbose_name = _("Phone Number "),
+        max_length = 150,
+        null=True,
+        help_text=_("Customers Phone Number")
+    )
+
+    email = models.EmailField(
+        verbose_name = _("Customers Email"),
+        max_length = 150,
+        null=True,
+        help_text=_("Customer email address for discount and notifications")
+    )
+
+    address_line_1  = models.CharField(
+        verbose_name = _("Address Line 1"),
+        max_length = 400,
+        null=True,
+        help_text=_("Customers address line 1 ")
+    )
+
+    address_line_2  = models.CharField(
+        verbose_name = _("Address Line 2"),
+        max_length = 400,
+        null=True,blank=True,
+        help_text=_("Customers address line 2 ")
+    )
+
+    state = models.CharField(
+        verbose_name = _("Customers State"),
+        max_length = 400,
+        null=True,
+        help_text=_("State of which the order is been placed from or to be shipped to.")
+    )
+
+    city = models.CharField(
+        verbose_name = _("Order City"),
+        max_length = 400,
+        null=True,
+        help_text=_("City of which the order is been placed from or to be shipped to.")
+    )
+    
+    default = models.BooleanField(
+        verbose_name = _("Default Shipping Address"),
+        default = False, null =True,
+        help_text = _("to identify which shipping address is the default shipping address.")
+        )
+  
+    def __str__(self):
+        return str(self.user)
+
+     # creating a function for details
+    def full_name (self):
+        return f'{self.first_name} {self.last_name}'
+
+    def address (self):
+        return f'{self.address_line_1},  {self.address_line_2}'
+
+
+    class Meta:
+
+        ordering = ('-created_date',)
+        verbose_name = _("User Shipping Addresses")
+        verbose_name_plural = _("User Shipping Addresses")
+
+
+
 class UserRegisteredIp (BaseModel):
     """
     registering user ip address 

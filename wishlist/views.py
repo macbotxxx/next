@@ -132,39 +132,6 @@ def add_to_cart (request, id):
         return redirect('cart')
 
 
-
-def remove_from_cart (request, id, c_id):
-    print(c_id)
-    product = get_object_or_404(Product, id=id)
-    try:
-        if request.user.is_authenticated:
-            cart_item = CartItem.objects.get(product=product, user = request.user, id = c_id )
-        else:
-            cart = Cart.objects.get(cart_id=_cart_id(request))
-            cart_item = CartItem.objects.get(product=product, cart=cart, id = c_id )
-
-        if cart_item.quantity > 1:
-            cart_item.quantity -= 1
-            cart_item.save()
-        else:
-            cart_item.delete()
-    except:
-        pass
-
-    return redirect('cart')
-
-def delete_cart(request, id, c_id):
-    product = get_object_or_404(Product, id=id)
-    if request.user.is_authenticated:
-        cart_item = CartItem.objects.filter(product=product, user = request.user, id = c_id )
-    else:
-        cart = Cart.objects.get(cart_id=_cart_id(request))
-        cart_item = CartItem.objects.filter(product=product, cart=cart, id = c_id )
-    cart_item.delete()
-    return redirect('cart')
-
-
-
 def cart (request, total=0, quantity=0, cart_items=None):
     shipping_rate_per_quantity = 0
     grandtotal = 0
@@ -193,5 +160,3 @@ def cart (request, total=0, quantity=0, cart_items=None):
 
 
     return render(request, 'pages/cart.html', context)
-
-

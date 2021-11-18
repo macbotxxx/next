@@ -2,17 +2,11 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-from .models import UserActivity, UserRegisteredIp
+from .models import UserActivity, UserRegisteredIp, Shipping_Address
 
 User = get_user_model()
 
 from django.contrib.sessions.models import Session
-
-@admin.register(Session)
-class SessionAdmin(admin.ModelAdmin):
-    def _session_data(self, obj):
-        return obj.get_decoded()
-    list_display = ['session_key', '_session_data', 'expire_date']
 
 
 @admin.register(User)
@@ -32,3 +26,9 @@ class UserActivityAdmin(admin.ModelAdmin):
 class UserRegisteredIpAdin(admin.ModelAdmin):
     list_display = ('user', 'registered_ip_address')
     list_display_links = ('user', 'registered_ip_address')
+    
+
+@admin.register(Shipping_Address)
+class ShippingAddressAdmin(admin.ModelAdmin):
+    list_display = ('user', 'first_name', 'last_name', 'phone_number', 'email', 'state', 'city', 'default')
+    list_display_links = ('user', 'first_name', 'last_name', 'phone_number', 'email', 'state', 'city', 'default')

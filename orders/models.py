@@ -4,7 +4,7 @@ from helpers.common.basemodel import BaseModel
 from django.utils.translation import gettext_lazy as _
 
 
-from next.users.models import User
+from next.users.models import User, Shipping_Address
 from store.models import Product, ProductVariation
 from .payment_gateway import FlutterWave, PayStack
 
@@ -124,68 +124,14 @@ class Order (BaseModel):
         help_text=_("Order generated number to identify the current customer order")
     )
 
-    first_name = models.CharField(
-        verbose_name = _("Legal First Name"),
-        max_length = 150,
-        null=True,
-        help_text=_("Customer legal first name"),
+    shipping_address = models.ForeignKey(
+        Shipping_Address, on_delete = models.CASCADE,
+        null = True,
+        verbose_name = _("Shipping Address"),
+        help_text = _("shippiing address to identify the current customer location for delivery")
     )
 
-    last_name = models.CharField(
-        verbose_name = _("Legal Last Name "),
-        max_length = 150,
-        null=True,
-        help_text=_("Customer legal last name")
-    )
-
-    phone_number = models.CharField(
-        verbose_name = _("Phone Number "),
-        max_length = 150,
-        null=True,
-        help_text=_("Customers Phone Number")
-    )
-
-    email = models.EmailField(
-        verbose_name = _("Customers Email"),
-        max_length = 150,
-        null=True,
-        help_text=_("Customer email address for discount and notifications")
-    )
-
-    address_line_1  = models.CharField(
-        verbose_name = _("Address Line 1"),
-        max_length = 400,
-        null=True,
-        help_text=_("Customers address line 1 ")
-    )
-
-    address_line_2  = models.CharField(
-        verbose_name = _("Address Line 2"),
-        max_length = 400,
-        null=True,blank=True,
-        help_text=_("Customers address line 2 ")
-    )
-
-    state = models.CharField(
-        verbose_name = _("Customers State"),
-        max_length = 400,
-        null=True,
-        help_text=_("State of which the order is been placed from or to be shipped to.")
-    )
-
-    city = models.CharField(
-        verbose_name = _("Order City"),
-        max_length = 400,
-        null=True,
-        help_text=_("City of which the order is been placed from or to be shipped to.")
-    )
-
-    order_note = models.TextField(
-        verbose_name = _("Order Note"),
-        null=True,blank=True,
-        help_text=_("A short note for the order to be delieved to you.")
-    )
-
+   
     shipping_rate_per_quantity = models.IntegerField(
         verbose_name = _("Order Shipping Rate"),
         null=True,blank=True,
@@ -227,13 +173,6 @@ class Order (BaseModel):
 
     def __str__(self):
         return str(self.order_number)
-
-     # creating a function for details
-    def full_name (self):
-        return f'{self.first_name} {self.last_name}'
-
-    def address (self):
-        return f'{self.address_line_1} {self.address_line_2}'
 
 
     class Meta:

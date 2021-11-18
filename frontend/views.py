@@ -10,6 +10,7 @@ from carts.models import Cart, CartItem
 from .forms import ReviewRatingForm
 from .filters import ProductFilter
 from orders.forms import OrderForm
+from next.users.models import Shipping_Address
 
 
 from store.models import Product, ProductImage, ReviewRating
@@ -260,6 +261,18 @@ class Checkout (LoginRequiredMixin, View):
         'grandtotal': grandtotal,
         'form':form,
         }
+        
+        shipping_address_qs = Shipping_Address.objects.filter(
+                user=self.request.user,
+                default=True
+            )
+        
+        if shipping_address_qs.exists():
+            context.update(
+                {
+                'default_shipping_address': shipping_address_qs[0]
+                })
+            
         return render(self.request, 'pages/checkout.html', context)
 
     def post (self, request, *args, **kwargs):
