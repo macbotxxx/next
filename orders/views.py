@@ -7,6 +7,7 @@ from store.models import Product
 from .models import Order, OrderProduct, Payment
 from .forms import OrderForm
 from .payment_gateway import FlutterWave, PayStack
+from django.contrib import messages
 
 # Create your views here.
 
@@ -25,6 +26,12 @@ def order_number():
 def transaction_ref():
     return ''.join(random.choices(string.ascii_lowercase + string.digits, k=35))
 
+def is_valid_form(values):
+    valid = True
+    for field in values:
+        if field == '':
+            valid = False
+    return valid
 
 def placeOrder (request,total=0, quantity=0):
     current_user = request.user
@@ -78,32 +85,55 @@ def placeOrder (request,total=0, quantity=0):
                     pass
 
             else:
-                # storing all the billing and order information in the order table 
-                # get and store the instance of the order information
-                data = Order()
-                data.user = current_user
-                address = Shipping_Address.objects.create(user = request.user, first_name = form.cleaned_data['first_name'], last_name = form.cleaned_data['last_name'], phone_number = form.cleaned_data ['phone_number'], email = form.cleaned_data ['email'], address_line_1 = form.cleaned_data ['address_line_1'], address_line_2 = form.cleaned_data ['address_line_2'], state = form.cleaned_data ['shipping_state'], city = form.cleaned_data ['shipping_local_gov'],)
-
-                data.shipping_address = address
-            
-                data.shipping_rate_per_quantity = shipping_rate_per_quantity
-                data.order_total = grandtotal
-                data.ip_address = request.META.get('REMOTE_ADDR')
-                data.order_number = order_number()
-                data.save()
-                current_order = Order.objects.get(order_number = data.order_number, user = current_user, is_ordered = False)
+                first_name = form.cleaned_data['first_name'] 
+                last_name = form.cleaned_data.get('last_name') 
+                phone_number = form.cleaned_data.get('phone_number')
+                email = form.cleaned_data.get('email')
+                address_line_1 = form.cleaned_data.get('address_line_1')
+                address_line_2 = form.cleaned_data.get('address_line_2') 
+                state = form.cleaned_data.get('shipping_state')
+                city = form.cleaned_data.get('shipping_local_gov')
                 
-                # saving user shipping adsress
+                # changing the defualt shipping address 
+                set_default_shipping = form.cleaned_data.get('set_default_shipping')
+                if set_default_shipping:
+                    address_qs = Shipping_Address.objects.filter(user=request.user,default=True,)
+                    if address_qs.exists():
+                        address_qs = Shipping_Address.objects.filter(user=request.user,default=True,).update(default=False)
+                        save_default = form.cleaned_data.get('set_default_shipping')
+                    else:
+                        save_default = form.cleaned_data.get('set_default_shipping')
+                        
+                if  is_valid_form([first_name, last_name, phone_number, email, address_line_1, state,city]):
+                   
+                    # storing all the billing and order information in the order table 
+                    # get and store the instance of the order information
+                    data = Order()
+                    data.user = current_user
+                    address = Shipping_Address.objects.create(user = request.user, first_name = first_name, last_name = last_name, phone_number = phone_number, email = email, address_line_1 = address_line_1, address_line_2 = address_line_2, state = state , city = city, default = save_default)
+
+                    data.shipping_address = address
                 
+                    data.shipping_rate_per_quantity = shipping_rate_per_quantity
+                    data.order_total = grandtotal
+                    data.ip_address = request.META.get('REMOTE_ADDR')
+                    data.order_number = order_number()
+                    data.save()
+                    current_order = Order.objects.get(order_number = data.order_number, user = current_user, is_ordered = False)
+                    
+                    # saving user shipping adsress
+                    
 
 
-                # creating payment
-                payment_ref = transaction_ref() 
-                payment = Payment.objects.create(user = current_user, payment_ref = payment_ref, amount_paid = grandtotal )
-                current_order.payment = payment
-                current_order.save()
+                    # creating payment
+                    payment_ref = transaction_ref() 
+                    payment = Payment.objects.create(user = current_user, payment_ref = payment_ref, amount_paid = grandtotal )
+                    current_order.payment = payment
+                    current_order.save()
             
-
+                else:
+                    messages.error(request, "Please fill in the required shipping address fields", extra_tags="warning")
+                    return redirect('checkout')
             context = {
                 'current_order':current_order,
                 'shipping_rate_per_quantity': shipping_rate_per_quantity,

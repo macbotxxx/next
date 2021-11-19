@@ -24,6 +24,20 @@
                     <div class="row">
                         <div class="col-12 col-lg-7">
                             <h3 class="checkout__title">Shipping Address</h3>
+                            {% if messages %}
+                            {% for message in messages %}
+                            {%if "warning" in message.extra_tags %} 
+                    
+                            <div {% if message.extra_tags %} class="alert alert-{{ message.extra_tags }}  {% endif %} alert-dismissible fade show" role="alert">
+                               {{ message }}
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            {%endif%}
+                            {% endfor %}
+                            {% endif %}
+                            
                             {% if default_shipping_address %}
 
                             
