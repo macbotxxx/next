@@ -27,13 +27,18 @@ CACHES = {
 # # https://docs.djangoproject.com/en/dev/ref/settings/#email-port
 # EMAIL_PORT = 1025
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'support@nextcashandcarry.com.ng'
-EMAIL_HOST_PASSWORD = 'NexTSer@!!'
-EMAIL_PORT = '587'
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'support@nextcashandcarry.com.ng'
+# EMAIL_HOST_PASSWORD = 'NexTSer@!!'
+# EMAIL_PORT = '587'
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'f7f1d4d566645a'
+EMAIL_HOST_PASSWORD = '1917db4a003d90'
+EMAIL_PORT = '2525'
 
 # WhiteNoise
 # ------------------------------------------------------------------------------
