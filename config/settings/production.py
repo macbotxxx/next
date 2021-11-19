@@ -41,7 +41,6 @@ CACHES = {
     }
 }
 
-SITE_ID = 1
 
 # SECURITY
 # ------------------------------------------------------------------------------
@@ -98,7 +97,8 @@ EMAIL_SUBJECT_PREFIX = "[NEXT CASH AND CARRY]"
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL regex.
-ADMIN_URL = "admin/"
+MAIN_ADMIN_URL = "admin/"
+ADMIN_URL = "admindesk/"
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
