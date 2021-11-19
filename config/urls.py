@@ -10,7 +10,7 @@ urlpatterns = [
   
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
-    path(settings.MAIN_ADMIN_URL, include("admin_honeypot.urls", namespace = "admin_honeypot")),
+    # path(settings.MAIN_ADMIN_URL, include("admin_honeypot.urls", namespace = "admin_honeypot")),
     # User management
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
