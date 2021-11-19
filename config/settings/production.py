@@ -10,6 +10,13 @@ SECRET_KEY = "eL11HSttByEoHvSJazxndPml7bGrlQ63VDJgmv2N3eqsA5eRJmnX1AzEyhLCr4Tl",
 # ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["nextcashandcarry.com.ng"])
 ALLOWED_HOSTS =  ["localhost", "0.0.0.0", "127.0.0.1", "165.227.197.121", "www.nextcashandcarry.com.ng", "nextcashandcarry.com.ng"]
 
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
+LOGIN_REDIRECT_URL = "user_dashboard"
+# https://docs.djangoproject.com/en/dev/ref/settings/#login-url
+LOGIN_URL = "account_login"
+
+
 DEBUG = True
 # DATABASES 
 # ------------------------------------------------------------------------------
@@ -86,12 +93,12 @@ TEMPLATES[-1]["OPTIONS"]["loaders"] = [  # type: ignore[index] # noqa F405
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
-DEFAULT_FROM_EMAIL = "next <noreply@nextcashandcarry.com.ng>"
+DEFAULT_FROM_EMAIL = "nextcashandcarry <noreply@nextcashandcarry.com.ng>"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = "[next]"
+EMAIL_SUBJECT_PREFIX = "[NEXT CASH AND CARRY]"
 
 # ADMIN
 # ------------------------------------------------------------------------------
