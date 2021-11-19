@@ -10,7 +10,7 @@ SECRET_KEY = "eL11HSttByEoHvSJazxndPml7bGrlQ63VDJgmv2N3eqsA5eRJmnX1AzEyhLCr4Tl",
 # ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["nextcashandcarry.com.ng"])
 ALLOWED_HOSTS =  ["localhost", "0.0.0.0", "127.0.0.1", "165.227.197.121", "www.nextcashandcarry.com.ng", "nextcashandcarry.com.ng"]
 
-DEBUG = True
+DEBUG = False
 # DATABASES 
 # ------------------------------------------------------------------------------
 # DATABASES["default"] = env.db("DATABASE_URL")  # noqa F405
@@ -104,6 +104,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'support@nextcashandcarry.com.ng'
 EMAIL_HOST_PASSWORD = 'NexTSer@!!'
 EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # django-compressor
