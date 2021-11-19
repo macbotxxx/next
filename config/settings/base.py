@@ -164,12 +164,6 @@ SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_TIMEOUT_REDIRECT = 'account_login'
 
 
-# STATIC_URL = '/static/'
-# MEDIA_URL = '/media/' 
-# STATICFILES_DIRS = [os.path.join(APPS_DIR, 'staticfiles/')]
-# STATIC_ROOT = os.path.join(APPS_DIR, 'static')
-# MEDIA_ROOT = os.path.join(APPS_DIR, 'media') 
-
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
@@ -403,7 +397,7 @@ JAZZMIN_SETTINGS = {
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
-        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+        {"name": "Support", "url": "https://www.nextcashandcarry.com.ng/contact-us", "new_window": True},
 
         # model admin to link to (Permissions checked against model)
         {"model": "auth.User"},
@@ -418,7 +412,7 @@ JAZZMIN_SETTINGS = {
 
     # Additional links to include in the user menu on the top right ("app" url type is not allowed)
     "usermenu_links": [
-        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+        {"name": "Support", "url": "https://www.nextcashandcarry.com.ng/contact-us", "new_window": True},
         {"model": "auth.user"}
     ],
 
