@@ -41,7 +41,6 @@ CACHES = {
     }
 }
 
-
 # SECURITY
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-proxy-ssl-header
@@ -87,34 +86,25 @@ TEMPLATES[-1]["OPTIONS"]["loaders"] = [  # type: ignore[index] # noqa F405
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
-DEFAULT_FROM_EMAIL = "nextcashandcarry <noreply@nextcashandcarry.com.ng>"
+DEFAULT_FROM_EMAIL = "next <noreply@nextcashandcarry.com.ng>"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = "[NEXT CASH AND CARRY]"
+EMAIL_SUBJECT_PREFIX = "[next]"
 
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL regex.
-MAIN_ADMIN_URL = "admin/"
-ADMIN_URL = "admindesk/"
+ADMIN_URL = "admin/"
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '3b1a0f6492d797'
-EMAIL_HOST_PASSWORD = '78c84daa1c5989'
+EMAIL_HOST_USER = 'f7f1d4d566645a'
+EMAIL_HOST_PASSWORD = '1917db4a003d90'
 EMAIL_PORT = '2525'
-
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'support@nextcashandcarry.com.ng'
-# EMAIL_HOST_PASSWORD = 'NexTSer@!!'
-# EMAIL_PORT = '587'
-# EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # django-compressor
 # ------------------------------------------------------------------------------
