@@ -10,13 +10,6 @@ SECRET_KEY = "eL11HSttByEoHvSJazxndPml7bGrlQ63VDJgmv2N3eqsA5eRJmnX1AzEyhLCr4Tl",
 # ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["nextcashandcarry.com.ng"])
 ALLOWED_HOSTS =  ["localhost", "0.0.0.0", "127.0.0.1", "165.227.197.121", "www.nextcashandcarry.com.ng", "nextcashandcarry.com.ng"]
 
-
-# https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "user_dashboard"
-# https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-LOGIN_URL = "account_login"
-
-
 DEBUG = True
 # DATABASES 
 # ------------------------------------------------------------------------------
