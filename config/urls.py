@@ -6,13 +6,9 @@ from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
 
-# def trigger_error(request):
-#     division_by_zero = 1 / 0
-
 urlpatterns = [
   
-    # Django Admin, use {% url 'admin:index' %}
-    # path('sentry-debug/', trigger_error),
+
     path(settings.ADMIN_URL, admin.site.urls),
     # path(settings.MAIN_ADMIN_URL, include("admin_honeypot.urls", namespace = "admin_honeypot")),
     # User management
