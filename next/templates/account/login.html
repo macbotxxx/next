@@ -1,67 +1,46 @@
-{% extends "base.html" %}
+{% extends "account/base.html" %}
 
-{% load static  i18n %}
+{% load i18n %}
+{% load account socialaccount %}
 
-{% load crispy_forms_tags %}
-
-{% block head_title %}{% translate "Sign In" %}{% endblock %}
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
 
-<main class="no-main">
+<h1>{% trans "Sign In" %}</h1>
 
-  <section class="section--login">
-      <div class="container">
-          <div class="row">
-              <div class="col-12 col-lg-6">
-                  <div class="login__box">
-                      <div class="login__header">
-                          <h3 class="login__login">LOGIN</h3>
-                          <h3 class="login__register"><a href="{{ signup_url }}"> REGISTER</a></h3>
-                      </div>
-                      <form method="POST" action="{% url 'account_login' %}">
-                        {% csrf_token %}
+{% get_providers as socialaccount_providers %}
 
-                      <div class="login__content">
-                          <div class="login__label">Login to your account.</div>
-                          
-                          {{ form|crispy }}
-                          {% if redirect_field_value %}
-                          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                          {% endif %}
-                          <div class="input-group-append">
-                            <a href="{% url 'account_reset_password' %}"class=" forgot-pass" >Forgot your password ?</a>
-                          </div>
-                          <button class="btn btn-login" type="submit">Login</button>
-                          <div class="login__conect">
-                              <hr>
-                              <p>Or login with</p>
-                              <hr>
-                          </div>
-                          <button class="btn btn-social btn-google"> <i class="fa fa-google-plus"></i>Login with Google</button>
-                      </div>
-                    </form>
-                  </div>
-              </div>
-              <div class="col-12 col-lg-6">
-                  <h3 class="login__title">Advantages Of Becoming A Member</h3>
-                  <p class="login__description"> <b>Next Cash and Carry Online Buyer Protection </b>has you covered from click to delivery.<br>Sign up or sign in and you will be able to: </p>
-                  <div class="login__orther">
-                      <p> <i class="icon-truck"></i>Easily Track Orders, Hassle free Returns</p>
-                      <p> <i class="icon-alarm2"></i>Get Relevant Alerts and Recommendation</p>
-                      <p><i class="icon-star"></i>Wishlist, Reviews, Ratings and more.</p>
-                  </div>
-                  <div class="login__vourcher">
-                      <div class="vourcher-money"><span class="unit">-</span><span class="number">25%</span></div>
-                      <div class="vourcher-content">
-                          <h4 class="vourcher-title">GIFT VOURCHER FOR FISRT PURCHASE</h4>
-                          <p>We give -25% as a small gift for your first purchase.<br>Welcome to Next Cash and Carry Onliine Store!</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
-</main>
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+<p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %}
+
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+</form>
 
 {% endblock %}
