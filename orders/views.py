@@ -190,19 +190,24 @@ def verify_payment (request, payment_ref):
 
             # cleariing the cart item of the user
             CartItem.objects.filter(id=item.id).delete()
+            
+            products = OrderProduct.objects.filter(id = orderproduct.id)[:1]
+            order_item = OrderProduct.objects.filter(id = orderproduct.id)
 
             #  sending email to the customer alerting him of the succesful order 
-            # subject = 'Successful Order - Next Cash and Carry Online Store'
-            # html_message = render_to_string(
-            #     'emails/text.html',
-            #     {
-            #      'user': request.user,
-            #     } 
-            # )
-            # plain_message = strip_tags(html_message)
-            # from_email = 'From <admin@nextonline.com>'
-            # to = request.user.email
-            # mail.send_mail(subject, plain_message, from_email, [to], html_message = html_message) 
+            subject = 'Successful Order - Next Cash and Carry Online Store'
+            html_message = render_to_string(
+                'emails/text.html',
+                {
+                 'user': request.user,
+                 'products':products,
+                 'order_item':order_item,
+                } 
+            )
+            plain_message = strip_tags(html_message)
+            from_email = 'From <admin@nextonline.com>'
+            to = request.user.email
+            mail.send_mail(subject, plain_message, from_email, [to], html_message = html_message) 
 
         return redirect('order_successful')
             

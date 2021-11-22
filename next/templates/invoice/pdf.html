@@ -386,7 +386,7 @@ width:auto !important;
 													</tr>
 													<tr>
 														<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:24px;text-transform:uppercase;">
-															<multi label="Content">{{product.order.first_name}} {{product.order.last_name}} <br/> {{product.order.phone_number}} <br/>{{product.order.address_line_1 }} <br/> {%if product.order.address_line_2 %} {{product.order.address_line_1 }} <br/> {%endif%} {{product.order.city}}, <br> {{product.order.state}} </multi>
+															<multi label="Content">{{product.order.shipping_address.first_name}} {{product.order.shipping_address.last_name}} <br/> {{product.order.shipping_address.phone_number}} <br/>{{product.order.shipping_address.address_line_1 }} <br/> {%if product.order.shipping_address.address_line_2 %} {{product.order.shipping_address.address_line_2 }} <br/> {%endif%} {{product.order.shipping_address.city}}, <br> {{product.order.shipping_address.state}} </multi>
 														</td>
 													</tr>
 												</table>
