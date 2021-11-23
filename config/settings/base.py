@@ -95,6 +95,7 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    'allauth.socialaccount.providers.google',
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders",
