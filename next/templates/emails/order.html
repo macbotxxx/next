@@ -1,3 +1,4 @@
+{%load static humanize %}
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -133,7 +134,7 @@ width:auto !important;
 */
 .mcbc-mainbg
 {
-/*@editable*/ background-color:#333333 !important;
+/*@editable*/ background-color:#ffffff !important;
 }
 
 /**
@@ -306,27 +307,18 @@ width:auto !important;
                 <td width="5">&nbsp;</td>
                 <td align="left" valign="middle" class="MsoNormal menu" style="color:#03a9f4;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:11px;font-weight:600;letter-spacing:1px;" mc:edit="Link1">
                     <a href="#" style="color:#03a9f4;text-decoration:none;">
-                        YOUR ORDERS
+                        NEXT CASH AND CARRY ONLINE STORE
                     </a>
                 </td>
                 <td width="5">&nbsp;</td>
                 <td align="left" valign="middle" class="MsoNormal menu" style="color:#dedede;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;" mc:edit="Link2">
                     |
                 </td>	
-                <td width="5">&nbsp;</td>
-                <td align="left" valign="middle" class="MsoNormal menu" style="color:#03a9f4;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:11px;font-weight:600;letter-spacing:1px;" mc:edit="Link3">
-                    <a href="#" style="color:#03a9f4;text-decoration:none;">
-                        YOUR ACCOUNT
-                    </a>
-                </td>
-                <td width="5">&nbsp;</td>
-                <td align="left" valign="middle" class="MsoNormal menu" style="color:#dedede;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;" mc:edit="Link4">
-                    |
-                </td>	
+               
                 <td width="5">&nbsp;</td>
                 <td align="left" valign="middle" class="MsoNormal menu" style="color:#03a9f4;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:11px;font-weight:600;letter-spacing:1px;" mc:edit="Lin5k">
                     <a href="#" style="color:#03a9f4;text-decoration:none;">
-                        COMPANY.IN
+                        0700 700 0001
                     </a>
                 </td>
             </tr>
@@ -358,6 +350,10 @@ width:auto !important;
 
 <!-- SHIPMENT CONFIRMATION STARTS -->
 
+
+{%for product in products %}
+
+
 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" class="mcbc-mainbg" mc:repeatable="Order Confirmation">
 <tr>
 <td align="center">
@@ -381,7 +377,7 @@ Order Confirmation
 </tr>
 <tr>
 <td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:11px;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="Cnt1">
-Order no: <span style="color:#03a9f4;">#12345678923445</span>
+Order no: <span style="color:#03a9f4;">#{{product.order.order_number}}</span>
 </td>
 </tr>
 <tr>
@@ -434,7 +430,7 @@ Hello Customer,
                     </tr>
                     <tr>
                         <td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;line-height:20px;text-transform:uppercase;" mc:edit="AddrContent2"> 
-                            Saturday, August 29,2016
+                            {{product.created_date}}
                         </td>
                     </tr>
                     <tr>
@@ -478,7 +474,10 @@ Hello Customer,
                     </tr>
                     <tr>
                         <td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;line-height:24px;text-transform:uppercase;" mc:edit="AddrContent4">
-                            Petersmith <br/> No,7, Park Avenue, East Place Ny City, New York 123456.
+                            {{product.order.shipping_address.first_name | title}} {{product.order.shipping_address.last_name | title}}  <br/> 
+                            {{product.order.shipping_address.phone_number}} <br/>
+                            {%if product.order.shipping_address.address_line_2 %} {{product.order.shipping_address.address_line_2 }} <br/> {%endif%}, <br/>
+                            {{product.order.shipping_address.city}}, {{product.order.shipping_address.state}} 
                         </td>
                     </tr>
                 </table>
@@ -548,198 +547,62 @@ Hello Customer,
         <tr>
             <td bgcolor="#f6f6f6" class="mcbc-tbl-body">
                 <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-                    <tr>
-                        <td height="20"></td>
-                    </tr>
-                    <tr>
-                        <td width="20"></td>
-                        <td align="left" width="250" class="title-width">
-                            <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-                                <tr>
-                                    <td align="left" valign="middle" width="70">																								
-                                        <img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/60x60x1.png" alt="60x60x1" width="60" mc:edit="60x60x1" />
-                                    </td>																							
-                                    <td class="hide">
-                                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-                                            <tr>
-                                                <td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="TableSubHeading11">
-                                                    Footwear
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td height="5"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
-                                                        <tr>
-                                                            <td align="left" valign="middle" width="20">																								
-                                                                <img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/15x15.png" alt="15x15" width="15" mc:edit="15x15" />
-                                                            </td>
-                                                            <td align="left" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:11px;letter-spacing:1px;line-height:12px;text-transform:capitalize;" mc:edit="TableContent11">
-                                                                delivery :
-                                                            </td>
-                                                            <td width="5"></td>
-                                                            <td align="left" class="MsoNormal" style="color:#ff4202;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:11px;letter-spacing:1px;line-height:12px;text-transform:capitalize; font-weight:600;" mc:edit="TableContent12">
-                                                                Friday, 22 July
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td width="20"></td>
-                        <td align="left" width="90" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="TableContent13">
-                            $35.99
-                        </td>
-                        <td width="20"></td>
-                        <td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="TableContent14">
-                            2
-                        </td>
-                        <td width="20"></td>
-                        <td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="TableContent15">
-                            $99.99
-                        </td>
-                        <td width="20"></td>
-                    </tr>
-                    <tr>
-                        <td height="20"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="10" class="mcbr-tbl-row" style="border-bottom:1px solid #dddddd;"></td>
-                    </tr>
-                    <tr>
-                        <td height="20"></td>
-                    </tr>
-                    <tr>
-                        <td width="20"></td>
-                        <td align="left" width="250" class="title-width">
-                            <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-                                <tr>
-                                    <td align="left" valign="middle" width="70">																								
-                                        <img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/60x60x2.png" alt="60x60x2" width="60" mc:edit="60x60x2" />
-                                    </td>
-                                    <td class="hide">
-                                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-                                            <tr>
-                                                <td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="TableSubHeading22">
-                                                    Fast Track Watch
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td height="5"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
-                                                        <tr>
-                                                            <td align="left" valign="middle" width="20">																								
-                                                                <img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/15x15.png" alt="15x15" width="15" mc:edit="15x15" />
-                                                            </td>
-                                                            <td align="left" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:11px;letter-spacing:1px;line-height:12px;text-transform:capitalize;" mc:edit="TableContent21">
-                                                                delivery :
-                                                            </td>
-                                                            <td width="5"></td>
-                                                            <td align="left" class="MsoNormal" style="color:#ff4202;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:11px;letter-spacing:1px;line-height:12px;text-transform:capitalize; font-weight:600;" mc:edit="TableContent22">
-                                                                Friday, 22 July
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td width="20"></td>
-                        <td align="left" width="90" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="TableContent23">
-                            $49.99
-                        </td>
-                        <td width="20"></td>
-                        <td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="TableContent24">
-                            2
-                        </td>
-                        <td width="20"></td>
-                        <td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="TableContent25">
-                            $199.99
-                        </td>
-                        <td width="20"></td>
-                    </tr>
-                    <tr>
-                        <td height="20"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="10" class="mcbr-tbl-row" style="border-bottom:1px solid #dddddd;"></td>
-                    </tr>
-                    <tr>
-                        <td height="20"></td>
-                    </tr>
-                    <tr>
-                        <td width="20"></td>
-                        <td align="left" width="250" class="title-width">
-                            <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-                                <tr>
-                                    <td align="left" valign="middle" width="70">																								
-                                        <img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/60x60x3.png" alt="60x60x3" width="60" mc:edit="60x60x3" />
-                                    </td>
-                                    <td class="hide">
-                                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-                                            <tr>
-                                                <td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="TableSubHeading33">
-                                                    Women's Bag
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td height="5"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
-                                                        <tr>
-                                                            <td align="left" valign="middle" width="20">																								
-                                                                <img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/15x15.png" alt="15x15" width="15" mc:edit="15x15" />
-                                                            </td>
-                                                            <td align="left" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:11px;letter-spacing:1px;line-height:12px;text-transform:capitalize;" mc:edit="TableContent31">
-                                                                delivery :
-                                                            </td>
-                                                            <td width="5"></td>
-                                                            <td align="left" class="MsoNormal" style="color:#ff4202;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:11px;letter-spacing:1px;line-height:12px;text-transform:capitalize; font-weight:600;" mc:edit="TableContent32">
-                                                                Friday, 22 July
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td width="20"></td>
-                        <td align="left" width="90" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="TableContent33">
-                            $59.99
-                        </td>
-                        <td width="20"></td>
-                        <td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="TableContent34">
-                            2
-                        </td>
-                        <td width="20"></td>
-                        <td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;" mc:edit="TableContent35">
-                            $299.99
-                        </td>
-                        <td width="20"></td>
-                    </tr>
-                    <tr>
-                        <td height="20"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="10" class="mcbr-tbl-row" style="border-bottom:1px solid #dddddd;"></td>
-                    </tr>
+                 
+                	{%for p in order_item %}
+
+													<tr>
+														<td height="20"></td>
+													</tr>
+													<tr>
+														<td width="20"></td>
+														<td align="left" width="250" class="title-width">
+															<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+																<tr>
+																	<td align="left" valign="middle" width="70">																								
+																		<img src="{{p.product.image.url}}" alt="60x60x3" width="60" editable label="Bag Image" />
+																	</td>
+																	<td class="hide">
+																		<table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
+																			<tr>
+																				<td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
+																					<multi label="Content">{{p.product.product_name | title}}</multi>
+																					{%if p.variation.all %}
+																					{%for variations in p.variation.all %}
+																					<br>
+																					<multi label="Content" style="color:blue; font-size:10px;">{{variations.variations_category | title}} : {{variations.variation_value}}</multi>
+																					{%endfor %}
+																					{%endif%}
+																				</td>
+																			</tr>
+																			
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+														<td width="20"></td>
+														<td align="left" width="90" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
+															<multi label="Content">₦{{p.product.price | intcomma}}</multi>
+														</td>
+														<td width="20"></td>
+														<td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
+															<multi label="Content">{{p.quantity}}</multi>
+														</td>
+														<td width="20"></td>
+														<td align="left" width="60" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;font-weight:600;letter-spacing:1px;line-height:18px;text-transform:capitalize;">
+															<multi label="Content">₦{{p.product_total_price | intcomma}}</multi>
+														</td>
+														<td width="20"></td>
+													</tr>
+
+													<tr>
+														<td height="20"></td>
+													</tr>
+													<tr>
+														<td colspan="10" style="border-bottom:1px solid #dddddd;"></td>
+													</tr>
+
+													{%endfor%}
                 </table>																	
             </td>																
         </tr>
@@ -764,69 +627,31 @@ Hello Customer,
             <tr>
                 <td align="left" valign="top">
                     <table align="left"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-                        <tr>
-                            <td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;" mc:edit="T-Content1">
-                                    Item Subtotal :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td height="15"></td>
-                        </tr>
+                      
                         <tr>
                             <td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;" mc:edit="T-Content2">
-                                    Shipping &amp; Handling :
+                                Shipping &amp; Handling Per Item:
                             </td>
                         </tr>
                         <tr>
                             <td height="25"></td>
                         </tr>
-                        <tr>
-                            <td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;" mc:edit="T-Content3">
-                                    Total Before Tax :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td height="15"></td>
-                        </tr>
-                        <tr>
-                            <td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;" mc:edit="T-Content4">
-                                    Sales Tax Collected :
-                            </td>
-                        </tr>																						
+                       
+                        																					
                     </table>
                 </td>
                 <td width="26">&nbsp;</td>
                 <td align="left" valign="top">
                     <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-                        <tr>
-                            <td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;" mc:edit="T-Content5">
-                                    $24,515.56
-                            </td>
-                        </tr>
-                        <tr>
-                            <td height="15"></td>
-                        </tr>
+                     
+                       
                         <tr>
                             <td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;" mc:edit="T-Content6">
-                                    $0.00
+                                ₦{{product.order.shipping_rate_per_quantity | intcomma }}
                             </td>
                         </tr>	
-                        <tr>
-                            <td height="25"></td>
-                        </tr>
-                        <tr>
-                            <td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;" mc:edit="T-Content7">
-                                    $24,515.56
-                            </td>
-                        </tr>
-                        <tr>
-                            <td height="15"></td>
-                        </tr>
-                        <tr>
-                            <td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;letter-spacing:1px;line-height:20px;" mc:edit="T-Content8">
-                                    $3,064.44
-                            </td>
-                        </tr>
+                       
+                       
                     </table>
                 </td>
             </tr>
@@ -853,7 +678,7 @@ Hello Customer,
                                 <table align="left"  border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
                                     <tr>
                                         <td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;line-height:20px;" mc:edit="T-Content9">
-                                                Shipment Total :
+                                                 Total Amount Paid :
                                         </td>
                                     </tr>
                                 </table>
@@ -863,7 +688,7 @@ Hello Customer,
                                 <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
                                     <tr>
                                         <td align="right" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:600;letter-spacing:1px;line-height:20px;" mc:edit="T-Content10">
-                                                $27,580.00
+                                            ₦{{product.order.order_total | intcomma }}
                                         </td>
                                     </tr>
                                 </table>
@@ -893,6 +718,8 @@ Hello Customer,
 </tr>			
 </table>
 
+{%endfor%}
+
 <!-- SHIPMENT CONFIRMATION ENDS -->
 
 <!-- COMPANY NAME STARTS -->
@@ -912,7 +739,7 @@ Hello Customer,
 </tr>
 <tr>
 <td align="left" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;line-height:24px;" mc:edit="Content1">
-Track Your Order with the <a href="#" style="color:#03a9f4;text-decoration:none;"> Company.App.</a>
+Track Your Order with the <a href="#" style="color:#03a9f4;text-decoration:none;"> Track My Order</a>
 </td>
 </tr>
 <tr>
@@ -944,7 +771,7 @@ We hope to see you again soon!
 </tr>
 <tr>
 <td align="left" class="MsoNormal" style="color:#333333;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:600;line-height:24px;" mc:edit="Content5">
-Company Name
+NEXT CASH AND CARRY ONLINE STORE
 </td>
 </tr>
 <tr>
@@ -999,76 +826,8 @@ Company Name
 </tr>			
 <tr>
 <td width="190">
-    <!-- TABLE LEFT -->
-    <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="190" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-        <tr>
-            <td align="center">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
-                    <tr>
-                        <td align="left">
-                            <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
-                                <tr>
-                                    <td align="left" width="190">
-                                        <img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/190x190x1.jpg" alt="190x190x1" width="190" style="border-radius:5px;color:#444444;width:100%;"  mc:edit="190x190x1" />
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="20"></td>
-                    </tr>	
-                    <tr>
-                        <td align="left" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;line-height:24px;" mc:edit="P-Cnt-1">
-                            58mm Tulip Shaped Flower Lens <br/> Hold + Premium
-                        </td>
-                    </tr>
-                            <tr>
-                        <td height="5"></td>
-                    </tr>																					
-                    <tr>
-                        <td align="left"> 
-                            <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-                                <tr>
-                                    <td align="left" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:bold;letter-spacing:1px;line-height:24px;" mc:edit="Price1"> 
-                                        $399
-                                    </td>
-                                    <td width="10"></td>
-                                    <td align="right">
-                                        <table align="right" border="0" cellpadding="0" cellspacing="0" class="display-width" width="86%" style="width:auto !important;">
-                                            <tr>																												
-                                                <td align="left" valign="middle" class="MsoNormal menu" style="color:#03a9f4;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;"  mc:edit="lnk1">
-                                                    <a href="#" style="color:#03a9f4;text-decoration:none;">
-                                                        Buy Now
-                                                    </a>
-                                                </td>
-                                                <td width="5"><a href="#" style="color:#03a9f4;text-decoration:none;"></a></td>
-                                                <td align="left" valign="middle">																							
-                                                    <a href="#" style="color:#03a9f4;text-decoration:none;">
-                                                        <img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/12x12x1.png" alt="12x12x1" width="12" mc:edit="12x12"/>
-                                                    </a>
-                                                </td>																											
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>																							
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-    
-    <!--[if gte mso 9]>
-    </td><td width="15">													
-    <![endif]-->
-    
-    <table align="left" border="0" cellpadding="0" cellspacing="0" width="15" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;mso-hide:all;">
-        <tr>
-            <td style="line-height:40px;" height="40" width="1"></td>
-        </tr>
-    </table>
+  
+   
     
     <!--[if gte mso 9]>
     </td><td width="190">													
@@ -1076,6 +835,7 @@ Company Name
 
     <!-- TABLE CENTER -->
 
+    {%for b in bestselling %}
     <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="190" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
         <tr>
             <td align="center">
@@ -1085,7 +845,7 @@ Company Name
                             <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
                                 <tr>
                                     <td align="left" width="190">
-                                        <img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/190x190x2.jpg" alt="190x190x2" width="190" style="border-radius:5px;color:#444444;width:100%;"  mc:edit="190x190x2" />
+                                        <img src="{{b.image.url}}" alt="190x190x2" width="190" style="border-radius:5px;color:#444444;width:100%;"  mc:edit="190x190x2" />
                                     </td>
                                 </tr>
                             </table>
@@ -1096,7 +856,7 @@ Company Name
                     </tr>	
                     <tr>
                         <td align="left" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;line-height:24px;" mc:edit="P-Cnt-2">
-                            Onsite Secure 1 Year Extended <br/> Warranty for ... 
+                           {{b.product_name | title}} 
                         </td>
                     </tr>
                     <tr>
@@ -1107,20 +867,20 @@ Company Name
                             <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
                                 <tr>
                                     <td align="left" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:bold;letter-spacing:1px;line-height:24px;"  mc:edit="Price2">
-                                        $19
+                                        ₦{{b.price | intcomma}}
                                     </td>
                                     <td width="10"></td>
                                     <td align="right">
                                         <table align="right" border="0" cellpadding="0" cellspacing="0" class="display-width" width="86%" style="width:auto !important;">
                                             <tr>																												
                                                 <td align="left" valign="middle" class="MsoNormal menu" style="color:#03a9f4;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;"  mc:edit="Lnk2">
-                                                    <a href="#" style="color:#03a9f4;text-decoration:none;">
+                                                    <a href="{{b.get_absolute_url}}" style="color:#03a9f4;text-decoration:none;">
                                                         Buy Now
                                                     </a>
                                                 </td>
                                                 <td width="5"><a href="#" style="color:#03a9f4;text-decoration:none;"></a></td>
                                                 <td align="left" valign="middle">																							
-                                                    <a href="#" style="color:#03a9f4;text-decoration:none;">
+                                                    <a href="{{b.get_absolute_url}}" style="color:#03a9f4;text-decoration:none;">
                                                         <img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/12x12x1.png" alt="12x12x1" width="12" mc:edit="12x12"/>
                                                     </a>
                                                 </td>																											
@@ -1136,79 +896,18 @@ Company Name
         </tr>
     </table>
     
+    <table align="left" border="0" cellpadding="0" cellspacing="0" width="15" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;mso-hide:all;">
+        <tr>
+            <td style="line-height:40px;" height="40" width="1"></td>
+        </tr>
+    </table>
+    {%endfor%}
+    
     <!--[if gte mso 9]>
     </td><td width="15">													
     <![endif]-->
     
-        <table align="left" border="0" cellpadding="0" cellspacing="0" width="1" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;mso-hide:all;">
-        <tbody>
-            <tr>
-                <td style="line-height:40px;" height="40" width="1"></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- TABLE RIGHT -->
-
-    <table align="right" border="0" cellpadding="0" cellspacing="0" class="display-width" width="190" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-        <tr>
-            <td align="center">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
-                    <tr>
-                        <td align="left">
-                            <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
-                                <tr>
-                                    <td align="left" width="190">
-                                        <img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/190x190x3.jpg" alt="190x190x3" width="190" style="border-radius:5px;color:#444444;width:100%;"  mc:edit="190x190x3" />
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="20"></td>
-                    </tr>	
-                    <tr>
-                        <td align="left" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:12px;line-height:24px;"  mc:edit="P-Cnt-3">
-                            Easy Cover Camera Case For <br/> Canon 1200D / T5(Black) 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="5"></td>
-                    </tr>																					
-                    <tr>
-                        <td align="left"> 
-                            <table align="left" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%">
-                                <tr>
-                                    <td align="left" class="MsoNormal" style="color:#666666;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:15px;font-weight:bold;letter-spacing:1px;line-height:24px;"  mc:edit="Price3">
-                                        $299
-                                    </td>
-                                    <td width="10"></td>
-                                    <td align="right">
-                                        <table align="right" border="0" cellpadding="0" cellspacing="0" class="display-width" width="86%" style="width:auto !important;">
-                                            <tr>																												
-                                                <td align="left" valign="middle" class="MsoNormal menu" style="color:#03a9f4;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:13px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;"  mc:edit="Lnk3">
-                                                    <a href="#" style="color:#03a9f4;text-decoration:none;">
-                                                        Buy Now
-                                                    </a>
-                                                </td>
-                                                <td width="5"><a href="#" style="color:#03a9f4;text-decoration:none;"></a></td>
-                                                <td align="left" valign="middle">																							
-                                                    <a href="#" style="color:#03a9f4;text-decoration:none;">
-                                                        <img src="http://pennyblacktemplates.com/demo/notifications/order-confirmation/images/12x12x1.png" alt="12x12x1" width="12"  mc:edit="12x12" />
-                                                    </a>
-                                                </td>																												
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>																							
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+ 
 </td>
 </tr>
 </table>
@@ -1260,7 +959,7 @@ Company Name
                     <table align="center" border="0" cellpadding="0" cellspacing="0" class="display-width" width="100%" style="width:auto !important;">
                         <tr>
                             <td align="left" class="MsoNormal" style="color:#ffffff;font-family:'Segoe UI',sans-serif,Arial,Helvetica,Lato;font-size:14px;letter-spacing:1px;line-height:24px;" mc:edit="Content1">
-                                Copyright &copy; 2016, Shopping 
+                                Copyright &copy; nextcashandcarry.com.ng
                             </td>
                         </tr>
                     </table>

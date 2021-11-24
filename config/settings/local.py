@@ -8,7 +8,7 @@ DEBUG = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = "eL11HSttByEoHvSJazxndPml7bGrlQ63VDJgmv2N3eqsA5eRJmnX1AzEyhLCr4Tl",
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "165.227.197.121"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "165.227.197.121" ,"www.cc35-129-205-113-34.ngrok.io", "cc35-129-205-113-34.ngrok.io"]
 
 # CACHES
 # ------------------------------------------------------------------------------

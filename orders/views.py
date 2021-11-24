@@ -193,15 +193,17 @@ def verify_payment (request, payment_ref):
             
             products = OrderProduct.objects.filter(id = orderproduct.id)[:1]
             order_item = OrderProduct.objects.filter(id = orderproduct.id)
+            bestselling = Product.objects.filter(best_selling = True).order_by('-created_date')[:3]
 
             #  sending email to the customer alerting him of the succesful order 
             subject = 'Successful Order - Next Cash and Carry Online Store'
             html_message = render_to_string(
-                'emails/text.html',
+                'emails/order.html',
                 {
                  'user': request.user,
                  'products':products,
                  'order_item':order_item,
+                 'bestselling':bestselling,
                 } 
             )
             plain_message = strip_tags(html_message)
