@@ -5,6 +5,7 @@ import admin_thumbnails
 
 class ProductVariationTabular(admin.TabularInline):
     model = ProductVariation
+    fields = ('variations_category','variation_value', 'is_active')
     extra = 1
 
 @admin_thumbnails.thumbnail('image')

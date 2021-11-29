@@ -69,7 +69,7 @@ class User(AbstractUser):
         default = uuid.uuid4,
         editable=False,
         primary_key=True,
-        help_text=_("The unique identifier of the investor.")
+        help_text=_("The unique identifier of the customer.")
     )
 
      #: First and last name do not cover name patterns around the globe
@@ -80,7 +80,7 @@ class User(AbstractUser):
         null=True,
         unique=True,
         verbose_name=_("Email Address"),
-        help_text=_("The email address of the investor.")
+        help_text=_("The email address of the customer.")
     )
 
     USERNAME_FIELD = 'email'
@@ -92,22 +92,23 @@ class User(AbstractUser):
         verbose_name=_("First names"),
         max_length=50,
         null=True,
-        help_text=_("The first nammes of the investor.")
+        help_text=_("The first nammes of the customer.")
     )
 
     last_name = models.CharField(
         max_length=50,
         verbose_name=_("Last names"),
         null=True,
-        help_text=_("The last nammes of the investor.")
-    )
+        help_text=_("The last nammes of the customer.")
+    ) 
 
     contact_number = models.CharField(
         max_length=50,
-        verbose_name=_("Last names"),
+        verbose_name=_("Contact Number"),
         null=True,
-        help_text=_("The last nammes of the investor.")
-    )
+        help_text=_("contact number of the customer.")
+    ) 
+
     phone = PhoneNumberField(null=True, blank=False, unique=True)
 
     default_currency_id = models.CharField(
@@ -115,7 +116,7 @@ class User(AbstractUser):
         verbose_name=_("Default Currency ID"),
         blank=True, null=True,
         default='NGN',
-        help_text=_("The default currency of the investor. Currency will be sent against Customer country of residence.")
+        help_text=_("The default currency of the customer. Currency will be sent against Customer country of residence.")
     )
 
     registered_ip_address = models.GenericIPAddressField(
