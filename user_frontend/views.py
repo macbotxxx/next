@@ -14,7 +14,6 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from reportlab.pdfgen import canvas
 from wkhtmltopdf.views import PDFTemplateView
-from weasyprint import HTML
 
 from .forms import ProfileSettingsForm
 from orders.models import Order, OrderProduct
