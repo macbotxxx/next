@@ -15,5 +15,11 @@ urlpatterns = [
     path('review/<str:product_id>/', views.review, name='review'),
 
     path('search/', views.search_result, name='search'),
+    path('about-us/', views.about_us, name='about_us'),
+    path('contact-us/', views.contact_us, name='contact_us'),
+    path('our-stores/', views.our_stores, name='our_stores'),
+    path('faq/', views.faq, name='faq'),
+    path('order-tracker/', views.order_tracker, name='order_tracker'),
+    
 
 ]

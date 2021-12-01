@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from store.models import Product, ProductVariation
+from wishlist.models import Wishlist
 from .models import Cart, CartItem
 
 # Create your views here.
@@ -72,6 +73,10 @@ def add_to_cart (request, id):
                 cart_item.product_variation.clear() # clearing the previous product variation
                 cart_item.product_variation.add(*variations)
             cart_item.save() 
+
+        # checking and removing the item from wishlist
+        wishlist = Wishlist.objects.filter(user=request.user, product=product).delete() # deleting the product from wishlist if any
+
         return redirect('cart')
     else:
         variations = [] 

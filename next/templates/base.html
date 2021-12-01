@@ -101,7 +101,7 @@
                   <div class="top-bar__right">
                       <ul class="nav-top">
                           <li class="nav-top-item contact"><a class="nav-top-link" href="tel:07007000001"> <i class="icon-telephone"></i><span>Hotline:</span><span class="text-success font-bold">07007000001</span></a></li>
-                          <li class="nav-top-item"><a class="nav-top-link" href="#">Order Tracking</a></li>
+                          <li class="nav-top-item"><a class="nav-top-link" href="{%url 'order_tracker'%}">Order Tracking</a></li>
                           <li class="nav-top-item languages"><a class="nav-top-link" href="javascript:void(0);"> <span class="current-languages">Report An Issue</span></a>
                               
                           </li>
@@ -118,7 +118,7 @@
                                           <li><a href="{%url 'user_dashboard' %}">Dasdboard</a></li>
                                           <li><a href="{%url 'profile_edit' %}">Account Setting</a></li>
                                           <li><a href="{%url 'my_orders' %}">Orders</a></li>
-                                          <li><a href="#">Wishlist</a></li>
+                                          <li><a href="{%url 'my_wishlist'%}">Wishlist</a></li>
                                           <li><a href="#">Shipping Address</a></li>
                                       </ul>
                                      
@@ -206,7 +206,9 @@
 
                   </div>
                   <div class="header-inner__right">
-                      <a class="button-icon icon-md" href="#"><i class="icon-heart"></i><span class="badge bg-warning">2</span></a>
+                      {%if request.user.is_authenticated %}
+                      <a class="button-icon icon-md" href="#"><i class="icon-heart"></i><span class="badge bg-warning">{{wish_count}}</span></a>
+                      {%endif%}
                       <div class="button-icon btn-cart-header"><i class="icon-cart icon-shop5"></i><span class="badge bg-warning">{{cart_count}}</span>
                         {%if not cart_items%}
 
@@ -385,20 +387,19 @@
                       <p><b><i class="icon-telephone"> </i>Hotline: </b><span>(7:00 - 21:30)</span></p>
                       <p class="telephone">0700 700 0001<br>0700 700 0001</p>
                       <p> <b>Head office: </b>Opp Jss, Ahmadu Bello, Central, Abuja, Nigeria ,</p>
-                      <p> <b>Email us: </b><a href="#" class="__cf_email__" data-cfemail="64171114140b161024020516090516104a070b09">[email&#160;protected]</a></p>
+                      <p> <b>Email us: </b><a href="mailto:support@nextcashandcarry.com.ng" class="__cf_email__" >support@nextcashandcarry.com.ng</a></p>
                   </div>
                   <div class="col-12 col-lg-4">
                       <div class="row">
                           <div class="col-12 col-lg-6">
                               <p class="contact__title">Help & Info<span class="footer-toggle"><i class="icon-chevron-down"></i></span></p>
                               <ul class="footer-list">
-                                  <li><a href="#">About Us</a></li>
-                                  <li><a href="#">Contact</a></li>
-                                  <li><a href="#">Sore Locations</a></li>
+                                  <li><a href="{%url 'about_us'%}">About Us</a></li>
+                                  <li><a href="{%url 'contact_us'%}">Contact</a></li>
+                                  <li><a href="{%url 'our_stores'%}">Sore Locations</a></li>
                                   <li><a href="#">Terms of Use</a></li>
-                                  <li><a href="#">Policy</a></li>
-                                  <li><a href="#">Flash Sale</a></li>
-                                  <li><a href="#">FAQs</a></li>
+                                  <li><a href="{%url 'order_tracker'%}">Track My Order</a></li>
+                                  <li><a href="{%url 'flash_sale'%}">Flash Sale</a></li>
                               </ul>
                               <hr>
                           </div>
@@ -407,7 +408,7 @@
                               <ul class="footer-list">
                                   <li><a href="#">Become a Vendor</a></li>
                                   <li><a href="#">Affiliate Program</a></li>
-                                  <li><a href="#">Farm Business</a></li>
+                                  <li><a href="{%url 'faq'%}">FAQs</a></li>
                                   <li><a href="#">Careers</a></li>
                                   <li><a href="#">Our Suppliers</a></li>
                                   <li><a href="#">Accessibility</a></li>

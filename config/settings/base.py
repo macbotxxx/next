@@ -114,6 +114,7 @@ LOCAL_APPS = [
     "store.apps.StoreConfig",
     "carts.apps.CartsConfig",
     "orders.apps.OrdersConfig",
+    "wishlist.apps.WishlistConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -235,6 +236,7 @@ TEMPLATES = [
                 "carts.context_processors.counter",
                 "carts.context_processors.all_cart_items",
                 "orders.context_processors.secret_key",
+                "wishlist.context_processors.wishlist_counter",
             ],
         },
     }

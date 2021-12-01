@@ -316,5 +316,24 @@ def review (request, product_id ):
         messages.success(request, 'Product review form needs to be submitted.')
         return redirect(url)
 
-    
 
+def about_us (request):
+    """about us page"""
+    return render(request, 'pages/about_us.html')
+
+
+def contact_us (request):
+    """contact us page"""
+    return render(request, 'pages/contact_us.html')
+
+def our_stores (request):
+    """our page page"""
+    return render(request, 'pages/our_stores.html')
+
+def faq (request):
+    """faq page"""
+    return render(request, 'pages/faq.html')
+
+def order_tracker (request):
+    """faq page"""
+    return render(request, 'pages/order_track.html')

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static humanize  crispy_forms_tags %}
+{% block title %} Next Cash And Carry Wishlist{% endblock %}
+
+
+{% block content %}
+    <main class="no-main">
+        <div class="ps-breadcrumb">
+            <div class="container">
+                <ul class="ps-breadcrumb__list">
+                    <li class="active"><a href="/">Home</a></li>
+                    
+                    <li><a href="javascript:void(0);">Wishlist</a></li>
+                </ul>
+            </div>
+        </div>
+        <section class="section--wishlist">
+            <div class="container">
+                <h2 class="page__title">Wishlist</h2>
+                <div class="wishlist__content">
+                    <div class="wishlist__product">
+                        <div class="wishlist__product--mobile">
+                            <div class="row m-0">
+                                {%for wishlist in my_wish %}
+
+                                <div class="col-6 col-md-4 p-0">
+                                    <div class="ps-product--standard"><a class="ps-product__trash" href="javascript:void(0);"><i class="icon-trash2"></i></a><a href="{{wishlist.product.get_absolute_url}}"><img class="ps-product__thumbnail" src="{{wishlist.product.image.url}}" alt="alt" /></a>
+                                        <div class="ps-product__content">
+                                            <p class="ps-product__instock">In stock</p><a href="{{wishlist.product.get_absolute_url}}">
+                                                <h5 class="ps-product__name">{{wishlist.product.product_name | title}}</h5>
+                                            </a>
+                                            <p class="ps-product__unit">{{wishlist.product.short_description | truncatechars:15}}</p>
+                                            <p class="ps-product__meta"><span class="ps-product__price">₦{{wishlist.product.price | intcomma}}</span></p>
+                                        </div>
+                                        <div class="ps-product__footer">
+                                            <a href="{{wishlist.product.get_absolute_url}}"class="ps-product__addcart">Add to cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {%endfor%}
+                               
+                            </div>
+                        </div>
+                        <div class="wishlist__product--desktop">
+                            <table class="table">
+                                <thead class="wishlist__thead">
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">Unit Price</th>
+                                        <th scope="col">Stock Status</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="wishlist__tbody">
+                                    {%for wishlist in my_wish %}
+                                    {%if my_wish < 1 %}
+                                    <h4>You dont have any item on your wishlist yet</h4>
+                                    
+                                    {%else%}
+
+                                    <tr>
+                                        <td>
+                                            <div class="wishlist__trash"> <a href="{%url 'delete_wishlist' wishlist.id %}"> <i class="icon-trash2"></i></a></div>
+                                        </td>
+                                        <td>
+                                            <div class="ps-product--vertical"><a href="{{wishlist.product.get_absolute_url}}"><img class="ps-product__thumbnail" src="{{wishlist.product.image.url}}" alt="alt" /></a>
+                                                <div class="ps-product__content">
+                                                    <h5><a class="ps-product__name" href="{{wishlist.product.get_absolute_url}}">{{wishlist.product.product_name | title}}</a></h5>
+                                                    <p class="ps-product__unit">{{wishlist.product.short_description | truncatechars:70}}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="ps-product__price">₦{{wishlist.product.price | intcomma}}</span>
+                                        </td>
+                                        {%if product.stock <= 0 %}
+                                        <td><span class="ps-product__ofstock">Out of stock</span>
+                                        </td>
+                                        <td>
+                                            <a href="{{wishlist.product.get_absolute_url}}" class="btn wishlist__btn readmore">Read more</a>
+                                        </td>
+
+                                        {%else%}
+
+                                       
+                                        <td><span class="ps-product__instock">In stock</span>
+                                        </td>
+                                        <td>
+                                            <a href="{{wishlist.product.get_absolute_url}}" class="btn wishlist__btn add-cart"><i class="icon-cart"></i>Add to cart</a>
+                                        </td>
+                                        {%endif%}
+                                    </tr>
+                                    {%endif%}
+                                    {%endfor%}
+                                   
+                                  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="wishlist__share">
+                        <p>Share on: <a class="icon_social facebook" href="#"><i class="fa fa-facebook-f"></i></a><a class="icon_social twitter" href="#"><i class="fa fa-twitter"></i></a><a class="icon_social google" href="#"><i class="fa fa-google-plus"></i></a><a class="icon_social pinterest" href="#"><i class="fa fa-pinterest-p"></i></a><a class="icon_social wifi" href="#"><i class="fa fa-wifi"></i></a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
+   
