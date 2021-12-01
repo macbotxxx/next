@@ -23,6 +23,39 @@ from tinymce.models import HTMLField
 
 
 
+class Brands (BaseModel):
+    """Product Brand """
+    brand= models.CharField(
+        verbose_name = _('Brand'),
+        max_length =500,
+        null=True,
+        help_text =_("This holds the brand name.")
+    )
+
+    brand_image = models.ImageField(
+        verbose_name = _('Brand Image'),
+        upload_to = "brands/",
+        null=True,
+        help_text = _("uplaod the brand image , which should be PNG , JPEG, JPG")
+    )
+
+    def __str__(self):
+        return str(self.brand)
+
+    #  to resize an image to a given height and width,
+    def save(self, *args, **kwargs):
+        if self.brand_image:
+            super().save(*args, **kwargs)
+            # Image.open() can also open other image types
+            img = Image.open(self.brand_image.path)
+            # WIDTH and HEIGHT are integers
+            resized_img = img.resize((112, 35))
+            resized_img.save(self.brand_image.path)
+
+    class Meta:
+        ordering = ('-created_date',)
+        verbose_name = _("Product Brand")
+        verbose_name_plural = _("Product Brand")
 
 
 # Create your models here.
@@ -48,8 +81,6 @@ class Product(BaseModel):
         max_length=300, blank=True,
         help_text= _('Slug field for the category which is auto generated when the product name is been created')
     )
-
-    
 
     price = models.IntegerField (
         verbose_name = _('Product Price'),
@@ -89,6 +120,13 @@ class Product(BaseModel):
         null =True,
         help_text= _('Product category will refrence the product category table which when the category is been deleted the items related to the parent or child category will be deleted as well.')
 
+    )
+
+    brand = models.ForeignKey(
+        Brands, on_delete = models.CASCADE,
+        verbose_name = _("Product Brand"),
+        null =True,
+        help_text= _('Product brand  will refrence the product brand table list, in any case the brand of the product is popular , the product can uplaod a new brand by clicking on the add brand button so to refrence the product to the brand. ')
     )
 
     best_selling = models.BooleanField (

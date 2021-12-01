@@ -237,6 +237,7 @@ TEMPLATES = [
                 "carts.context_processors.all_cart_items",
                 "orders.context_processors.secret_key",
                 "wishlist.context_processors.wishlist_counter",
+                "frontend.context_processors.all_brand",
             ],
         },
     }

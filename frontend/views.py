@@ -20,6 +20,7 @@ from orders.models import OrderProduct
 
 
 
+
 class HomePage(View):
     """ class base view for the homepage """
 
@@ -165,7 +166,6 @@ def search_result(request):
         return JsonResponse({'data': res})
 
     return JsonResponse({})
-
 
 
 class FlashSale (View):
@@ -337,3 +337,21 @@ def faq (request):
 def order_tracker (request):
     """faq page"""
     return render(request, 'pages/order_track.html')
+
+def get_brand (request, **kwargs):
+    try:
+        product = Product.objects.filter(brand=kwargs['id'])
+    except Product.DoesNotExist:
+        product = []
+
+    """product pagination"""
+    paginator = Paginator(product, 20) # Show 20 contacts per page.
+    page_number = request.GET.get('page')
+    product = paginator.get_page(page_number)
+
+    context = {
+        'product': product,
+    }
+    return render(request, 'pages/flash_sale.html', context)
+
+    

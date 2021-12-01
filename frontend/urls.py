@@ -19,6 +19,7 @@ urlpatterns = [
     path('contact-us/', views.contact_us, name='contact_us'),
     path('our-stores/', views.our_stores, name='our_stores'),
     path('faq/', views.faq, name='faq'),
+    path('get-brand/<str:id>/', views.get_brand, name='get_brand'),
     path('order-tracker/', views.order_tracker, name='order_tracker'),
     
 

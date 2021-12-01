@@ -1,7 +1,13 @@
 from django.contrib import admin
-from .models import Product, ProductVariation, ReviewRating, ProductImage
+from .models import Product, ProductVariation, ReviewRating, ProductImage, Brands
 
 import admin_thumbnails
+
+@admin.register(Brands)
+@admin_thumbnails.thumbnail('brand_image')
+class BrandsAdmin(admin.ModelAdmin):
+    list_display = ('brand', 'brand_image')
+    list_display_links = ('brand', 'brand_image')
 
 class ProductVariationTabular(admin.TabularInline):
     model = ProductVariation

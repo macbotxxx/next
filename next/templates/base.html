@@ -321,15 +321,10 @@
                           <div class="brand-box">
                               <div class="brand__title">FEATURED BRAND</div>
                               <div class="row">
-                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_themeforest.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_envato.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_codecanyon.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_cudicjungle.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_videohive.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_photodune.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_evatotuts.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/brand_3docean.jpg' %}" alt="alt" /></a></div>
-                                  <div class="col-4"><a href="#"><img src="{% static 'nextonline/img/brand/microlancer.jpg' %}" alt="alt" /></a></div>
+                                 
+                                  {%for brand in all_brands %}
+                                  <div class="col-4"><a href="{%url 'get_brand' brand.id %}"><img src="{{brand.brand_image.url}}" alt="alt" /></a></div>
+                                  {%endfor%}
                               </div><a class="brand__link" href="#">See all brands<i class="icon-chevron-right"></i></a>
                           </div>
                           <div class="brand__promotion"><a href="#"><img src="{% static 'nextonline/img/brand/brand_01.jpg' %}" alt="alt" /></a></div>
