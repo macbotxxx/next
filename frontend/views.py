@@ -7,7 +7,7 @@ from django.contrib import messages
 
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
-from .forms import ReviewRatingForm
+from .forms import ReviewRatingForm, OrderTrackForm
 from .filters import ProductFilter
 from orders.forms import OrderForm
 from next.users.models import Shipping_Address
@@ -15,7 +15,8 @@ from next.users.models import Shipping_Address
 
 from store.models import Product, ProductImage, ReviewRating
 from categories.models import Category
-from orders.models import OrderProduct
+from orders.models import Order, OrderProduct
+
 
 
 
@@ -336,7 +337,11 @@ def faq (request):
 
 def order_tracker (request):
     """faq page"""
-    return render(request, 'pages/order_track.html')
+    form = OrderTrackForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'pages/order_track.html', context)
 
 def get_brand (request, **kwargs):
     try:
@@ -353,5 +358,30 @@ def get_brand (request, **kwargs):
         'product': product,
     }
     return render(request, 'pages/flash_sale.html', context)
+
+
+def track_details(request):
+    form = OrderTrackForm()
+    if request.method == 'POST':
+        form = OrderTrackForm(request.POST)
+        if form.is_valid():
+            number = form.cleaned_data.get('tracking_number')
+            order = Order.objects.filter(order_number = number)
+            if order.exists():
+                my_order = order
+                my_items = OrderProduct.objects.filter(order__order_number = number)
+            else:
+                messages.success(request, 'the order tracking number is invalid or inputed wrongly. Kindly check your order confirmation email or login to your dashboard. Still facing issues ?? chat our 24/7 customer care.', extra_tags = 'warning')
+                return redirect('order_tracker')
+        else:
+            print('Invalid form')
+
+        context = {
+            'my_order': my_order,
+            'my_items':my_items,
+        }
+    
+    return render(request, 'pages/tracker_details.html', context)
+
 
     
