@@ -125,7 +125,7 @@ class Product(BaseModel):
     brand = models.ForeignKey(
         Brands, on_delete = models.CASCADE,
         verbose_name = _("Product Brand"),
-        null =True,
+        null =True,blank = True,
         help_text= _('Product brand  will refrence the product brand table list, in any case the brand of the product is popular , the product can uplaod a new brand by clicking on the add brand button so to refrence the product to the brand. ')
     )
 
