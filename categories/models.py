@@ -5,6 +5,8 @@ from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from PIL import Image
+
 
 
 
@@ -65,6 +67,17 @@ class Category(MPTTModel):
             full_path.append(k.category)
             k = k.parent
         return '/'.join(full_path[::-1])
+
+       #  to resize an image to a given height and width,
+    def save(self, *args, **kwargs):
+        if self.image:
+            super().save(*args, **kwargs)
+            # Image.open() can also open other image types
+            img = Image.open(self.image.path)
+            # WIDTH and HEIGHT are integers
+            resized_img = img.resize((287, 427))
+            resized_img.save(self.image.path)
+
 
 
 def slug_generator_category(sender, instance, *args, **kwargs):
