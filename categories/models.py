@@ -38,7 +38,7 @@ class Category(MPTTModel):
     image = models.ImageField(
         upload_to = "categories_image/", 
         verbose_name = _('Category Image'),
-        null=True,  blank = True, 
+        null=True,blank = True,
         help_text = _("category image is meant to be png JPG JPEG"),
         )
     # mobile_icons = models.ImageField(upload_to = "categories_image/", null=True, blank = True)
@@ -69,14 +69,14 @@ class Category(MPTTModel):
         return '/'.join(full_path[::-1])
 
        #  to resize an image to a given height and width,
-    def save(self, *args, **kwargs):
-        if self.image:
-            super().save(*args, **kwargs)
-            # Image.open() can also open other image types
-            img = Image.open(self.image.path)
-            # WIDTH and HEIGHT are integers
-            resized_img = img.resize((287, 427))
-            resized_img.save(self.image.path)
+    # def save(self, *args, **kwargs):
+    #     if self.image:
+    #         super().save(*args, **kwargs)
+    #         # Image.open() can also open other image types
+    #         img = Image.open(self.image.path)
+    #         # WIDTH and HEIGHT are integers
+    #         resized_img = img.resize((287, 427))
+    #         resized_img.save(self.image.path)
 
 
 
