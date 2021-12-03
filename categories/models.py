@@ -38,7 +38,7 @@ class Category(MPTTModel):
     image = models.ImageField(
         upload_to = "categories_image/", 
         verbose_name = _('Category Image'),
-        null=True,  
+        null=True,  blank = True, 
         help_text = _("category image is meant to be png JPG JPEG"),
         )
     # mobile_icons = models.ImageField(upload_to = "categories_image/", null=True, blank = True)
