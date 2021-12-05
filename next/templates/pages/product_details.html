@@ -172,7 +172,7 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="description-content" role="tabpanel" aria-labelledby="description-tab">
-                            <p class="block-content">{{product.description}}</p>
+                            <p class="block-content">{{product.description | safe}}</p>
                         </div>
                        
                         <div class="tab-pane fade" id="reviews-content" role="tabpanel" aria-labelledby="reviews-tab">
@@ -320,7 +320,7 @@
                                 <div class="ps-product__content">
                                     <p class="ps-product__type"><i class="icon-store"></i>Next </p>
                                     <h5><a class="ps-product__name" href="{{i.get_absolute_url}}">{{i.product_name }}</a></h5>
-                                    <p class="ps-product__unit">{{i.description | truncatechars:70}}</p>
+                                    <p class="ps-product__unit">{{i.short_description | truncatechars:70}}</p>
                                     <div class="ps-product__rating">
                                         <select class="rating-stars">
                                             <option value="1">1</option>
