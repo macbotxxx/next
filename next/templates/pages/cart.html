@@ -73,7 +73,7 @@
                                                     <div class="ps-product__remove">  <a href="{%url 'delete_cart' p.product.id p.id %}" class="minus" onclick="return confirm('Are you sure you want to delete this item?')"> <i class="icon-trash2"></i></a> </div>
                                                 </div>
                                             </div>
-                                            <div class="cart-price"><span class="ps-product__price">₦{{p.product.price}}</span>
+                                            <div class="cart-price"><span class="ps-product__price">₦{{p.product.price | intcomma }}</span>
                                             </div>
                                             <div class="cart-quantity">
                                                 <div class="def-number-input number-input safari_only">
