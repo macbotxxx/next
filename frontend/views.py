@@ -16,6 +16,7 @@ from next.users.models import Shipping_Address
 from store.models import Product, ProductImage, ReviewRating
 from categories.models import Category
 from orders.models import Order, OrderProduct
+from banners.models import Wallpaper, FirstLayerImage, DownlayerImage
 
 
 
@@ -29,8 +30,12 @@ class HomePage(View):
         products = Product.objects.all().filter(is_available = True, best_selling = True).order_by('-created_date')[:20]
         flash_sale = Product.objects.all().filter(flash_sale = True, is_available = True)[:20]
         onekitems = Product.objects.all().filter(is_available = True).order_by('price')[0:20]
-        recommendedP = Product.objects.all().filter(is_available = True).order_by('-created_date')[:20]
-    
+        recommendedP = Product.objects.all().filter(is_available = True).order_by('-created_date')[:10]
+        banner = Wallpaper.objects.filter(status = True)
+        first_ad = FirstLayerImage.objects.filter(status = True)
+        last_ad = DownlayerImage.objects.filter(status = True)
+
+
         # getting the product rating
         reviews = [] 
         for product in products:
@@ -43,6 +48,9 @@ class HomePage(View):
             'reviews': reviews,
             'onekitems': onekitems,
             'recommendedP':recommendedP,
+            'banner':banner,
+            'first_ad':first_ad,
+            'last_ad':last_ad,
         }
 
         return render(self.request, 'pages/index.html', context)

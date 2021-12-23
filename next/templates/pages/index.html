@@ -9,65 +9,29 @@
         <main class="no-main">
             <div class="section-slide--default">
                 <div class="owl-carousel" data-owl-auto="false" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
-                    <div class="ps-banner"><img class="mobile-only" src="{% static 'nextonline/img/slider/home-1/slide_01_mobile.png' %}" alt="alt" /><img class="desktop-only" src="{% static 'nextonline/img/slider/home-1/slide_01.png' %}" alt="alt" />
+                    {%for i in banner%}
+                    <div class="ps-banner"><img class="mobile-only" src="{{i.mobile_image.url}}" alt="alt" /><img class="desktop-only" src="{{i.desktop_image.url}}" alt="alt" />
                         <div class="ps-content">
                             <div class="container">
                                 <div class="ps-content-box">
-                                    <div class="ps-title">Next Organic Fruit & Vegetable Delivery <br/> <span class='text-danger'>Daily Offers.</span></div>
-                                    <div class="ps-subtitle">With our deverse range of <span class='text-success'>100% fresh</span> foods.</div>
-                                    <div class="ps-shopnow"> <a href="#">Shop Now<i class="icon-chevron-right"></i></a></div>
+                                    <div class="ps-title">{{i.content}}</div>
+                                    <div class="ps-shopnow"> <a href="{%if i.url %}{{i.url}}{%else%}#{%endif%}">Shop Now<i class="icon-chevron-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="ps-banner"><img class="mobile-only" src="{% static 'nextonline/img/slider/home-1/slide_02_mobile.png' %}" alt="alt" /><img class="desktop-only" src="{% static 'nextonline/img/slider/home-1/slide_02.png' %}" alt="alt" />
-                        <div class="ps-content">
-                            <div class="container">
-                                <div class="ps-content-box">
-                                    <div class="ps-node"><span class='text-success'>NEW ARRIVALS</span></div>
-                                    <div class="ps-title">Whole Earth Organic Sparkling Lemonade.</div>
-                                    <div class="ps-subtitle">Made with nuatural ingredients</div>
-                                    <div class="ps-shopnow"> <a href="#">Shop Now<i class="icon-chevron-right"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ps-banner"><img class="mobile-only" src="{% static 'nextonline/img/slider/home-1/slide_03_mobile.png' %}" alt="alt" /><img class="desktop-only" src="{% static 'nextonline/img/slider/home-1/slide_03.png' %}" alt="alt" />
-                        <div class="ps-content">
-                            <div class="container">
-                                <div class="ps-content-box">
-                                    <div class="ps-node"><span class='text-danger'>SALE UP TO 30%</span></div>
-                                    <div class="ps-title">Whole Earth Maple Frosted Organic Corn Flakes.</div>
-                                    <div class="ps-subtitle">Only from <br/> <span class='price'>₦5.99</span></div>
-                                    <div class="ps-shopnow"> <a href="#">Shop Now<i class="icon-chevron-right"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {%endfor%}
+                    
                 </div>
-                <div class="section-slide__footer">
-                    <div class="container">
-                        <div class="row m-0">
-                            <div class="col-4">
-                                <p><b>Offers: Next Organic Fruit & Vegies</b></p>
-                            </div>
-                            <div class="col-4">
-                                <p>Whole Earth Organic Sparkling Lemonade</p>
-                            </div>
-                            <div class="col-4">
-                                <p>Whole Earth Maple Frasted Organic Corn Flakes</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
             <div class="ps-promotion--default">
                 <div class="container">
                     <div class="row m-0">
-                        <div class="col-6 col-lg-3"><a href="#"><img src="{% static 'nextonline/img/promotion/promotion_01.jpg' %}" alt="alt" /></a></div>
-                        <div class="col-6 col-lg-3"><a href="#"><img src="{% static 'nextonline/img/promotion/promotion_02.jpg' %}" alt="alt" /></a></div>
-                        <div class="col-6 col-lg-3"><a href="#"><img src="{% static 'nextonline/img/promotion/promotion_03.jpg' %}" alt="alt" /></a></div>
-                        <div class="col-6 col-lg-3"><a href="#"><img src="{% static 'nextonline/img/promotion/promotion_04.jpg' %}" alt="alt" /></a></div>
+                        {%for i in first_ad %}
+                        <div class="col-6 col-lg-3"><a href="{%if i.url %}{{i.url}}{%else%}#{%endif%}"><img src="{{i.image.url}}" alt="alt" /></a></div>
+                        {%endfor%}
+                        
                     </div>
                 </div>
             </div>
@@ -123,7 +87,9 @@
                 <div class="container">
 
                     <div class="ps-home--block">
-                        <div class="ps-block--promo"><a href="#"><img class="desktop-only" src="{% static 'nextonline/img/promotion/full-width/promo-03.jpg' %}" alt></a><a href="#"><img class="mobile-only" src="{% static 'nextonline/img/promotion/full-width/promo-03-mobile.jpg' %}" alt></a></div>
+                        <div class="ps-block--promo"><a href="#"><img class="desktop-only" src="{% static 'nextonline/img/promotion/full-width/promo-03.jpg' %}" alt></a>
+                            <a href="#"><img class="mobile-only" src="{% static 'nextonline/img/promotion/full-width/promo-03-mobile.jpg' %}" alt></a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -224,9 +190,10 @@
 
                     <div class="ps-home--block ps-block--promo p-30" style="padding:30px;" >
                         <div class="row">
-                            <div class="col-12 col-lg-4 ps-promo__item"><a href="#"><img src="{% static 'nextonline/img/promotion/full-width/promo-07.jpg' %}" alt></a></div>
-                            <div class="col-12 col-lg-4 ps-promo__item"><a href="#"><img src="{% static 'nextonline/img/promotion/full-width/promo-08.jpg' %}" alt></a></div>
-                            <div class="col-12 col-lg-4 ps-promo__item"><a href="#"><img src="{% static 'nextonline/img/promotion/full-width/promo-09.jpg' %}" alt></a></div>
+                            {%for i in last_ad %}
+                            <div class="col-12 col-lg-4 ps-promo__item"><a href="{%if i.url %}{{i.url}}{%else%}#{%endif%}"><img src="{{i.image.url}}" alt></a></div>
+                            {%endfor%}
+                           
                         </div>
                     </div>
 
