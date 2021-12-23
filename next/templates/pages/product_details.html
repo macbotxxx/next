@@ -27,9 +27,7 @@
                                 <option value="5" {%if product.averageReview == 5 %} selected="selected" {%endif%} >5</option>
                                 </select><span class="product__review">{{review_count}} Customer Review</span><span class="product__id">SKU: <span>#{{product.product_sku}}</span></span>
                         </div>
-                        <div class="col-12 col-lg-5">
-                            <div class="ps-social--share"><a class="ps-social__icon facebook" href="#"><i class="fa fa-thumbs-up"></i><span>Like</span><span class="ps-social__number">0</span></a><a class="ps-social__icon facebook" href="#"><i class="fa fa-facebook-square"></i><span>Like</span><span class="ps-social__number">0</span></a><a class="ps-social__icon twitter" href="#"><i class="fa fa-twitter"></i><span>Like</span></a><a class="ps-social__icon" href="#"><i class="fa fa-plus-square"></i><span>Like</span></a></div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="product__detail">
@@ -63,7 +61,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6">
-                                        <div class="ps-product__sale"><span class="price-sale">₦{{product.price | intcomma }}</span> {%if product.old_price %} <span class="price">₦{{product.old_price | intcomma}}</span> {% endif %} <span class="ps-product__off">34% Off</span>
+                                        <div class="ps-product__sale"><span class="price-sale">₦{{product.price | intcomma }}</span> {%if product.old_price %} <span class="price">₦{{product.old_price | intcomma}}</span> {% endif %}
                                         </div>
                                         
 
@@ -103,9 +101,7 @@
 
                                         <div class="ps-product__info">
                                             <ul class="ps-list--rectangle">
-                                                <li> <span><i class="icon-square"></i></span>Made from BPA free pkastic</li>
-                                                <li> <span><i class="icon-square"></i></span>500ml volume</li>
-                                                <li> <span><i class="icon-square"></i></span>Hand wash only</li>
+                                                {{product.short_description}}
                                             </ul>
                                         </div>
                                         {%if product.stock > 0 %}
@@ -135,7 +131,7 @@
                                 <div class="extention__block">
                                     <div class="extention__item">
                                         <div class="extention__icon"><i class="icon-truck"></i></div>
-                                        <div class="extention__content"> <b class="text-black">Free Shipping </b>apply to all orders over <span class="text-success">₦100</span></div>
+                                        <div class="extention__content"> <b class="text-black">Our Shipping Service</b>apply to all orders over <span class="text-success">₦100</span></div>
                                     </div>
                                 </div>
                                 <div class="extention__block">
@@ -314,7 +310,7 @@
                 <div class="product__related" id="productTabDetailContent">
                     <h3 class="product__name">Related Products</h3>
                     <div class="owl-carousel" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="5" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
-                        {%for i in product.category.product_set.all %}
+                        {%for i in product.category.product_set.all|slice:":9"%}
                         <div class="ps-post--product">
                             <div class="ps-product--standard"><a href="{{i.get_absolute_url}}"><img class="ps-product__thumbnail" src="{{i.image.url}}" alt="alt" /></a>
                                 <div class="ps-product__content">
