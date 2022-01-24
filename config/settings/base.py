@@ -89,6 +89,7 @@ DJANGO_APPS = [
     "django.forms",
     "mptt",
     "django_filters",
+    "wkhtmltopdf",
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",

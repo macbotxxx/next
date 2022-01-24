@@ -4,4 +4,4 @@ from django.utils.translation import gettext_lazy as _
 
 class BannersConfig(AppConfig):
     name = 'banners'
-    verbose_name = _(" Banners and Ad Images")
+    verbose_name = _("Settings, Banners and Ad Images")

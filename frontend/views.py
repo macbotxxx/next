@@ -16,7 +16,7 @@ from next.users.models import Shipping_Address
 from store.models import Product, ProductImage, ReviewRating
 from categories.models import Category
 from orders.models import Order, OrderProduct
-from banners.models import Wallpaper, FirstLayerImage, DownlayerImage
+from banners.models import Wallpaper, FirstLayerImage, DownlayerImage, AboutUs
 
 
 
@@ -328,7 +328,9 @@ def review (request, product_id ):
 
 def about_us (request):
     """about us page"""
-    return render(request, 'pages/about_us.html')
+    about_us = AboutUs.objects.filter(active = True)
+    context = {'about_us': about_us}
+    return render(request, 'pages/about_us.html', context)
 
 
 def contact_us (request):

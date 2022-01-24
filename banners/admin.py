@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Wallpaper, FirstLayerImage, DownlayerImage
+from .models import Wallpaper, FirstLayerImage, DownlayerImage, AboutUs
 
 @admin.register(Wallpaper)
 class WallpaperAdmin(admin.ModelAdmin):
@@ -18,3 +18,9 @@ class FirstLayerImageAdmin(admin.ModelAdmin):
 class DownlayerImageAdmin(admin.ModelAdmin):
     list_display = ('redirect_url', 'status', )
     list_display_link = ('redirect_url', 'status', )
+
+
+
+@admin.register(AboutUs)
+class AboutUsAdmin(admin.ModelAdmin):
+    pass

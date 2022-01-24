@@ -10,6 +10,7 @@ from .payment_gateway import FlutterWave, PayStack
 
 import secrets
 
+
 # Create your models here.
 
 class Payment(BaseModel):

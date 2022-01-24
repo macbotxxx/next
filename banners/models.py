@@ -3,17 +3,19 @@ from helpers.common.basemodel import BaseModel
 from PIL import Image
 from io import BytesIO
 from django.utils.translation import gettext_lazy as _
+from tinymce.models import HTMLField
+
 
 class Wallpaper(BaseModel):
     desktop_image = models.ImageField(
         verbose_name= _('DeskTop Wallpaper'),
-        max_length=255, null=True,
+        null=True,
         help_text=_("a wallpaper is needed to be uploaded , and it the main bannner wallpaper.. note ... keep in mind the size of the image becuase it needs to be saved before image compressing by the app .")
     )
 
     mobile_image = models.ImageField(
         verbose_name= _('Mobile Wallpaper'),
-        max_length=255, null=True,
+        null=True,
         help_text=_("a wallpaper is needed to be uploaded , and it the main bannner wallpaper.. note ... keep in mind the size of the image becuase it needs to be saved before image compressing by the app .")
     )
 
@@ -39,22 +41,22 @@ class Wallpaper(BaseModel):
         return str(self.desktop_image)
 
     #  to resize an image to a given height and width,
-    def save(self, *args, **kwargs):
-        if self.desktop_image:
-            super().save(*args, **kwargs)
-            # Image.open() can also open other image types
-            img = Image.open(self.desktop_image.path)
-            # WIDTH and HEIGHT are integers
-            resized_img = img.resize((640, 640))
-            resized_img.save(self.desktop_image.path)
+    # def save(self, *args, **kwargs):
+    #     if self.desktop_image:
+    #         super().save(*args, **kwargs)
+    #         # Image.open() can also open other image types
+    #         img = Image.open(self.desktop_image.path)
+    #         # WIDTH and HEIGHT are integers
+    #         resized_img = img.resize((1920, 420))
+    #         resized_img.save(self.desktop_image.path)
 
-        if self.mobile_image:
-            super().save(*args, **kwargs)
-            # Image.open() can also open other image types
-            img = Image.open(self.mobile_image.path)
-            # WIDTH and HEIGHT are integers
-            resized_img = img.resize((640, 640))
-            resized_img.save(self.mobile_image.path)
+    #     if self.mobile_image:
+    #         super().save(*args, **kwargs)
+    #         # Image.open() can also open other image types
+    #         img = Image.open(self.mobile_image.path)
+    #         # WIDTH and HEIGHT are integers
+    #         resized_img = img.resize((640, 640))
+    #         resized_img.save(self.mobile_image.path)
 
     class Meta:
         ordering = ('-created_date',)
@@ -136,3 +138,24 @@ class DownlayerImage (BaseModel):
         ordering = ('-created_date',)
         verbose_name = _("Down Layer Image")
         verbose_name_plural = _("Down Layer Image")
+
+
+class AboutUs (BaseModel):
+    content = HTMLField(
+        verbose_name = _('Product Description'),
+        null=True,
+        help_text= _('Product description for the current product and note it should be well organized and explainable.')
+    )
+
+    active = models.BooleanField(
+        _('Active'), 
+        default=False, null=True,
+        )
+
+    def __str__(self):
+        return str(self.active)
+
+    class Meta:
+        ordering = ('-created_date',)
+        verbose_name = _('About Us Content')
+        verbose_name_plural = _('About Us Content')
